@@ -1,0 +1,13 @@
+
+canvas {  
+  { margin:0; padding:0;
+     }
+ html, body { width:100%; height:100%;}
+ canvas { display:block; 
+  overflow:hidden;
+  margin:0; padding:0;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
