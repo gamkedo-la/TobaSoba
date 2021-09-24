@@ -7,7 +7,7 @@ const GRAVITY = 0.6;
 var jumperX = 75, jumperY = 75;
 var jumperSpeedX = 0, jumperSpeedY = 0;
 var jumperOnGround = false;
-var JUMPER_RADIUS = 10;
+var JUMPER_RADIUS = 15;
 
 
 var holdLeft = false;
@@ -158,10 +158,10 @@ function jumperMove() {
   function jumperDraw() {
     canvasContext.save();
     canvasContext.translate(jumperX,jumperY);
-    //canvasContext.rotate(20);
-    canvasContext.drawImage(playerPic,-JUMPER_RADIUS /2,-JUMPER_RADIUS /2,
-      playerPic.width * JUMPER_RADIUS /JUMPER_RADIUS, 
-      playerPic.height * JUMPER_RADIUS /JUMPER_RADIUS);
+    canvasContext.rotate(jumperX/20.0);
+    canvasContext.drawImage(playerPic,-JUMPER_RADIUS,-JUMPER_RADIUS,
+      playerPic.width, 
+      playerPic.height);
     canvasContext.restore();
   }
   
