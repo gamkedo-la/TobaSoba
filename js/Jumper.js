@@ -3,11 +3,15 @@ const AIR_RESISTANCE = 0.95;
 const RUN_SPEED = 4.0;
 const JUMP_POWER = 12.0;
 const GRAVITY = 0.6;
+const MAX_JUMP_DURATION_SECS = 0.5;
+
+var framesPerSecond = 30;
 
 var jumperX = 75, jumperY = 75;
 var jumperSpeedX = 0, jumperSpeedY = 0;
 var jumperOnGround = false;
 var JUMPER_RADIUS = 15;
+var jumpTimer = 0.0;
 
 
 var holdLeft = false;
@@ -33,8 +37,10 @@ function jumperMove() {
 	 if(holdRight) {
 	   jumperSpeedX = RUN_SPEED;
 	 }
-   if(holdJump) {
+   if(holdJump && jumpTimer <= MAX_JUMP_DURATION_SECS) {
     jumperSpeedY = -JUMP_POWER;
+    console.log(jumpTimer);
+    jumpTimer += 1 / framesPerSecond;
   }
 	 if(jumperSpeedY < 0 && isBrickAtPixelCoord(jumperX,jumperY-JUMPER_RADIUS) == 1) {
 	   jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H + JUMPER_RADIUS;
@@ -45,6 +51,7 @@ function jumperMove() {
 	   jumperY = (1+Math.floor( jumperY / BRICK_H )) * BRICK_H - JUMPER_RADIUS;
 	   jumperOnGround = true;
 	   jumperSpeedY = 0;
+     jumpTimer = 0.0;
 	 } else if(isBrickAtPixelCoord(jumperX,jumperY+JUMPER_RADIUS+2) == 0) {
 	   jumperOnGround = false;
 	 }
@@ -67,7 +74,6 @@ function jumperMove() {
 	 initInput();
 	 
 	 // these next few lines set up our game logic and render to happen 30 times per second
-	 var framesPerSecond = 30;
 	 setInterval(function() {
 		 moveEverything();
 		 drawEverything();
