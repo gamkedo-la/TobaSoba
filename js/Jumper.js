@@ -12,6 +12,8 @@ var jumperSpeedX = 0, jumperSpeedY = 0;
 var jumperOnGround = false;
 var JUMPER_RADIUS = 15;
 var jumpTimer = 0.0;
+var previousFrameJumping = false;
+var doneJumping = false;
 
 
 var holdLeft = false;
@@ -37,11 +39,17 @@ function jumperMove() {
 	 if(holdRight) {
 	   jumperSpeedX = RUN_SPEED;
 	 }
-   if(holdJump && jumpTimer <= MAX_JUMP_DURATION_SECS) {
+   if(holdJump && jumpTimer <= MAX_JUMP_DURATION_SECS && !doneJumping) {
     jumperSpeedY = -JUMP_POWER;
-    console.log(jumpTimer);
     jumpTimer += 1 / framesPerSecond;
   }
+  if(previousFrameJumping && !holdJump)
+  {
+    doneJumping = true;
+  }
+
+  previousFrameJumping = holdJump;
+  
 	 if(jumperSpeedY < 0 && isBrickAtPixelCoord(jumperX,jumperY-JUMPER_RADIUS) == 1) {
 	   jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H + JUMPER_RADIUS;
 	   jumperSpeedY = 0.0;
@@ -52,6 +60,7 @@ function jumperMove() {
 	   jumperOnGround = true;
 	   jumperSpeedY = 0;
      jumpTimer = 0.0;
+     doneJumping = false;
 	 } else if(isBrickAtPixelCoord(jumperX,jumperY+JUMPER_RADIUS+2) == 0) {
 	   jumperOnGround = false;
 	 }
