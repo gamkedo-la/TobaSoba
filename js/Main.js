@@ -1,7 +1,7 @@
 var canvas, canvasContext;
 var backgroundMusic = new BackgroundMusicClass();
 var Sound = new SoundOverlapsClass("audio/hit");
-var showCredits = true;
+var showCredits = false;
 const SET_FRAMES_PER_SECOND = 30;
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
@@ -17,7 +17,7 @@ function startGame() {
   setInterval(function() {
 		update();
     }, 1000/framesPerSecond);
-  backgroundMusic.loopSong("audio/S");
+  //backgroundMusic.loopSong("audio/S");
 
   //init( playerPic , "toba");
   reset();

@@ -64,7 +64,7 @@ function setKeyHoldState(thisKey, setTo) {
 }
 
 function mouseClick(evt){
-	backgroundMusic.startOrStopMusic();
+	//backgroundMusic.startOrStopMusic();
 	if (worldEditor) {
 		if (!(mousePos.x > 0 && mousePos.x < canvas.width) ||
 			!(mousePos.y > 0 && mousePos.y < canvas.height)) {
@@ -79,6 +79,7 @@ function mouseClick(evt){
 		} else {
 			brickGrid[tileIndex] = 1;
 		}
+		console.log(brickGrid[tileIndex]+ " " + tileIndex);
 	} else {
 		//console.log("World editor disabled - hit ` to start");
 	}
