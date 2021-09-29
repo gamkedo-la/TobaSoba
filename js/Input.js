@@ -72,7 +72,7 @@ function mouseClick(evt){
 			return;
 		}
 
-		tileIndex = getTileIndexAtPixelCoord(mousePos.x, mousePos.y);
+		tileIndex = getTileIndexAtPixelCoord(mousePos.x + cameraPanX, mousePos.y + cameraPanY);
 
 		if (roomGrid[tileIndex] == 1) {
 			roomGrid[tileIndex] = 0;
@@ -88,8 +88,8 @@ function mouseClick(evt){
 function calculateMousePos(evt) {
 	var rect = canvas.getBoundingClientRect();
 	var root = document.documentElement;
-	var mouseX = evt.clientX - rect.left - root.scrollLeft;
-	var mouseY = evt.clientY - rect.top - root.scrollTop;
+	var mouseX = evt.clientX - rect.left;
+	var mouseY = evt.clientY - rect.top;
 	return {
 		x:mouseX,
 		y:mouseY
