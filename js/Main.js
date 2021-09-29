@@ -50,16 +50,14 @@ function resizeCanvas() {
 		} 
 		else {
 		drawEverything();
-		showCredits = false;
 		}
 }
 function drawEverything() {
 		cameraPan();
-		//drawBricks();
 		drawRoom();
-		//drawScene();
 		jumperDraw();
 		endCameraPan();
+		drawEditor();
 }
 
 function moveEverything() {

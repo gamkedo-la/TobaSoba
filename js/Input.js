@@ -5,6 +5,7 @@ const KEY_SPACE = 32;
 const KEY_A = 65;
 const KEY_D = 68;
 const KEY_W = 87;
+const KEY_TAB = 9;
 
 const KEY_TILDE = 192;
 const KEY_PLUS = 61;
@@ -17,7 +18,6 @@ var holdJump = false;
 var radiusIncrease = false;
 var radiusDecrease = false;
 
-var worldEditor = true;
 
 var mousePos;
   
@@ -44,7 +44,6 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_UP_ARROW:
 	case KEY_SPACE:
 	case KEY_W:
-		console.log("jump detected");
 		holdJump = setTo;
 		break;
 	case KEY_TILDE:
@@ -97,6 +96,7 @@ function calculateMousePos(evt) {
 }
 
 function keyPressed(evt) {
+	editorKeyCheck(evt.keyCode);
 	setKeyHoldState(evt.keyCode, true);
 	evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
