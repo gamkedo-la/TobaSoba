@@ -7,7 +7,6 @@ function drawEditor(){
     canvasContext.font = "30px Verdana";
     canvasContext.fillStyle = 'black';
     canvasContext.fillText("EDITOR MODE",250,35);
-    console.log("we reached editor");
 };
 
 function drawTiles(){
@@ -22,15 +21,45 @@ function editorKeyCheck(keyCode) {
     if (worldEditor == false) {
         if(keyCode == KEY_TAB) {
             worldEditor = true;
-            console.log('editor enabled');
             return;
         }
     }
+    tileIndex = getTileIndexAtPixelCoord(mousePos.x + cameraPanX, mousePos.y + cameraPanY);
+
     switch (keyCode) {
         case KEY_TAB:
             worldEditor = false;
-            console.log('editor disabled');
             break;
+        case KEY_0:
+            roomGrid[tileIndex] = TILE_DOOR;
+            break;
+        case KEY_1:
+            roomGrid[tileIndex] = TILE_SNACK;
+            break;
+         case KEY_2:
+            roomGrid[tileIndex] = TILE_TREASURE;
+            break;
+         case KEY_3:
+            //roomGrid[tileIndex] = TILE_GROUND1;
+             break;   
+        case KEY_4:
+            //roomGrid[tileIndex] = TILE_GROUND2;
+            break;
+        case KEY_5:
+            //roomGrid[tileIndex] = TILE_GROUND2;
+            break;   
+        case KEY_6:
+            //roomGrid[tileIndex] = TILE_GROUND2;
+            break;   
+        case KEY_7:
+            //roomGrid[tileIndex] = TILE_GROUND2;
+            break;   
+        case KEY_8:
+            //roomGrid[tileIndex] = TILE_GROUND2;
+            break;
+        case KEY_9:
+            //roomGrid[tileIndex] = TILE_GROUND2;
+            break; 
     } 
 }
 

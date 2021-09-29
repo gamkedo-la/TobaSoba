@@ -1,3 +1,13 @@
+const KEY_0 = 48;
+const KEY_1 = 49;
+const KEY_2 = 50;
+const KEY_3 = 51;
+const KEY_4 = 52;
+const KEY_5 = 53;
+const KEY_6 = 54;
+const KEY_7 = 55;
+const KEY_8 = 56;
+const KEY_9 = 57;
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
 const KEY_RIGHT_ARROW = 39;
@@ -64,23 +74,25 @@ function setKeyHoldState(thisKey, setTo) {
 
 function mouseClick(evt){
 	//backgroundMusic.startOrStopMusic();
-	if (worldEditor) {
-		if (!(mousePos.x > 0 && mousePos.x < canvas.width) ||
-			!(mousePos.y > 0 && mousePos.y < canvas.height)) {
-			console.log("mouse off canvas");
-			return;
-		}
+	if (worldEditor) {	
+		if (editorKeyCheck) {
+			if (!(mousePos.x > 0 && mousePos.x < canvas.width) ||
+				!(mousePos.y > 0 && mousePos.y < canvas.height)) {
+				console.log("mouse off canvas");
+				return;
+			}
 
-		tileIndex = getTileIndexAtPixelCoord(mousePos.x + cameraPanX, mousePos.y + cameraPanY);
-
-		if (roomGrid[tileIndex] == 1) {
-			roomGrid[tileIndex] = 0;
+			tileIndex = getTileIndexAtPixelCoord(mousePos.x + cameraPanX, mousePos.y + cameraPanY);
+			if (roomGrid[tileIndex] == 1) {
+				roomGrid[tileIndex] = 0;
+			} else {
+				roomGrid[tileIndex] = 1;
+			}
+			//console.log(roomGrid[tileIndex]+ " " + tileIndex);
 		} else {
-			roomGrid[tileIndex] = 1;
+			//console.log("World editor disabled - hit ` to start");
 		}
-		console.log(roomGrid[tileIndex]+ " " + tileIndex);
-	} else {
-		//console.log("World editor disabled - hit ` to start");
+			
 	}
 }
 
