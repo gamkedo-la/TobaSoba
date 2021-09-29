@@ -17,7 +17,7 @@ var holdJump = false;
 var radiusIncrease = false;
 var radiusDecrease = false;
 
-var worldEditor = false;
+var worldEditor = true;
 
 var mousePos;
   
@@ -72,14 +72,14 @@ function mouseClick(evt){
 			return;
 		}
 
-		tileIndex = tileIndexAtPixelCoord(mousePos.x, mousePos.y);
+		tileIndex = getTileIndexAtPixelCoord(mousePos.x, mousePos.y);
 
-		if (brickGrid[tileIndex] == 1) {
-			brickGrid[tileIndex] = 0;
+		if (roomGrid[tileIndex] == 1) {
+			roomGrid[tileIndex] = 0;
 		} else {
-			brickGrid[tileIndex] = 1;
+			roomGrid[tileIndex] = 1;
 		}
-		console.log(brickGrid[tileIndex]+ " " + tileIndex);
+		console.log(roomGrid[tileIndex]+ " " + tileIndex);
 	} else {
 		//console.log("World editor disabled - hit ` to start");
 	}

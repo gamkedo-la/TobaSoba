@@ -76,15 +76,10 @@ function roomTileToIndex(tileCol, tileRow) {
 	  return (tileCol + BRICK_COLS*tileRow);
   }
   
-  function isBrickAtTileCoord(brickTileCol, brickTileRow) {
-	  var brickIndex = brickTileToIndex(brickTileCol, brickTileRow);
-	  return (roomGrid[brickIndex] == 1);
-  }
   
   function isBrickAtPixelCoord(hitPixelX, hitPixelY) {
 	  var tileCol = hitPixelX / BRICK_W;
 	  var tileRow = hitPixelY / BRICK_H;
-  
 	  // using Math.floor to round down to the nearest whole number
 	  tileCol = Math.floor( tileCol );
 	  tileRow = Math.floor( tileRow );
