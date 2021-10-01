@@ -14,6 +14,8 @@ const KEY_RIGHT_ARROW = 39;
 const KEY_SPACE = 32;
 const KEY_A = 65;
 const KEY_D = 68;
+const KEY_M = 77;
+const KEY_P = 80;
 const KEY_W = 87;
 const KEY_TAB = 9;
 
@@ -67,6 +69,12 @@ function setKeyHoldState(thisKey, setTo) {
 		//TODO: Create delay?
 		radiusDecrease = setTo;
 		break;
+  case KEY_M:
+    gameState = STATE_CREDITS;
+    break;
+  case KEY_P:
+    gameState = STATE_PLAY;
+    break;
 	default:
 		//console.log("Keycode is: " + thisKey);
 	}

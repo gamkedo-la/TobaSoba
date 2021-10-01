@@ -1,8 +1,16 @@
 var canvas, canvasContext;
 var backgroundMusic = new BackgroundMusicClass();
 var Sound = new SoundOverlapsClass("audio/hit");
-var showCredits = false;
+
+const STATE_MENU = 0;
+const STATE_PLAY = 1;
+const STATE_CREDITS = 2;
+var gameState = STATE_CREDITS;
+
+const INDENT = 20;
+
 const SET_FRAMES_PER_SECOND = 30;
+
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -30,28 +38,34 @@ function update() {
 }
 
 function drawCredits() {
-colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'black');
-canvasContext.font = "30px Verdana";
-canvasContext.fillStyle = 'brown';
-canvasContext.fillText("Made at HomeTeam",250,35);
-canvasContext.fillText("Created with",8,75);
-canvasContext.fillText("Created By Vaan Hope Khani",8,195);
-canvasContext.fillText("Arrow keys to run, UP or spacebar  to jump",8,255);
-canvasContext.fillText("CLICK TO START",8,295);
-
+  colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'black');
+  canvasContext.font = "30px Verdana";
+  canvasContext.fillStyle = 'brown';
+  canvasContext.fillText("Made at HomeTeam", INDENT, 35);
+  canvasContext.fillText("Created with", INDENT, 75);
+  canvasContext.fillText("Created by Vaan Hope Khani", INDENT, 195);
+  canvasContext.fillText("Arrow keys to run, Up-arrow key or spacebar to jump", INDENT, 255);
+  canvasContext.fillText("Press key P to start playing", INDENT, 295);
+  canvasContext.fillText("Press key M to return to this menu", INDENT, 335);
 }
 
 function resizeCanvas() {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 
-	if (showCredits == true) {
-		drawCredits();
-		} 
-		else {
-		drawEverything();
-		}
+  switch (gameState) {
+    case STATE_MENU:
+      drawMenu();
+      break;
+    case STATE_PLAY:
+      drawEverything();
+      break;
+    case STATE_CREDITS:
+      drawCredits();
+      break;
+  }
 }
+
 function drawEverything() {
 		cameraPan();
 		drawRoom();
