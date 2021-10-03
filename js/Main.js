@@ -1,6 +1,6 @@
 var canvas, canvasContext;
 var backgroundMusic = new BackgroundMusicClass();
-var Sound = new SoundOverlapsClass("audio/hit");
+var Sound = new SoundOverlapsClass("audio/snack");
 
 const STATE_MENU = 0;
 const STATE_PLAY = 1;

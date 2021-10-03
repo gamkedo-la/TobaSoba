@@ -145,12 +145,12 @@ function jumperMove() {
       case TILE_GROUND:
         break;
       case TILE_TREASURE:
-		Sound.play("hit");
+		//Sound.play("hit");
         this.treasureHeld++; // get treasure
 		roomGrid[walkIntoTileIndex] = TILE_GROUND;
         break;
       case TILE_DOOR:
-		Sound.play("hit");
+		//Sound.play("hit");
 		  console.log("DOOR");
         if(this.snackHeld > 0) {
           this.snackHeld--; // one less snack
@@ -158,7 +158,7 @@ function jumperMove() {
         }
         break;
       case TILE_SNACK:
-		Sound.play("hit");
+		Sound.play();
         this.snackHeld++; // get snack
         roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
         break;
