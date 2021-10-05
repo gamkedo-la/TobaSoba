@@ -5,7 +5,7 @@ var Sound = new SoundOverlapsClass("audio/snack");
 const STATE_MENU = 0;
 const STATE_PLAY = 1;
 const STATE_CREDITS = 2;
-var gameState = STATE_MENU;
+var gameState = STATE_PLAY;
 
 const INDENT = 40;
 
