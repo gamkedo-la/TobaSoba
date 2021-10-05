@@ -15,6 +15,9 @@ var jumpTimer = 0.0;
 var previousFrameJumping = false;
 var doneJumping = false;
 
+var currentGravity = GRAVITY;
+var gravityFallModifier = 2;
+
 
 var holdLeft = false;
 var holdRight = false;
@@ -27,11 +30,18 @@ function jumperMove() {
 	   jumperSpeedX *= GROUND_FRICTION;
 	 } else {
 	   jumperSpeedX *= AIR_RESISTANCE;
-	   jumperSpeedY += GRAVITY;
+	   jumperSpeedY += currentGravity;
 	   if(jumperSpeedY > JUMPER_RADIUS) { // cheap test to ensure can't fall through floor
 		 jumperSpeedY = JUMPER_RADIUS;
 	   }
 	 }
+   
+   if(jumperSpeedY > 0) {
+    currentGravity = GRAVITY * gravityFallModifier;
+   }
+   else if (jumperOnGround) {
+    currentGravity = GRAVITY;
+   }
    
 	 if(holdLeft) {
 	   jumperSpeedX = -RUN_SPEED;
