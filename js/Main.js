@@ -5,9 +5,9 @@ var Sound = new SoundOverlapsClass("audio/snack");
 const STATE_MENU = 0;
 const STATE_PLAY = 1;
 const STATE_CREDITS = 2;
-var gameState = STATE_CREDITS;
+var gameState = STATE_MENU;
 
-const INDENT = 20;
+const INDENT = 40;
 
 const SET_FRAMES_PER_SECOND = 30;
 
@@ -37,16 +37,31 @@ function update() {
 	//variableDisplay();
 }
 
+function drawMenu() {
+  colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'black');
+  canvasContext.fillStyle = 'yellow';
+  canvasContext.font = "50px Verdana";
+  canvasContext.fillText("TobaSoba", INDENT-4, 80);
+  canvasContext.font = "30px Verdana";
+  canvasContext.fillText("created by Vaan Hope Khani", INDENT, 120);
+  canvasContext.fillText("Left right arrow keys to run", INDENT, 200); 
+  canvasContext.fillText("Up-arrow key or spacebar to jump", INDENT, 240);
+  canvasContext.fillText("Press key P to play game", INDENT, 340);
+  canvasContext.fillText("Press key C to view the Credits", INDENT, 380);
+  canvasContext.fillText("Press key M to return here", INDENT, 420);
+  canvasContext.fillText("Press L to leave editor, K to edit", INDENT, 480);
+}
+
 function drawCredits() {
   colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'black');
   canvasContext.font = "30px Verdana";
-  canvasContext.fillStyle = 'brown';
-  canvasContext.fillText("Made at HomeTeam", INDENT, 35);
-  canvasContext.fillText("Created with", INDENT, 75);
-  canvasContext.fillText("Created by Vaan Hope Khani", INDENT, 195);
-  canvasContext.fillText("Arrow keys to run, Up-arrow key or spacebar to jump", INDENT, 255);
-  canvasContext.fillText("Press key P to start playing", INDENT, 295);
-  canvasContext.fillText("Press key M to return to this menu", INDENT, 335);
+  canvasContext.fillStyle = 'orange';
+  canvasContext.fillText("TobaSoba made at HomeTeam GameDev", INDENT, 80);
+
+  canvasContext.fillText("Vaan Hope Khani", INDENT, 140);
+
+  canvasContext.fillText("Press key P to play", INDENT, 420);
+  canvasContext.fillText("Press key M for menu", INDENT, 460);
 }
 
 function resizeCanvas() {

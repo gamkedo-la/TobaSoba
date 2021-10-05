@@ -13,7 +13,10 @@ const KEY_UP_ARROW = 38;
 const KEY_RIGHT_ARROW = 39;
 const KEY_SPACE = 32;
 const KEY_A = 65;
+const KEY_C = 67;
 const KEY_D = 68;
+const KEY_K = 75;
+const KEY_L = 76;
 const KEY_M = 77;
 const KEY_P = 80;
 const KEY_W = 87;
@@ -29,7 +32,6 @@ var holdJump = false;
 
 var radiusIncrease = false;
 var radiusDecrease = false;
-
 
 var mousePos;
   
@@ -58,10 +60,14 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_W:
 		holdJump = setTo;
 		break;
-	case KEY_TILDE:
-		worldEditor = true;
-		console.log("World editor enabled");
-		break;
+	case KEY_K:
+    worldEditor = true;
+    console.log("World editor enabled");
+    break;
+	case KEY_L:
+    worldEditor = false;
+    console.log("World editor switched off");
+    break;
 	case KEY_PLUS:
 		radiusIncrease = setTo;
 		break;
@@ -70,10 +76,13 @@ function setKeyHoldState(thisKey, setTo) {
 		radiusDecrease = setTo;
 		break;
   case KEY_M:
-    gameState = STATE_CREDITS;
+    gameState = STATE_MENU;
     break;
   case KEY_P:
     gameState = STATE_PLAY;
+    break;
+  case KEY_C:
+    gameState = STATE_CREDITS;
     break;
 	default:
 		//console.log("Keycode is: " + thisKey);

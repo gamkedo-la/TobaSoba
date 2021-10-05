@@ -6,3 +6,4 @@ VSWorkspaceState.json
 slnx.sqlite
 .vscode/launch.json
 *.db
+.vscode/settings.json
