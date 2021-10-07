@@ -59,6 +59,7 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_SPACE:
 	case KEY_W:
 		holdJump = setTo;
+		//jumpSound.play();
 		break;
 	case KEY_K:
     worldEditor = true;
