@@ -89,6 +89,7 @@ function drawEverything() {
 		drawRoom();
 		jumperDraw();
 		endCameraPan();
+		drawEnerrgyUI();
 		drawEditor();
 }
 

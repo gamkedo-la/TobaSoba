@@ -25,6 +25,8 @@ var holdRight = false;
 var jumpVariables = [];
 var jumpVariableNames = ["jumperRadius","runSpeed","jumperSpeedX", "jumpPower","jumperSpeedY", "groundFriction", "airResistance", "gravity"];
 
+var snackHeld = 0;
+
 function jumperMove() {
 	if(jumperOnGround) {
 	   jumperSpeedX *= GROUND_FRICTION;
@@ -122,7 +124,6 @@ function jumperMove() {
   }
 
   this.reset = function() {
-	this.snackHeld = 0;
     if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
         if( roomGrid[i] == TILE_PLAYER) {

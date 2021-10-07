@@ -1,6 +1,8 @@
 var playerPic=document.createElement("img");
 var patrolEnemyPic=document.createElement("img");
 var flyingEnemyPic=document.createElement("img");
+var snackEmpty=document.createElement("img");
+var snackFull=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -27,6 +29,8 @@ function loadImages() {
       {varName:playerPic, theFile:"toba.png"},
       {varName:flyingEnemyPic, theFile:"flyingenemy.png"},
       {varName:patrolEnemyPic, theFile:"patrolenemy.png"},
+      {varName:snackEmpty, theFile:"snackempty.png"},
+      {varName:snackFull, theFile:"snackfull.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_TREASURE, theFile:"treasure.png"},
