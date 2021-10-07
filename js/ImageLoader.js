@@ -1,4 +1,6 @@
 var playerPic=document.createElement("img");
+var patrolEnemyPic=document.createElement("img");
+var flyingEnemyPic=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -23,6 +25,8 @@ function loadImageForTileCode(tileCode, fileName) {
 function loadImages() {
     var imageList = [
       {varName:playerPic, theFile:"toba.png"},
+      {varName:flyingEnemyPic, theFile:"flyingenemy.png"},
+      {varName:patrolEnemyPic, theFile:"patrolenemy.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_TREASURE, theFile:"treasure.png"},
@@ -31,7 +35,7 @@ function loadImages() {
       {tileType:TILE_GROUND1, theFile:"ground1.png"},
       {tileType:TILE_GROUND2, theFile:"ground2.png"},
       {tileType:TILE_WALL2, theFile:"wall2.png"},
-      {tileType:TILE_START, theFile:"start.png"}
+      {tileType:TILE_START, theFile:"start.png"},
       ];
 
   picsToLoad = imageList.length;
