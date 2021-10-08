@@ -20,8 +20,10 @@ window.onload = function() {
 
 	initInput();
 	loadImages();
+  
 }
 
+  
 function startGame() {
  // these next few lines set up our game logic and render to happen 30 times per second
 	var framesPerSecond = 30;

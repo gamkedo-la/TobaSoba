@@ -65,6 +65,10 @@ function editorKeyCheck(keyCode) {
             roomGrid[tileIndex] = TILE_PLAYER;
              break;   
         case KEY_4:
+            jumperX = 415;
+            jumperY = 535;
+            jumperSpeedX = -10;
+            jumperSpeedY = 10;
             //roomGrid[tileIndex] = TILE_GROUND2;
             break;
         case KEY_5:

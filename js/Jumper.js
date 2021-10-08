@@ -88,20 +88,6 @@ function jumperMove() {
 	 jumperY += jumperSpeedY; // same as above, but for vertical
    }
  
-   window.onload = function() {
-	 canvas = document.getElementById('gameCanvas');
-	 canvasContext = canvas.getContext('2d');
-	 
-	 initInput();
-	 
-	 // these next few lines set up our game logic and render to happen 30 times per second
-	 setInterval(function() {
-		 moveEverything();
-		 drawEverything();
-	   }, 1000/framesPerSecond);
-	   
-	 jumperReset();
-   }
    
    function jumperReset() {
 	 // center jumper on screen
