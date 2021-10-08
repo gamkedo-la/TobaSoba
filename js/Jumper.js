@@ -84,8 +84,8 @@ function jumperMove() {
 	   jumperX = (1+Math.floor( jumperX / BRICK_W )) * BRICK_W - JUMPER_RADIUS;
 	 }
 	 
-	 jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 
-	 jumperY += jumperSpeedY; // same as above, but for vertical
+	 //jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 
+	 //jumperY += jumperSpeedY; // same as above, but for vertical
    }
  
    
@@ -131,8 +131,8 @@ function jumperMove() {
   } // end of reset
   
   this.moveInto = function() {
-    var nextX = jumperX;
-	var nextY = jumperY;
+    var nextX = jumperX + jumperSpeedX;
+	var nextY = jumperY + jumperSpeedY;
     var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
     var walkIntoTileType = TILE_WALL;
     
@@ -140,6 +140,10 @@ function jumperMove() {
       walkIntoTileType = roomGrid[walkIntoTileIndex];
     }
     
+    if(walkIntoTileType != TILE_WALL) {
+      jumperX = nextX;
+      jumperY = nextY;
+    }
     switch( walkIntoTileType ) {
       case TILE_GROUND:
         break;
