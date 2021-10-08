@@ -84,24 +84,10 @@ function jumperMove() {
 	   jumperX = (1+Math.floor( jumperX / BRICK_W )) * BRICK_W - JUMPER_RADIUS;
 	 }
 	 
-	 jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 
-	 jumperY += jumperSpeedY; // same as above, but for vertical
+	 //jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 
+	 //jumperY += jumperSpeedY; // same as above, but for vertical
    }
  
-   window.onload = function() {
-	 canvas = document.getElementById('gameCanvas');
-	 canvasContext = canvas.getContext('2d');
-	 
-	 initInput();
-	 
-	 // these next few lines set up our game logic and render to happen 30 times per second
-	 setInterval(function() {
-		 moveEverything();
-		 drawEverything();
-	   }, 1000/framesPerSecond);
-	   
-	 jumperReset();
-   }
    
    function jumperReset() {
 	 // center jumper on screen
@@ -124,18 +110,20 @@ function jumperMove() {
   }
 
   this.reset = function() {
-    if(this.homeX == undefined) {
+    //if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
         if( roomGrid[i] == TILE_PLAYER) {
           var tileRow = Math.floor(i/ROOM_COLS);
           var tileCol = i%ROOM_COLS;
           this.homeX = tileCol * TILE_W + 0.5*TILE_W;
           this.homeY = tileRow * TILE_H + 0.5*TILE_H;
-          roomGrid[i] = TILE_GROUND;
+          if (worldEditor == false) {
+            roomGrid[i] = TILE_GROUND;
+          }
           break; // found it, so no need to keep searching 
         } // end of if
       } // end of for
-    } // end of if position not saved yet
+    //} // end of if position not saved yet
 
     jumperX = this.homeX;
 	jumperY = this.homeY;
@@ -143,8 +131,8 @@ function jumperMove() {
   } // end of reset
   
   this.moveInto = function() {
-    var nextX = jumperX;
-	var nextY = jumperY;
+    var nextX = jumperX + jumperSpeedX;
+	var nextY = jumperY + jumperSpeedY;
     var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
     var walkIntoTileType = TILE_WALL;
     
@@ -152,6 +140,10 @@ function jumperMove() {
       walkIntoTileType = roomGrid[walkIntoTileIndex];
     }
     
+    if(walkIntoTileType != TILE_WALL) {
+      jumperX = nextX;
+      jumperY = nextY;
+    }
     switch( walkIntoTileType ) {
       case TILE_GROUND:
         break;
