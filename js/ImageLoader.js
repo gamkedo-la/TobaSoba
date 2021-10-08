@@ -41,6 +41,8 @@ function loadImages() {
       {tileType:TILE_GROUND2, theFile:"ground2.png"},
       {tileType:TILE_WALL2, theFile:"wall2.png"},
       {tileType:TILE_START, theFile:"start.png"},
+      {tileType:TILE_FLYINGENEMY, theFile:"flyingenemy.png"},
+      {tileType:TILE_PATROLENEMY, theFile:"patrolenemy.png"},
       ];
 
   picsToLoad = imageList.length;
