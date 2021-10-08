@@ -91,6 +91,7 @@ function drawEverything() {
 		endCameraPan();
 		drawEnerrgyUI();
 		drawEditor();
+    drawDebug();
 }
 
 function moveEverything() {

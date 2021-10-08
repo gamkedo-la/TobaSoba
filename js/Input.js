@@ -90,6 +90,11 @@ function setKeyHoldState(thisKey, setTo) {
 		jumperX = mousePos.x + cameraPanX;	
 		jumperY = mousePos.y + cameraPanY;
 		break
+	case KEY_TILDE:
+		if (setTo == false){
+			showDebug = !showDebug;
+		}
+		break
 	default:
 		//console.log("Keycode is: " + thisKey);
 	}
