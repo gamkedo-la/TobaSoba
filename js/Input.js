@@ -22,6 +22,7 @@ const KEY_P = 80;
 const KEY_T = 84;
 const KEY_W = 87;
 const KEY_TAB = 9;
+const KEY_CTRL = 17;
 
 const KEY_TILDE = 192;
 const KEY_PLUS = 61;

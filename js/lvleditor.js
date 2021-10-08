@@ -17,6 +17,8 @@ function drawEditor(){
     shadowText("Press Tab to Toggle", lineX, lineY, fgColor, bgColor)
     lineY += skipY
     shadowText("Press T to teleport character to mouse location",  lineX, lineY, fgColor, bgColor)
+    lineY += skipY
+    shadowText("Press Control/Command key to export the level",  lineX, lineY, fgColor, bgColor)
     canvasContext.font = wasFont;
 };
 
@@ -78,17 +80,14 @@ function editorKeyCheck(keyCode) {
         case KEY_9:
             //roomGrid[tileIndex] = TILE_GROUND2;
             break; 
+        case KEY_CTRL:
+            exportLevel();
+            break; 
     } 
 }
 
-function editLevel(){
-   var currentLevel = JSON.parse(JSON.stringify(levelData))
-    //newLevel.unshift(selectTiles());	
+function exportLevel(){
+   var currentLevel = JSON.stringify(roomGrid);
+    console.log(currentLevel);
 };
 
-
-function generateLevel(){
-var newLevel = JSON.parse(JSON.stringify(levelData)); // deep/clean copy since we'll modify it during loading
-	//newLevel.unshift(editLevel);	
-	return newLevel;
-};
