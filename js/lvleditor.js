@@ -51,6 +51,7 @@ function editorKeyCheck(keyCode) {
     switch (keyCode) {
         case KEY_TAB:
             worldEditor = false;
+            reset();
             break;
         case KEY_0:
             roomGrid[tileIndex] = TILE_DOOR;
