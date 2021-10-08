@@ -4,10 +4,28 @@ function drawEditor(){
     if (worldEditor == false) {
         return;
     }
+    var wasFont = canvasContext.font;
     canvasContext.font = "30px Verdana";
-    canvasContext.fillStyle = 'black';
-    canvasContext.fillText("EDITOR MODE",250,35);
+    var fgColor = 'white';
+    var bgColor = 'black';
+    var lineX = 230;
+    var lineY = 35;
+    var skipY = 30;
+    shadowText("EDITOR MODE",lineX,lineY, fgColor, bgColor);
+    canvasContext.font = "18px Verdana";
+    lineY += skipY
+    shadowText("Press Tab to Toggle", lineX, lineY, fgColor, bgColor)
+    lineY += skipY
+    shadowText("Press T to teleport character to mouse location",  lineX, lineY, fgColor, bgColor)
+    canvasContext.font = wasFont;
 };
+
+function shadowText(text, atX, atY, foregroundColor, backgroundColor){
+    canvasContext.fillStyle = backgroundColor;
+    canvasContext.fillText(text, atX+2, atY+2)
+    canvasContext.fillStyle = foregroundColor;
+    canvasContext.fillText(text, atX, atY)
+}
 
 function drawTiles(){
 
