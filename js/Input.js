@@ -19,6 +19,7 @@ const KEY_K = 75;
 const KEY_L = 76;
 const KEY_M = 77;
 const KEY_P = 80;
+const KEY_T = 84;
 const KEY_W = 87;
 const KEY_TAB = 9;
 
@@ -85,6 +86,10 @@ function setKeyHoldState(thisKey, setTo) {
   case KEY_C:
     gameState = STATE_CREDITS;
     break;
+	case KEY_T:
+		jumperX = mousePos.x + cameraPanX;	
+		jumperY = mousePos.y + cameraPanY;
+		break
 	default:
 		//console.log("Keycode is: " + thisKey);
 	}
