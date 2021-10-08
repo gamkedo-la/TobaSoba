@@ -131,7 +131,9 @@ function jumperMove() {
           var tileCol = i%ROOM_COLS;
           this.homeX = tileCol * TILE_W + 0.5*TILE_W;
           this.homeY = tileRow * TILE_H + 0.5*TILE_H;
-          roomGrid[i] = TILE_GROUND;
+          if (worldEditor == false) {
+            roomGrid[i] = TILE_GROUND;
+          }
           break; // found it, so no need to keep searching 
         } // end of if
       } // end of for

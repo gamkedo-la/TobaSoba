@@ -19,6 +19,8 @@ function drawEditor(){
     shadowText("Press T to teleport character to mouse location",  lineX, lineY, fgColor, bgColor)
     lineY += skipY
     shadowText("Press Control/Command key to export the level",  lineX, lineY, fgColor, bgColor)
+    lineY += skipY
+    shadowText("Press number 3 to place PLAYER START",  lineX, lineY, fgColor, bgColor)
     canvasContext.font = wasFont;
 };
 
@@ -60,7 +62,7 @@ function editorKeyCheck(keyCode) {
             roomGrid[tileIndex] = TILE_TREASURE;
             break;
          case KEY_3:
-            //roomGrid[tileIndex] = TILE_GROUND1;
+            roomGrid[tileIndex] = TILE_PLAYER;
              break;   
         case KEY_4:
             //roomGrid[tileIndex] = TILE_GROUND2;

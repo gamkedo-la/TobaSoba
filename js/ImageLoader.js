@@ -33,6 +33,7 @@ function loadImages() {
       {varName:snackFull, theFile:"snackfull.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
+      {tileType:TILE_PLAYER, theFile:"toba.png"},
       {tileType:TILE_TREASURE, theFile:"treasure.png"},
       {tileType:TILE_SNACK, theFile:"snack.png"},
       {tileType:TILE_DOOR, theFile:"door.png"},
