@@ -90,6 +90,7 @@ function drawEverything() {
 		cameraPan();
 		drawRoom();
 		jumperDraw();
+    //patrolEnemy.draw();
 		endCameraPan();
 		drawEnerrgyUI();
 		drawEditor();
@@ -98,6 +99,7 @@ function drawEverything() {
 
 function moveEverything() {
 	jumperMove();
+  //patrolEnemy.move();
 	moveInto();
 	if (jumperOnGround){
 		lastX = jumperX;
