@@ -165,6 +165,12 @@ this.moveInto = function() {
             break;
         case TILE_WALL:
             break;
+        case TILE_PATROLENEMY:
+            // [TODO] fix jump height, make jump slightly when not holding space
+            jumpTimer = 0;
+            doneJumping = false;
+            roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove enemy
+            break;
         default:
             // any other tile type number was found... do nothing, for now
             break;
