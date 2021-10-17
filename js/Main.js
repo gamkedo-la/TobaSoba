@@ -4,6 +4,7 @@ var snackSound = new SoundOverlapsClass("audio/snack");
 var jumpSound = new SoundOverlapsClass("audio/jump");
 var groundSound = new SoundOverlapsClass("audio/ground");
 var hitSound = new SoundOverlapsClass("audio/hit");
+var hurtSound = new SoundOverlapsClass("audio/hurt");
 
 const STATE_MENU = 0;
 const STATE_PLAY = 1;

@@ -170,6 +170,10 @@ this.moveInto = function() {
             jumpTimer = 0;
             doneJumping = false;
             roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove enemy
+            if (jumperSpeedY==0){
+                hurtSound.play();
+                snackHeld--;
+            }
             break;
         default:
             // any other tile type number was found... do nothing, for now
