@@ -172,7 +172,7 @@ this.moveInto = function() {
             roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove enemy
             if (jumperSpeedY==0){
                 hurtSound.play();
-                snackHeld--;
+                this.snackHeld--;
             }
             break;
         default:
