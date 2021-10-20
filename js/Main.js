@@ -6,6 +6,9 @@ var groundSound = new SoundOverlapsClass("audio/ground");
 var hitSound = new SoundOverlapsClass("audio/hit");
 var hurtSound = new SoundOverlapsClass("audio/hurt");
 
+var patrolEnemy1 = new PatrolEnemyClass(); //Vince:  I'll replace this when refactoring patrolEnemyClass code 10/20/2021
+var patrolEnemy1Name = "First Enemy"; //Vince:  I'll change this into an array 10/20/2021
+
 const STATE_MENU = 0;
 const STATE_PLAY = 1;
 const STATE_CREDITS = 2;
@@ -23,7 +26,7 @@ window.onload = function() {
 
 	initInput();
 	loadImages();
-  
+  patrolEnemy1.init(patrolEnemyPic, patrolEnemy1Name)
 }
 
   
@@ -115,7 +118,7 @@ function drawEverything() {
     for (var i=0; i < enemyList.length; i++){
       enemyList[i].draw();
     }
-    //patrolEnemy.draw();
+    patrolEnemy1.draw(); //Vince:  This will move to the enemyList once refactored 10/20/2021
 		endCameraPan();
 		drawEnerrgyUI();
 		drawEditor();
@@ -124,7 +127,6 @@ function drawEverything() {
 
 function moveEverything() {
 	jumperMove();
-  //patrolEnemy.move();
 	moveInto();
 	if (jumperOnGround){
 		lastX = jumperX;
@@ -133,6 +135,7 @@ function moveEverything() {
   for (var i=0; i < enemyList.length; i++){
     enemyList[i].move();
   }
+  patrolEnemy1.move(); //Vince:  This will move to the enemyList once refactored 10/20/2021
 }
 
 function variableDisplay() {

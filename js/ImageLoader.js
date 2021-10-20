@@ -43,7 +43,7 @@ function loadImages() {
       {tileType:TILE_WALL2, theFile:"wall2.png"},
       {tileType:TILE_START, theFile:"start.png"},
       {tileType:TILE_FLYINGENEMY, theFile:"flyingenemy.png"},
-      {tileType:TILE_PATROLENEMY, theFile:"patrolenemy.png"},
+     // {tileType:TILE_PATROLENEMY, theFile:"patrolenemy.png"},  Vince:  I believe this can be removed.  It duplicates patrolEnemyPic.
       {tileType:TILE_PLATFORM, theFile:"platform.png"},
       ];
 
