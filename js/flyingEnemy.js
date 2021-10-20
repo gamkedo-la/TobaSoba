@@ -2,6 +2,8 @@ const FLYER_RADIUS = 25;
   function FlyingEnemyClass() {
     this.x = 75;
     this.y = 75;
+    this.xv = 1;
+    this.yv = 0.5;
 
     this.reset = function () {
 
@@ -21,7 +23,23 @@ const FLYER_RADIUS = 25;
     }
     this.move = function(){
       //console.log('flyingenemy moving');
+      var nextX = this.x + this.xv;
+      var nextY =  this.y + this.yv;
       
+      var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
+      var walkIntoTileType = TILE_WALL;
+  
+      if (walkIntoTileIndex != undefined) {
+          walkIntoTileType = roomGrid[walkIntoTileIndex];
+      }
+
+      if(walkIntoTileType != TILE_GROUND) {
+        this.xv = -this.xv;
+        this.yv = -this.yv;
+      } else {
+        this.x = nextX;
+        this.y = nextY;
+      }
     }
     this.draw = function () {
       canvasContext.save();
