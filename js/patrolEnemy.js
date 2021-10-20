@@ -24,6 +24,8 @@ function PatrolEnemyClass (){
             if (worldEditor == false) {
                 roomGrid[i] = TILE_GROUND;
             }
+            this.x = this.homeX;
+            this.y = this.homeY;
             break; // found it, so no need to keep searching 
         } // end of if for TILE_PATROLENEMY
     } // end of for

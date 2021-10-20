@@ -46,7 +46,9 @@ function editorKeyCheck(keyCode) {
             return;
         }
     }
-    tileIndex = getTileIndexAtPixelCoord(mousePos.x + cameraPanX, mousePos.y + cameraPanY);
+    let = mouseX = mousePos.x;
+    let = mouseY = mousePos.y;
+    tileIndex = getTileIndexAtPixelCoord(mouseX + cameraPanX, mouseY + cameraPanY);
 
     switch (keyCode) {
         case KEY_TAB:
