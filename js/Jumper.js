@@ -9,6 +9,11 @@ var framesPerSecond = 30;
 
 var jumperX = 75, jumperY = 75;
 var jumperSpeedX = 0, jumperSpeedY = 0;
+var jumperWidth = 30;
+var jumperHeight = 30;
+var jumperLeftSide = jumperX - jumperWidth/2;
+var jumperTopSide = jumperY - jumperHeight/2;
+var jumperCollisionBox = "green";
 var jumperOnGround = false;
 var JUMPER_RADIUS = 15;
 var jumpTimer = 0.0;
@@ -125,7 +130,6 @@ this.reset = function() {
 
     jumperX = this.homeX;
     jumperY = this.homeY;
-
 } // end of reset
 
 this.moveInto = function() {
@@ -182,6 +186,9 @@ this.moveInto = function() {
 }
 
 function jumperDraw() {
+    jumperLeftSide = jumperX - jumperWidth/2;
+    jumperTopSide = jumperY - jumperHeight/2;
+
     canvasContext.save();
     canvasContext.translate(jumperX, jumperY);
     canvasContext.rotate(jumperX / 20.0);
@@ -189,6 +196,10 @@ function jumperDraw() {
         playerPic.width,
         playerPic.height);
     canvasContext.restore();
+
+    if(showCollisionBoxes){
+        colorRect(jumperLeftSide, jumperTopSide, jumperWidth, jumperHeight, jumperCollisionBox)
+      }
 }
 
 this.launch = function() {

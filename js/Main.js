@@ -6,8 +6,8 @@ var groundSound = new SoundOverlapsClass("audio/ground");
 var hitSound = new SoundOverlapsClass("audio/hit");
 var hurtSound = new SoundOverlapsClass("audio/hurt");
 
-var patrolEnemy1 = new PatrolEnemyClass(); //Vince:  I'll replace this when refactoring patrolEnemyClass code 10/20/2021
 var patrolEnemy1Name = "First Enemy"; //Vince:  I'll change this into an array 10/20/2021
+var showCollisionBoxes = true;
 
 const STATE_MENU = 0;
 const STATE_PLAY = 1;
@@ -26,7 +26,11 @@ window.onload = function() {
 
 	initInput();
 	loadImages();
-  patrolEnemy1.init(patrolEnemyPic, patrolEnemy1Name)
+	for(var i = 0; i < roomGrid.length; i++){
+		if(roomGrid[i] == TILE_PATROLENEMY){
+			addPatrolEnemy();
+		} 
+	}
 }
 
   
@@ -59,6 +63,9 @@ function startGame() {
     }
     lookForAnotherMovingPlatform = movingPlatformHasTile;
   }
+  for(var i = 0; i < patrolEnemyList.length; i++){
+		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1Name);
+	}
 }
 
 function update() {
@@ -118,8 +125,12 @@ function drawEverything() {
     for (var i=0; i < enemyList.length; i++){
       enemyList[i].draw();
     }
-    patrolEnemy1.draw(); //Vince:  This will move to the enemyList once refactored 10/20/2021
-		endCameraPan();
+    for(var i=0; i < patrolEnemyList.length; i++){
+      patrolEnemyList[i].draw();
+    }
+
+    colorCircle(patrolEnemyList[1].x, patrolEnemyList[1].y, 10, 'white');
+    endCameraPan();
 		drawEnerrgyUI();
 		drawEditor();
     drawDebug();
@@ -135,7 +146,18 @@ function moveEverything() {
   for (var i=0; i < enemyList.length; i++){
     enemyList[i].move();
   }
-  patrolEnemy1.move(); //Vince:  This will move to the enemyList once refactored 10/20/2021
+  //patrolEnemy1.move(); //Vince:  This will move to the enemyList once refactored 10/20/2021
+  for(var i = 0; i < patrolEnemyList.length; i++){
+		patrolEnemyList[i].move();
+	}
+  
+  checkForPlayerCollision();
+}
+
+function checkForPlayerCollision(){
+  for(var i = 0; i < patrolEnemyList.length; i++){
+     patrolEnemyList[i].checkCollisionAgainstPlayer(jumperLeftSide, jumperTopSide, jumperWidth, jumperHeight);
+  }
 }
 
 function variableDisplay() {

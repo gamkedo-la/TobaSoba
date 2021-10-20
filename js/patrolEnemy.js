@@ -1,3 +1,10 @@
+var patrolEnemyList = [];
+
+function addPatrolEnemy(){
+	var tempPatrolEnemy = new PatrolEnemyClass();
+	patrolEnemyList.push(tempPatrolEnemy);
+}
+
 function PatrolEnemyClass (){
 
   this.x = 100;
@@ -7,6 +14,7 @@ function PatrolEnemyClass (){
   this.runSpeed = 3;
   this.moveLeft = true;
   this.moveRight = false;
+  this.collisionBox = "green"
 
   this.init = function(whichGraphic, whichName) {
     this.myBitmap = whichGraphic;
@@ -21,9 +29,9 @@ function PatrolEnemyClass (){
             var tileCol = i % ROOM_COLS;
             this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
             this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-            if (worldEditor == false) {
+          //  if (!worldEditor) {      //Vince:  This will need a work around.  It is preventing Enemy's from erasing their tile upon initiation.  10/20/2021
                 roomGrid[i] = TILE_GROUND;
-            }
+            //}
             this.x = this.homeX;
             this.y = this.homeY;
             break; // found it, so no need to keep searching 
@@ -41,7 +49,56 @@ function PatrolEnemyClass (){
       this.moveLeft = false;
     }
     this.speedX *= GROUND_FRICTION;
+    this.moveInto();
+    this.x += this.speedX
   }
+
+  this.moveInto = function() { //Vince:  This can be refactored into a parent class with the Jumper 10/20/2021
+    var nextX = this.x + this.speedX;
+    var nextY = this.y + this.speedY;
+    var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
+   // var walkIntoTileType = TILE_WALL;
+
+    if (walkIntoTileIndex != undefined) {
+        walkIntoTileType = roomGrid[walkIntoTileIndex];
+    }
+
+    switch (walkIntoTileType) {
+        case TILE_GROUND:
+        case TILE_TREASURE:
+        case TILE_SNACK:
+          this.x = nextX;
+          this.y = nextY;
+            break;
+        case TILE_DOOR:
+        case TILE_WALL:
+          this.changeDirection();
+            break;
+    }
+}
+
+this.checkCollisionAgainstPlayer = function(playerX, playerY, playerWidth, playerHeight){
+  if( this.x > playerX &&
+      this.x < playerX + playerWidth &&
+      this.y > playerY &&
+      this.y < playerY + playerHeight){
+        console.log("Player Hit");
+        jumperCollisionBox = "red";
+      } else {
+        jumperCollisionBox = "green";
+      }
+    
+}
+
+this.changeDirection = function(){
+  if(this.moveLeft){ //change from Left to Right motion
+    this.moveLeft = false;
+    this.moveRight = true;
+  } else { //change from right to left motion
+    this.moveLeft = true;
+    this.moveRight = false;
+  }
+}
 
   this.draw = function() {
     canvasContext.save();
