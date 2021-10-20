@@ -15,6 +15,8 @@ const INDENT = 40;
 
 const SET_FRAMES_PER_SECOND = 30;
 
+var enemyList = [];
+
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -35,6 +37,16 @@ function startGame() {
 
   //init( playerPic , "toba");
   reset();
+  enemyList = [];
+  var lookForAnotherFlyingEnemy = true;
+  while(lookForAnotherFlyingEnemy ){
+    var newFlyingEnemy = new FlyingEnemyClass();
+    var flyingEnemyHasTile = newFlyingEnemy.reset();
+    if (flyingEnemyHasTile){
+      enemyList.push(newFlyingEnemy);
+    }
+    lookForAnotherFlyingEnemy = flyingEnemyHasTile;
+  }
 }
 
 function update() {
@@ -91,6 +103,9 @@ function drawEverything() {
 		cameraPan();
 		drawRoom();
 		jumperDraw();
+    for (var i=0; i < enemyList.length; i++){
+      enemyList[i].draw();
+    }
     //patrolEnemy.draw();
 		endCameraPan();
 		drawEnerrgyUI();
@@ -106,6 +121,9 @@ function moveEverything() {
 		lastX = jumperX;
 		lastY = jumperY;
 	}
+  for (var i=0; i < enemyList.length; i++){
+    enemyList[i].move();
+  }
 }
 
 function variableDisplay() {
