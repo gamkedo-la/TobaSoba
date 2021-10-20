@@ -1,16 +1,16 @@
-const FLYER_RADIUS = 25;
-  function FlyingEnemyClass() {
+const PLATFORM_RADIUS = 25;
+  function movingPlatformClass() {
     this.x = 75;
     this.y = 75;
     this.xv = 1;
-    this.yv = 0.5;
+    this.yv = 0;
 
     this.reset = function () {
 
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
-          if (roomGrid[arrayIndex] == TILE_FLYINGENEMY) {
+          if (roomGrid[arrayIndex] == TILE_PLATFORM) {
             roomGrid[arrayIndex] = TILE_GROUND;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
@@ -18,8 +18,8 @@ const FLYER_RADIUS = 25;
             return true; //we found one 
           } //end of player start if
         } // end of col for
-      } // end foe for
-      return false; // no more flying enemy
+      } // end of row for
+      return false; // no more platform
     }
     this.move = function(){
       //console.log('flyingenemy moving');
@@ -45,9 +45,9 @@ const FLYER_RADIUS = 25;
       canvasContext.save();
       canvasContext.translate(this.x,this.y);
       //canvasContext.rotate(jumperX/20.0);
-      canvasContext.drawImage(flyingEnemyPic,-FLYER_RADIUS,-FLYER_RADIUS,
-      flyingEnemyPic.width, 
-      flyingEnemyPic.height);
+      canvasContext.drawImage(movingPlatform,-PLATFORM_RADIUS,-PLATFORM_RADIUS,
+        movingPlatform.width, 
+      movingPlatform.height);
       canvasContext.restore();
     }
   }

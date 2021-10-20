@@ -3,6 +3,7 @@ var patrolEnemyPic=document.createElement("img");
 var flyingEnemyPic=document.createElement("img");
 var snackEmpty=document.createElement("img");
 var snackFull=document.createElement("img");
+var movingPlatform=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -43,6 +44,7 @@ function loadImages() {
       {tileType:TILE_START, theFile:"start.png"},
       {tileType:TILE_FLYINGENEMY, theFile:"flyingenemy.png"},
       {tileType:TILE_PATROLENEMY, theFile:"patrolenemy.png"},
+      {tileType:TILE_PLATFORM, theFile:"platform.png"},
       ];
 
   picsToLoad = imageList.length;

@@ -47,6 +47,15 @@ function startGame() {
     }
     lookForAnotherFlyingEnemy = flyingEnemyHasTile;
   }
+  var lookForAnotherMovingPlatform = true;
+  while(lookForAnotherMovingPlatform ){
+    var newMovingPlatform = new  movingPlatformClass();
+    var movingPlatformHasTile = newMovingPlatform.reset();
+    if (movingPlatformHasTile){
+      enemyList.push(newMovingPlatform);
+    }
+    lookForAnotherMovingPlatform = movingPlatformHasTile;
+  }
 }
 
 function update() {
