@@ -6,8 +6,8 @@ var groundSound = new SoundOverlapsClass("audio/ground");
 var hitSound = new SoundOverlapsClass("audio/hit");
 var hurtSound = new SoundOverlapsClass("audio/hurt");
 
-var patrolEnemy1Name = "First Enemy"; //Vince:  I'll change this into an array 10/20/2021
-var showCollisionBoxes = true;
+var patrolEnemy1NameList = ["Safiya","Halima", "Scipio", "Kofi", "Maisha", "Diara", "Kesia", "Tau", "Chidi", "Bahari"]
+var showCollisionBoxes = false;
 
 const STATE_MENU = 0;
 const STATE_PLAY = 1;
@@ -64,7 +64,7 @@ function startGame() {
     lookForAnotherMovingPlatform = movingPlatformHasTile;
   }
   for(var i = 0; i < patrolEnemyList.length; i++){
-		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1Name);
+		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
 	}
 }
 
@@ -129,7 +129,6 @@ function drawEverything() {
       patrolEnemyList[i].draw();
     }
 
-    colorCircle(patrolEnemyList[1].x, patrolEnemyList[1].y, 10, 'white');
     endCameraPan();
 		drawEnerrgyUI();
 		drawEditor();

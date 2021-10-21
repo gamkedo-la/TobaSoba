@@ -12,7 +12,7 @@ function PatrolEnemyClass (){
   this.width = 30;
   this.speedX = 0;
   this.speedY = 0;
-  this.runSpeed = 3;
+  this.runSpeed = 0.5;
   this.moveLeft = true;
   this.moveRight = false;
   this.collisionBox = "green"
