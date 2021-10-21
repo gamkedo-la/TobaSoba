@@ -9,6 +9,7 @@ function PatrolEnemyClass (){
 
   this.x = 100;
   this.y = 100;
+  this.width = 30;
   this.speedX = 0;
   this.speedY = 0;
   this.runSpeed = 3;
@@ -34,10 +35,10 @@ function PatrolEnemyClass (){
             //}
             this.x = this.homeX;
             this.y = this.homeY;
-            break; // found it, so no need to keep searching 
-        } // end of if for TILE_PATROLENEMY
-    } // end of for
-  } //end of this.reset
+            break; 
+        } 
+    } 
+  } 
 
   this.move = function(){
     if(this.moveLeft){
@@ -54,8 +55,16 @@ function PatrolEnemyClass (){
   }
 
   this.moveInto = function() { //Vince:  This can be refactored into a parent class with the Jumper 10/20/2021
-    var nextX = this.x + this.speedX;
-    var nextY = this.y + this.speedY;
+    let nextX, nextY;
+    nextY = this.y + this.speedY;
+    if(this.moveLeft){
+      nextX = this.x + this.speedX - this.width/2;
+    }
+    if(this.moveRight){
+      nextX = this.x + this.speedX + this.width/2;
+    }
+    
+    
     var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
    // var walkIntoTileType = TILE_WALL;
 
