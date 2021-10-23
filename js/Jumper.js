@@ -55,6 +55,11 @@ function jumperMove() {
     if (holdRight) {
         jumperSpeedX = RUN_SPEED;
     }
+
+    if(holdJump && jumpTimer == 0) {
+        jumpSound.play();
+    }
+
     if (holdJump && jumpTimer <= MAX_JUMP_DURATION_SECS && !doneJumping) {
         jumperSpeedY = -JUMP_POWER;
         jumpTimer += 1 / framesPerSecond;
