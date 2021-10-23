@@ -32,6 +32,7 @@ function loadImages() {
       {varName:patrolEnemyPic, theFile:"patrolenemy.png"},
       {varName:snackEmpty, theFile:"snackempty.png"},
       {varName:snackFull, theFile:"snackfull.png"},
+      {varName:movingPlatform, theFile:"platform.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},
