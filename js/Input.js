@@ -36,14 +36,23 @@ var radiusIncrease = false;
 var radiusDecrease = false;
 
 var mousePos;
+
+var bMouseDown = false;
+var prevEditedTileIndex = -1;
   
 function initInput() {
 	document.addEventListener("keydown", keyPressed);
 	document.addEventListener("keyup", keyReleased);
 	document.addEventListener("mousedown", mouseClick);
+
+	document.addEventListener("mouseup", function() {
+		bMouseDown = false;
+	});
+
 	document.addEventListener("mousemove", 
 		function(evt) {
-		mousePos = calculateMousePos(evt);
+			mousePos = calculateMousePos(evt);
+			editLevel();
 		});
 }
 
@@ -102,6 +111,11 @@ function setKeyHoldState(thisKey, setTo) {
 
 function mouseClick(evt){
 	//backgroundMusic.startOrStopMusic();
+	bMouseDown = true;
+	editLevel();
+}
+
+function editLevel() {
 	if (worldEditor) {	
 		if (editorKeyCheck) {
 			if (!(mousePos.x > 0 && mousePos.x < canvas.width) ||
@@ -111,10 +125,14 @@ function mouseClick(evt){
 			}
 
 			tileIndex = getTileIndexAtPixelCoord(mousePos.x + cameraPanX, mousePos.y + cameraPanY);
-			if (roomGrid[tileIndex] == 1) {
-				roomGrid[tileIndex] = 0;
-			} else {
-				roomGrid[tileIndex] = 1;
+		
+			if(bMouseDown && prevEditedTileIndex != tileIndex) {
+				prevEditedTileIndex = tileIndex;
+				if (roomGrid[tileIndex] == 1) {
+					roomGrid[tileIndex] = 0;
+				} else {
+					roomGrid[tileIndex] = 1;
+				}
 			}
 			//console.log(roomGrid[tileIndex]+ " " + tileIndex);
 		} else {
