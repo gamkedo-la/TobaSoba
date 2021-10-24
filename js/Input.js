@@ -46,6 +46,7 @@ function initInput() {
 	document.addEventListener("mousedown", mouseClick);
 
 	document.addEventListener("mouseup", function() {
+		prevEditedTileIndex = -1;
 		bMouseDown = false;
 	});
 
