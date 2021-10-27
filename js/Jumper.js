@@ -160,12 +160,11 @@ this.moveInto = function() {
             roomGrid[walkIntoTileIndex] = TILE_GROUND;
             break;
         case TILE_DOOR:
-            //doorSound.play();
-            console.log("DOOR");
-            if (this.snackHeld > 0) {
-                this.snackHeld--; // one less snack
+            doorSound.play();
+            //if () {
+                 // change room
                 roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
-            }
+            //}
             break;
         case TILE_SNACK:
             snackSound.play();
