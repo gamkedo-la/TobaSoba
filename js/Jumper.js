@@ -186,6 +186,7 @@ this.moveInto = function() {
         case TILE_SPRINGBOARD:
             jumperSpeedY = -2*JUMP_POWER;
             jumpTimer += 1 / framesPerSecond;
+            springSound.play();
             break;
         default:
             // any other tile type number was found... do nothing, for now
