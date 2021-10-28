@@ -183,6 +183,10 @@ this.moveInto = function() {
                 this.snackHeld--;
             }
             break;
+        case TILE_SPRINGBOARD:
+            jumperSpeedY = -2*JUMP_POWER;
+            jumpTimer += 1 / framesPerSecond;
+            break;
         default:
             // any other tile type number was found... do nothing, for now
             break;

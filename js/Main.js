@@ -64,6 +64,15 @@ function startGame() {
     }
     lookForAnotherMovingPlatform = movingPlatformHasTile;
   }
+  var lookForAnotherSpringBoard = true;
+  while(lookForAnotherSpringBoard){
+    var newSpringBoard = new  springBoardClass();
+    var springBoardHasTile = newSpringBoard.reset();
+    if (springBoardHasTile){
+      enemyList.push(newSpringBoard);
+    }
+    lookForAnotherSpringBoard = springBoardHasTile;
+  }
   for(var i = 0; i < patrolEnemyList.length; i++){
 		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
 	}
