@@ -46,13 +46,7 @@ const FLYER_RADIUS = 25;
      }
      
     this.draw = function () {
-      canvasContext.save();
-      canvasContext.translate(this.x,this.y);
-      //canvasContext.rotate(jumperX/20.0);
-      canvasContext.drawImage(flyingEnemyPic,-FLYER_RADIUS,-FLYER_RADIUS,
-      flyingEnemyPic.width, 
-      flyingEnemyPic.height);
-      canvasContext.restore();
+      drawBitmapCenteredAtLocationWithFlip(flyingEnemyPic, this.x, this.y,this.xv > 0);
     }
   }
   
