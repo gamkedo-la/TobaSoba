@@ -26,12 +26,9 @@ const SPRINGBOARD_RADIUS = 25;
     }
 
     this.playerCollide = function(){
-    
-            console.log("Player reached");
-        
-        
-    }
-    
+      console.log("Player Hit");   
+     }
+     
     this.draw = function () {
       canvasContext.save();
       canvasContext.translate(this.x,this.y);

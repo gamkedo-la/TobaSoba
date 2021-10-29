@@ -87,8 +87,7 @@ function PatrolEnemyClass (){
 }
 
 this.playerCollide = function(){
-        console.log("Player Hit");
-     
+ console.log("Player Hit");   
 }
 
 this.changeDirection = function(){

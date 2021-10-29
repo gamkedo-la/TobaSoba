@@ -168,6 +168,9 @@ function checkForPlayerCollision(){
   for(var i = 0; i < patrolEnemyList.length; i++){
     jumperCollisionCheck(patrolEnemyList[i]);
   }
+  for(var i = 0; i < enemyList.length; i++){
+    jumperCollisionCheck(enemyList[i]);
+  }
 }
 
 function variableDisplay() {
