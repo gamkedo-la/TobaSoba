@@ -31,7 +31,21 @@ var jumpVariables = [];
 var jumpVariableNames = ["jumperRadius", "runSpeed", "jumperSpeedX", "jumpPower", "jumperSpeedY", "groundFriction", "airResistance", "gravity"];
 
 var snackHeld = 0;
-
+ function jumperCollisionCheck(against){
+    var jumperLeftSide = jumperX - jumperWidth/2;
+    var jumperTopSide = jumperY - jumperHeight/2;
+    if( against.x > jumperLeftSide &&
+        against.x < jumperLeftSide + jumperWidth &&
+        against.y > jumperTopSide &&
+        against.y < jumperTopSide + jumperHeight){
+          //console.log("Player Hit");
+          jumperCollisionBox = "red";
+          against.playerCollide();
+        } else {
+          jumperCollisionBox = "green";
+        }
+      
+  }
 function jumperMove() {
     if (jumperOnGround) {
         jumperSpeedX *= GROUND_FRICTION;

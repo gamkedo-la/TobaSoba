@@ -86,17 +86,9 @@ function PatrolEnemyClass (){
     }
 }
 
-this.checkCollisionAgainstPlayer = function(playerX, playerY, playerWidth, playerHeight){
-  if( this.x > playerX &&
-      this.x < playerX + playerWidth &&
-      this.y > playerY &&
-      this.y < playerY + playerHeight){
+this.playerCollide = function(){
         console.log("Player Hit");
-        jumperCollisionBox = "red";
-      } else {
-        jumperCollisionBox = "green";
-      }
-    
+     
 }
 
 this.changeDirection = function(){

@@ -166,7 +166,7 @@ function moveEverything() {
 
 function checkForPlayerCollision(){
   for(var i = 0; i < patrolEnemyList.length; i++){
-     patrolEnemyList[i].checkCollisionAgainstPlayer(jumperLeftSide, jumperTopSide, jumperWidth, jumperHeight);
+    jumperCollisionCheck(patrolEnemyList[i]);
   }
 }
 
