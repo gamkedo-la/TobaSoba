@@ -87,6 +87,13 @@ function PatrolEnemyClass (){
 }
 
 this.playerCollide = function(){
+   // [TODO] fix jump height, make jump slightly when not holding space
+   jumpTimer = 0;
+   doneJumping = false;
+   if (jumperSpeedY==0){
+       hurtSound.play();
+       snackHeld--;
+   }
  console.log("Player Hit");   
 }
 

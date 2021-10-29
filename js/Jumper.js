@@ -188,19 +188,10 @@ this.moveInto = function() {
         case TILE_WALL:
             break;
         case TILE_PATROLENEMY:
-            // [TODO] fix jump height, make jump slightly when not holding space
-            jumpTimer = 0;
-            doneJumping = false;
-            roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove enemy
-            if (jumperSpeedY==0){
-                hurtSound.play();
-                this.snackHeld--;
-            }
+           
             break;
         case TILE_SPRINGBOARD:
-            jumperSpeedY = -2*JUMP_POWER;
-            jumpTimer += 1 / framesPerSecond;
-            springSound.play();
+           
             break;
         default:
             // any other tile type number was found... do nothing, for now
