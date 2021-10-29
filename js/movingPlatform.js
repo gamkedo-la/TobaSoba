@@ -42,6 +42,14 @@ const PLATFORM_RADIUS = 25;
       }
     }
     this.playerCollide = function(){
+      if(jumperY >= this.y) {
+        jumperX += this.xv;//move with the platform
+        jumperY = this.y;
+        jumperOnGround = true;
+        if (jumperSpeedY > 0){
+          jumperSpeedY = 0;
+        }
+      }
       console.log("Player Hit");   
      }
      
