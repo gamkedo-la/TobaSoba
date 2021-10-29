@@ -173,6 +173,12 @@ function checkForPlayerCollision(){
   }
 }
 
+function dist(dx, dy) {
+  return Math.sqrt(dx*dx+dy*dy);
+}
+function angTo(dx,dy){
+  return Math.atan2(dy,dx);
+}
 function variableDisplay() {
 	var jumpVariables = [jumperRadius,runSpeed,jumperSpeedX, jumpPower,jumperSpeedY, groundFriction, airResistance, gravity];
 	var textXPosition = canvas.width - 140;

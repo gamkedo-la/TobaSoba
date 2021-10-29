@@ -23,6 +23,11 @@ const FLYER_RADIUS = 25;
     }
     this.move = function(){
       //console.log('flyingenemy moving');
+      if (dist(this.x - jumperX, this.y - jumperY) < 3*BRICK_W) {
+        var toPlayer = angTo(jumperX - this.x, jumperY - this.y);
+        this.xv = Math.cos(toPlayer);
+        this.yv = Math.sin(toPlayer);
+      }
       var nextX = this.x + this.xv;
       var nextY =  this.y + this.yv;
       
@@ -32,7 +37,7 @@ const FLYER_RADIUS = 25;
       if (walkIntoTileIndex != undefined) {
           walkIntoTileType = roomGrid[walkIntoTileIndex];
       }
-
+      
       if(walkIntoTileType != TILE_GROUND) {
         this.xv = -this.xv;
         this.yv = -this.yv;

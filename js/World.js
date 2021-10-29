@@ -5,8 +5,8 @@ const BRICK_COLS = 40;
 const BRICK_ROWS = 25;
 const ROOM_COLS = 40;
 const ROOM_ROWS = 25;
-const TILE_W = 50;
-const TILE_H = 50;
+const TILE_W = BRICK_W;
+const TILE_H = BRICK_H;
 
 var roomGrid = 
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
