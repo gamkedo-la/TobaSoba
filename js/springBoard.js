@@ -26,6 +26,9 @@ const SPRINGBOARD_RADIUS = 25;
     }
 
     this.playerCollide = function(){
+      jumperSpeedY = -2*JUMP_POWER;
+      jumpTimer += 1 / framesPerSecond;
+      springSound.play();
       console.log("Player Hit");   
      }
      
