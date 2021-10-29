@@ -15,6 +15,7 @@ var jumperLeftSide = jumperX - jumperWidth/2;
 var jumperTopSide = jumperY - jumperHeight/2;
 var jumperCollisionBox = "green";
 var jumperOnGround = false;
+var jumperOnGroundLastFrame = false; // used to know if we just landed
 var JUMPER_RADIUS = 15;
 var jumpTimer = 0.0;
 var previousFrameJumping = false;
@@ -23,6 +24,11 @@ var doneJumping = false;
 var currentGravity = GRAVITY;
 var gravityFallModifier = 2;
 
+// a poof of dust when we land on the ground after jumping
+const landingParticleRGBA = "rgba(90,90,90,0.25)"; // grey
+const landingParticleLifespan = 0.5;
+const landingParticlegravity = 0.2;
+const landingParticleRandomness = 2; // speed variation
 
 var holdLeft = false;
 var holdRight = false;
@@ -85,12 +91,19 @@ function jumperMove() {
     previousFrameJumping = holdJump;
 
     if (jumperSpeedY < 0 && isBrickAtPixelCoord(jumperX, jumperY - JUMPER_RADIUS) == 1) {
+        // hit the ceiling
         jumperY = (Math.floor(jumperY / BRICK_H)) * BRICK_H + JUMPER_RADIUS;
         jumperSpeedY = 0.0;
     }
 
     if (jumperSpeedY > 0 && isBrickAtPixelCoord(jumperX, jumperY + JUMPER_RADIUS) == 1) {
+        // hit the floor
         jumperY = (1 + Math.floor(jumperY / BRICK_H)) * BRICK_H - JUMPER_RADIUS;
+        if (!jumperOnGround) { // were we in the air last frame?
+            console.log("just landed on the floor!");
+            particleFX(jumperX, jumperY + JUMPER_RADIUS, 16, landingParticleRGBA,
+                0.001,Math.random()*-2,landingParticleLifespan,landingParticlegravity,landingParticleRandomness);
+        }
         jumperOnGround = true;
         jumperSpeedY = 0;
         jumpTimer = 0.0;
