@@ -81,6 +81,7 @@ function startGame() {
 
 function update() {
 	moveEverything();
+    updateParticles();
 	resizeCanvas();
 	//variableDisplay();
 }
@@ -139,6 +140,8 @@ function drawEverything() {
     for(var i=0; i < patrolEnemyList.length; i++){
       patrolEnemyList[i].draw();
     }
+
+    drawParticles();
 
     endCameraPan();
 		drawEnerrgyUI();
