@@ -17,8 +17,8 @@ const STATE_CREDITS = 2;
 var gameState = STATE_PLAY;
 
 const INDENT = 40;
-
 const SET_FRAMES_PER_SECOND = 30;
+var paused = false;
 
 var enemyList = [];
 
@@ -40,7 +40,10 @@ function startGame() {
  // these next few lines set up our game logic and render to happen 30 times per second
 	var framesPerSecond = 30;
   setInterval(function() {
-		update();
+    if(!paused)
+{ 
+update(); 
+}
     }, 1000/framesPerSecond);
   //backgroundMusic.loopSong("audio/S");
 
@@ -147,6 +150,7 @@ function drawEverything() {
 		drawEnerrgyUI();
 		drawEditor();
     drawDebug();
+    
 }
 
 function moveEverything() {
@@ -193,3 +197,23 @@ function variableDisplay() {
 		textYPosition += 14;
 	}
 }
+
+function togglePause()
+{
+    if (!paused)
+    {
+        paused = true;
+    } else if (paused)
+    {
+       paused= false;
+    }
+
+}
+window.addEventListener('keydown', function (e) {
+  var key = e.keyCode;
+  if (key === 80)// p key
+  {
+      togglePause();
+  }
+  });
+  
