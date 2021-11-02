@@ -6,7 +6,6 @@ function addJumperEnemy(){
 }
 
 function JumperEnemyClass (){
-
   this.x = 100;
   this.y = 100;
   this.width = 30;
@@ -32,7 +31,7 @@ function JumperEnemyClass (){
 
   this.reset = function() {
     for (var i = 0; i < roomGrid.length; i++) {
-        if (roomGrid[i] == TILE_PATROLENEMY) {
+        if (roomGrid[i] == TILE_JUMPINGENEMY) {
             var tileRow = Math.floor(i / ROOM_COLS);
             var tileCol = i % ROOM_COLS;
             this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
@@ -48,7 +47,6 @@ function JumperEnemyClass (){
   } 
 
   this.move = function(){
-
     if (this.onGround) {
         this.speedX *= GROUND_FRICTION;
     } else {

@@ -33,7 +33,7 @@ window.onload = function() {
 			addPatrolEnemy();
 		}
     if(roomGrid[i] == TILE_JUMPINGENEMY){
-      addPatrolEnemy();
+      addJumperEnemy();
 	  }
   }
 }
@@ -83,6 +83,7 @@ update();
 		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
 	}
   for(var i = 0; i < jumperEnemyList.length; i++){
+    console.log("Found Jumper Enemy");
 		jumperEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
 	}
 }

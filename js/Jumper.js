@@ -100,7 +100,7 @@ function jumperMove() {
         // hit the floor
         jumperY = (1 + Math.floor(jumperY / BRICK_H)) * BRICK_H - JUMPER_RADIUS;
         if (!jumperOnGround) { // were we in the air last frame?
-            console.log("just landed on the floor!");
+            //console.log("just landed on the floor!");
             particleFX(jumperX, jumperY + JUMPER_RADIUS, 16, landingParticleRGBA,
                 0.001,Math.random()*-2,landingParticleLifespan,landingParticlegravity,landingParticleRandomness);
         }

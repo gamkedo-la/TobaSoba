@@ -21,6 +21,7 @@ const FLYER_RADIUS = 25;
       } // end foe for
       return false; // no more flying enemy
     }
+
     this.move = function(){
       //console.log('flyingenemy moving');
       if (dist(this.x - jumperX, this.y - jumperY) < 3*BRICK_W) {
@@ -46,9 +47,10 @@ const FLYER_RADIUS = 25;
         this.y = nextY;
       }
     }
+
     this.playerCollide = function(){
-      console.log("Player Hit");   
-     }
+      //console.log("Player Hit");   
+    }
      
     this.draw = function () {
       drawBitmapCenteredAtLocationWithFlip(flyingEnemyPic, this.x, this.y,this.xv > 0);
