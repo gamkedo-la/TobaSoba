@@ -31,11 +31,13 @@ window.onload = function() {
 	for(var i = 0; i < roomGrid.length; i++){
 		if(roomGrid[i] == TILE_PATROLENEMY){
 			addPatrolEnemy();
-		} 
-	}
+		}
+    if(roomGrid[i] == TILE_JUMPINGENEMY){
+      addPatrolEnemy();
+	  }
+  }
 }
 
-  
 function startGame() {
  // these next few lines set up our game logic and render to happen 30 times per second
 	var framesPerSecond = 30;
@@ -79,6 +81,9 @@ update();
   }
   for(var i = 0; i < patrolEnemyList.length; i++){
 		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
+	}
+  for(var i = 0; i < jumperEnemyList.length; i++){
+		jumperEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
 	}
 }
 
@@ -143,6 +148,9 @@ function drawEverything() {
     for(var i=0; i < patrolEnemyList.length; i++){
       patrolEnemyList[i].draw();
     }
+    for(var i = 0; i < jumperEnemyList.length; i++){
+      jumperEnemyList[i].draw();
+    }
 
     drawParticles();
 
@@ -167,6 +175,9 @@ function moveEverything() {
   for(var i = 0; i < patrolEnemyList.length; i++){
 		patrolEnemyList[i].move();
 	}
+  for(var i = 0; i < jumperEnemyList.length; i++){
+    jumperEnemyList[i].move();
+  }
   
   checkForPlayerCollision();
 }
@@ -174,6 +185,9 @@ function moveEverything() {
 function checkForPlayerCollision(){
   for(var i = 0; i < patrolEnemyList.length; i++){
     jumperCollisionCheck(patrolEnemyList[i]);
+  }
+  for(var i = 0; i < jumperEnemyList.length; i++){
+    jumperCollisionCheck(jumperEnemyList[i]);
   }
   for(var i = 0; i < enemyList.length; i++){
     jumperCollisionCheck(enemyList[i]);

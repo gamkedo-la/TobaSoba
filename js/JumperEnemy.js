@@ -1,11 +1,11 @@
-var patrolEnemyList = [];
+var jumperEnemyList = [];
 
-function addPatrolEnemy(){
-	var tempPatrolEnemy = new PatrolEnemyClass();
-	patrolEnemyList.push(tempPatrolEnemy);
+function addJumperEnemy(){
+	var tempJumperEnemy = new JumperEnemyClass();
+	jumperEnemyList.push(tempJumperEnemy);
 }
 
-function PatrolEnemyClass (){
+function JumperEnemyClass (){
 
   this.x = 100;
   this.y = 100;
@@ -16,6 +16,13 @@ function PatrolEnemyClass (){
   this.moveLeft = true;
   this.moveRight = false;
   this.collisionBox = "green"
+  this.onGround = false;
+  this.jumperOnGroundLastFrame = false; // used to know if we just landed
+  this.radius = 15;
+  this.jump = false;
+  this.jumpTimer = 0.0;
+  this.previousFrameJumping = false;
+  this.doneJumping = false;
 
   this.init = function(whichGraphic, whichName) {
     this.myBitmap = whichGraphic;
@@ -41,6 +48,33 @@ function PatrolEnemyClass (){
   } 
 
   this.move = function(){
+
+    if (this.onGround) {
+        this.speedX *= GROUND_FRICTION;
+    } else {
+        this.speedX *= AIR_RESISTANCE;
+        this.speedY += currentGravity;
+        if (this.speedY > JUMPER_RADIUS) { 
+            this.speedY = JUMPER_RADIUS;
+        }
+    }
+
+    if (jumperSpeedY > 0) {
+        currentGravity = GRAVITY * gravityFallModifier;
+    } else if (jumperOnGround) {
+        currentGravity = GRAVITY;
+    }
+
+    if (this.jump && this.jumpTimer <= MAX_JUMP_DURATION_SECS && !this.doneJumping) {
+        this.speedY = -JUMP_POWER;
+        this.jumpTimer += 1 / framesPerSecond;
+    }
+    if (this.previousFrameJumping && !this.jump) {
+        this.doneJumping = true;
+    }
+
+    this.previousFrameJumping = holdJump;
+
     if(this.moveLeft){
       this.speedX = -this.runSpeed;
       this.moveRight = false;
