@@ -5,6 +5,7 @@ var snackEmpty=document.createElement("img");
 var snackFull=document.createElement("img");
 var movingPlatform=document.createElement("img");
 var springBoard=document.createElement("img");
+var spike=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -49,6 +50,7 @@ function loadImages() {
       {tileType:TILE_PATROLENEMY, theFile:"patrolenemy.png"}, // Vince:  I believe this can be removed.  It duplicates patrolEnemyPic.
       {tileType:TILE_PLATFORM, theFile:"platform.png"},
       {tileType:TILE_SPRINGBOARD, theFile:"springboard.png"},
+      {tileType:TILE_SPIKE, theFile:"spike.png"},
       ];
 
   picsToLoad = imageList.length;

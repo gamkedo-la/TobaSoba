@@ -7,6 +7,7 @@ var hitSound = new SoundOverlapsClass("audio/hit");
 var hurtSound = new SoundOverlapsClass("audio/hurt");
 var doorSound = new SoundOverlapsClass("audio/door");
 var springSound = new SoundOverlapsClass("audio/springboard");
+var deathSound = new SoundOverlapsClass("audio/death");
 
 var patrolEnemy1NameList = ["Safiya","Halima", "Scipio", "Kofi", "Maisha", "Diara", "Kesia", "Tau", "Chidi", "Bahari"]
 var showCollisionBoxes = false;
@@ -78,7 +79,16 @@ update();
       enemyList.push(newSpringBoard);
     }
     lookForAnotherSpringBoard = springBoardHasTile;
-  }
+  }/*
+  var lookForAnotherSpike = true;
+  while(lookForAnotherSpike){
+    var newSpike = new  sprikeClass();
+    var soikeHasTile = newSpike.reset();
+    if (spikeHasTile){
+      enemyList.push(newSpike);
+    }
+    lookForAnotherspike = spikedHasTile;
+  }*/
   for(var i = 0; i < patrolEnemyList.length; i++){
 		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
 	}
