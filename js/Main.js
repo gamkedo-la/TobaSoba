@@ -80,10 +80,19 @@ update();
     }
     lookForAnotherSpringBoard = springBoardHasTile;
   }/*
-  var lookForAnotherSpike = true;
+  var lookForAnotherBoostPad = true;
+  while(lookForAnotherBoostPad){
+    var newBoostPad = new  boostPadClass();
+    var BoostPadHasTile = newBoostPad.reset();
+    if (BoostPadHasTile){
+      enemyList.push(newBoostPad);
+    }
+    lookForAnotherBoostPad = BoostPaddHasTile;
+  }
+    var lookForAnotherSpike = true;
   while(lookForAnotherSpike){
     var newSpike = new  sprikeClass();
-    var soikeHasTile = newSpike.reset();
+    var spikeHasTile = newSpike.reset();
     if (spikeHasTile){
       enemyList.push(newSpike);
     }

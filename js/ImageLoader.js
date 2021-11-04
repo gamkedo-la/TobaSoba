@@ -6,6 +6,7 @@ var snackEmpty=document.createElement("img");
 var snackFull=document.createElement("img");
 var movingPlatform=document.createElement("img");
 var springBoard=document.createElement("img");
+var boostPad=document.createElement("img");
 var spike=document.createElement("img");
 var tilePics = [];
 
@@ -38,6 +39,8 @@ function loadImages() {
       {varName:snackFull, theFile:"snackfull.png"},
       {varName:movingPlatform, theFile:"platform.png"},
       {varName:springBoard, theFile:"springBoard.png"},
+      {varName:boostPad, theFile:"springBoard.png"},
+      {varName:spike, theFile:"springBoard.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},
@@ -52,6 +55,7 @@ function loadImages() {
       {tileType:TILE_PATROLENEMY, theFile:"patrolenemy.png"}, // Vince:  I believe this can be removed.  It duplicates patrolEnemyPic.
       {tileType:TILE_PLATFORM, theFile:"platform.png"},
       {tileType:TILE_SPRINGBOARD, theFile:"springboard.png"},
+      {tileType:TILE_BOOSTPAD, theFile:"springboard.png"},
       {tileType:TILE_SPIKE, theFile:"spike.png"},
       ];
 

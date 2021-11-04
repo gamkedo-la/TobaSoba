@@ -53,6 +53,7 @@ const TILE_PLATFORM = 12;
 const TILE_SPRINGBOARD = 13;
 const TILE_JUMPINGENEMY = 14;
 const TILE_SPIKE = 15;
+const TILE_BOOSTPAD = 15;
 
 function roomTileToIndex(tileCol, tileRow) {
 	return (tileCol + ROOM_COLS*tileRow);
