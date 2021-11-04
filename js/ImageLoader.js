@@ -2,6 +2,7 @@ var playerPic=document.createElement("img");
 var playerPowerPic=document.createElement("img");
 var patrolEnemyPic=document.createElement("img");
 var flyingEnemyPic=document.createElement("img");
+var jumperEnemyPic=document.createElement("img");
 var snackEmpty=document.createElement("img");
 var snackFull=document.createElement("img");
 var movingPlatform=document.createElement("img");
@@ -35,6 +36,7 @@ function loadImages() {
       {varName:playerPowerPic, theFile:"tobapower.png"},
       {varName:flyingEnemyPic, theFile:"flyingenemy.png"},
       {varName:patrolEnemyPic, theFile:"patrolenemy.png"},
+      {varName:jumperEnemyPic, theFile:"jumpingEnemy.png"},
       {varName:snackEmpty, theFile:"snackempty.png"},
       {varName:snackFull, theFile:"snackfull.png"},
       {varName:movingPlatform, theFile:"platform.png"},

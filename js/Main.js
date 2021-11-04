@@ -103,7 +103,7 @@ update();
 	}
   for(var i = 0; i < jumperEnemyList.length; i++){
     console.log("Found Jumper Enemy");
-		jumperEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
+		jumperEnemyList[i].init(jumperEnemyPic, patrolEnemy1NameList[i]);
 	}
 }
 
