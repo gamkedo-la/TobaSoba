@@ -1,12 +1,10 @@
-const BRICK_W = 50;
-const BRICK_H = 50;
-const BRICK_GAP = 1;
-const BRICK_COLS = 40;
-const BRICK_ROWS = 25;
+const TILE_W = 50;
+const TILE_H = 50;
+const TILE_GAP = 1;
+const TILE_COLS = 40;
+const TILE_ROWS = 25;
 const ROOM_COLS = 40;
 const ROOM_ROWS = 25;
-const TILE_W = BRICK_W;
-const TILE_H = BRICK_H;
 
 var roomGrid = 
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -40,7 +38,7 @@ var roomGridSimple = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 
 const TILE_GROUND = 0;
 const TILE_WALL = 1;
-const TILE_BRICK = 1;
+const TILE_TILE = 1;
 const TILE_PLAYER = 2;
 const TILE_WALL2 = 3;
 const TILE_DOOR = 4;
@@ -80,19 +78,19 @@ function roomTileToIndex(tileCol, tileRow) {
   }
   
   function brickTileToIndex(tileCol, tileRow) {
-	  return (tileCol + BRICK_COLS*tileRow);
+	  return (tileCol + TILE_COLS*tileRow);
   }
   
   function isBrickAtPixelCoord(hitPixelX, hitPixelY) {
-	  var tileCol = hitPixelX / BRICK_W;
-	  var tileRow = hitPixelY / BRICK_H;
+	  var tileCol = hitPixelX / TILE_W;
+	  var tileRow = hitPixelY / TILE_H;
 	  // using Math.floor to round down to the nearest whole number
 	  tileCol = Math.floor( tileCol );
 	  tileRow = Math.floor( tileRow );
   
 	  // first check whether the jumper is within any part of the brick wall
-	  if(tileCol < 0 || tileCol >= BRICK_COLS ||
-			tileRow < 0 || tileRow >= BRICK_ROWS) {
+	  if(tileCol < 0 || tileCol >= TILE_COLS ||
+			tileRow < 0 || tileRow >= TILE_ROWS) {
 			 return false;
 	  }
   
@@ -151,13 +149,13 @@ function roomTileToIndex(tileCol, tileRow) {
   } // end of drawRoom()
   
   function drawBricks() {
-	  for(var eachCol=0; eachCol<BRICK_COLS; eachCol++) { // in each column...
-		  for(var eachRow=0; eachRow<BRICK_ROWS; eachRow++) { // in each row within that col
+	  for(var eachCol=0; eachCol<TILE_COLS; eachCol++) { // in each column...
+		  for(var eachRow=0; eachRow<TILE_ROWS; eachRow++) { // in each row within that col
 			  if( isBrickAtTileCoord(eachCol, eachRow) ) {
-				  var brickLeftEdgeX = eachCol * BRICK_W;
-				  var brickTopEdgeY = eachRow * BRICK_H;
+				  var brickLeftEdgeX = eachCol * TILE_W;
+				  var brickTopEdgeY = eachRow * TILE_H;
 				  colorRect(brickLeftEdgeX, brickTopEdgeY,
-				  BRICK_W - BRICK_GAP, BRICK_H - BRICK_GAP, 'blue' );
+				  TILE_W - TILE_GAP, TILE_H - TILE_GAP, 'blue' );
 			  } // end of isBrickAtTileCoord()
 		  } // end of for eachRow
 	  } // end of for eachCol

@@ -92,13 +92,13 @@ function jumperMove() {
 
     if (jumperSpeedY < 0 && isBrickAtPixelCoord(jumperX, jumperY - JUMPER_RADIUS) == 1) {
         // hit the ceiling
-        jumperY = (Math.floor(jumperY / BRICK_H)) * BRICK_H + JUMPER_RADIUS;
+        jumperY = (Math.floor(jumperY / TILE_H)) * TILE_H + JUMPER_RADIUS;
         jumperSpeedY = 0.0;
     }
 
     if (jumperSpeedY > 0 && isBrickAtPixelCoord(jumperX, jumperY + JUMPER_RADIUS) == 1) {
         // hit the floor
-        jumperY = (1 + Math.floor(jumperY / BRICK_H)) * BRICK_H - JUMPER_RADIUS;
+        jumperY = (1 + Math.floor(jumperY / TILE_H)) * TILE_H - JUMPER_RADIUS;
         if (!jumperOnGround) { // were we in the air last frame?
             //console.log("just landed on the floor!");
             particleFX(jumperX, jumperY + JUMPER_RADIUS, 16, landingParticleRGBA,
@@ -113,10 +113,10 @@ function jumperMove() {
     }
 
     if (jumperSpeedX < 0 && isBrickAtPixelCoord(jumperX - JUMPER_RADIUS, jumperY) == 1) {
-        jumperX = (Math.floor(jumperX / BRICK_W)) * BRICK_W + JUMPER_RADIUS;
+        jumperX = (Math.floor(jumperX / TILE_W)) * TILE_W + JUMPER_RADIUS;
     }
     if (jumperSpeedX > 0 && isBrickAtPixelCoord(jumperX + JUMPER_RADIUS, jumperY) == 1) {
-        jumperX = (1 + Math.floor(jumperX / BRICK_W)) * BRICK_W - JUMPER_RADIUS;
+        jumperX = (1 + Math.floor(jumperX / TILE_W)) * TILE_W - JUMPER_RADIUS;
     }
 
     //jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 
@@ -195,7 +195,7 @@ this.moveInto = function() {
             break;
         case TILE_SNACK:
             snackSound.play();
-            this.snackHeld++; // get snack
+            snackHeld++; // get snack
             roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
             break;
         case TILE_WALL:
@@ -211,7 +211,13 @@ this.moveInto = function() {
             break;
     }
 }
-
+var playerImg;
+    if(snackHeld<4) {
+        playerImg = playerPic;
+        
+    } else {
+        playerImg =  playerPowerPic;
+    }
 function jumperDraw() {
     jumperLeftSide = jumperX - jumperWidth/2;
     jumperTopSide = jumperY - jumperHeight/2;
@@ -219,9 +225,10 @@ function jumperDraw() {
     canvasContext.save();
     canvasContext.translate(jumperX, jumperY);
     canvasContext.rotate(jumperX / 20.0);
-    canvasContext.drawImage(playerPic, -JUMPER_RADIUS, -JUMPER_RADIUS,
-        playerPic.width,
-        playerPic.height);
+    canvasContext.imageSmoothingEnabled = true;
+    canvasContext.drawImage(playerImg , -JUMPER_RADIUS, -JUMPER_RADIUS,
+        playerImg.width,
+        playerImg.height);
     canvasContext.restore();
 
     if(showCollisionBoxes){

@@ -24,7 +24,7 @@ const FLYER_RADIUS = 25;
 
     this.move = function(){
       //console.log('flyingenemy moving');
-      if (dist(this.x - jumperX, this.y - jumperY) < 3*BRICK_W) {
+      if (dist(this.x - jumperX, this.y - jumperY) < 3*TILE_W) {
         var toPlayer = angTo(jumperX - this.x, jumperY - this.y);
         this.xv = Math.cos(toPlayer);
         this.yv = Math.sin(toPlayer);
