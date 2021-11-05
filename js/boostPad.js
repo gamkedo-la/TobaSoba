@@ -4,13 +4,16 @@ const boostPad_RADIUS = 25;
     this.y = 75;
     this.xv = 1;
     this.yv = 0;
-
+    this.ang = 0;
     this.reset = function () {
 
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
-          if (roomGrid[arrayIndex] == TILE_BOOSTPAD) {
+          if (roomGrid[arrayIndex] == TILE_BOOSTPAD || roomGrid[arrayIndex] == TILE_BOOSTPAD_LEFT) {
+            if (roomGrid[arrayIndex] == TILE_BOOSTPAD_LEFT) {
+              this.ang = -Math.PI/2;
+            }
             roomGrid[arrayIndex] = TILE_GROUND;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
@@ -26,8 +29,10 @@ const boostPad_RADIUS = 25;
     }
 
     this.playerCollide = function(){
-      jumperSpeedX = -1.2*JUMP_POWER;
-      jumperSpeedY = 0.2*JUMP_POWER;
+      var pushAng = this.ang - Math.PI/2;
+      jumperSpeedX = 3*JUMP_POWER * Math.cos(pushAng);
+      jumperSpeedY = 3*JUMP_POWER * Math.sin(pushAng);
+      jumperFallDelayFrames = 20; 
       hurtSound.play();
       console.log("Player Hit");   
      }
@@ -35,7 +40,7 @@ const boostPad_RADIUS = 25;
     this.draw = function () {
       canvasContext.save();
       canvasContext.translate(this.x,this.y);
-      //canvasContext.rotate(jumperX/20.0);
+      canvasContext.rotate(this.ang);
       canvasContext.drawImage(boostPad,-boostPad_RADIUS,-boostPad_RADIUS,
         boostPad.width, 
       boostPad.height);

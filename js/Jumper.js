@@ -6,6 +6,7 @@ const GRAVITY = 0.6;
 const MAX_JUMP_DURATION_SECS = 0.5;
 const POWER_UP_FRAME_DURATION = 120;
 var framesPerSecond = 30;
+var jumperFallDelayFrames = 0;
 
 var jumperX = 75, jumperY = 75;
 var jumperSpeedX = 0, jumperSpeedY = 0;
@@ -64,7 +65,13 @@ function jumperMove() {
         jumperSpeedX *= GROUND_FRICTION;
     } else {
         jumperSpeedX *= AIR_RESISTANCE;
-        jumperSpeedY += currentGravity;
+        if (jumperFallDelayFrames > 0) {
+            jumperFallDelayFrames--;
+        } else 
+        {
+            jumperSpeedY += currentGravity;  
+        }
+       
         if (jumperSpeedY > JUMPER_RADIUS) { // cheap test to ensure can't fall through floor
             jumperSpeedY = JUMPER_RADIUS;
         }
