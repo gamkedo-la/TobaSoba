@@ -4,7 +4,7 @@ const RUN_SPEED = 4.0;
 const JUMP_POWER = 12.0;
 const GRAVITY = 0.6;
 const MAX_JUMP_DURATION_SECS = 0.5;
-
+const POWER_UP_FRAME_DURATION = 120;
 var framesPerSecond = 30;
 
 var jumperX = 75, jumperY = 75;
@@ -18,6 +18,7 @@ var jumperOnGround = false;
 var jumperOnGroundLastFrame = false; // used to know if we just landed
 var JUMPER_RADIUS = 15;
 var jumpTimer = 0.0;
+var jumperPowerUpTime = POWER_UP_FRAME_DURATION;
 var previousFrameJumping = false;
 var doneJumping = false;
 
@@ -53,6 +54,12 @@ var snackHeld = 0;
       
   }
 function jumperMove() {
+    if (jumperPowerUpTime > 0) {
+        jumperPowerUpTime--;
+        if (jumperPowerUpTime == 0 && powerUpMode()) {
+            snackHeld = 3;
+        }
+    }
     if (jumperOnGround) {
         jumperSpeedX *= GROUND_FRICTION;
     } else {
@@ -201,7 +208,7 @@ this.moveInto = function() {
             snackHeld++; // get snack
             nowHasPowerUp = powerUpMode();
             if (hadPowerUp == false && nowHasPowerUp) {
-                console.log("haspoowerup");
+                jumperPowerUpTime = POWER_UP_FRAME_DURATION;
             }
             roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
             break;
