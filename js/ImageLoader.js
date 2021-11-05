@@ -41,8 +41,8 @@ function loadImages() {
       {varName:snackFull, theFile:"snackfull.png"},
       {varName:movingPlatform, theFile:"platform.png"},
       {varName:springBoard, theFile:"springBoard.png"},
-      {varName:boostPad, theFile:"springBoard.png"},
-      {varName:spike, theFile:"springBoard.png"},
+      {varName:boostPad, theFile:"boostpad.png"},
+      {varName:spike, theFile:"spike.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},
@@ -57,7 +57,7 @@ function loadImages() {
       {tileType:TILE_PATROLENEMY, theFile:"patrolenemy.png"}, // Vince:  I believe this can be removed.  It duplicates patrolEnemyPic.
       {tileType:TILE_PLATFORM, theFile:"platform.png"},
       {tileType:TILE_SPRINGBOARD, theFile:"springboard.png"},
-      {tileType:TILE_BOOSTPAD, theFile:"springboard.png"},
+      {tileType:TILE_BOOSTPAD, theFile:"boostpad.png"},
       {tileType:TILE_SPIKE, theFile:"spike.png"},
       ];
 

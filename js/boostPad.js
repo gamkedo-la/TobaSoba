@@ -10,7 +10,7 @@ const boostPad_RADIUS = 25;
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
-          if (roomGrid[arrayIndex] == TILE_boostPad) {
+          if (roomGrid[arrayIndex] == TILE_BOOSTPAD) {
             roomGrid[arrayIndex] = TILE_GROUND;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;

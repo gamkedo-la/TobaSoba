@@ -79,7 +79,7 @@ update();
       enemyList.push(newSpringBoard);
     }
     lookForAnotherSpringBoard = springBoardHasTile;
-  }/*
+  }
   var lookForAnotherBoostPad = true;
   while(lookForAnotherBoostPad){
     var newBoostPad = new  boostPadClass();
@@ -87,17 +87,17 @@ update();
     if (BoostPadHasTile){
       enemyList.push(newBoostPad);
     }
-    lookForAnotherBoostPad = BoostPaddHasTile;
+    lookForAnotherBoostPad = BoostPadHasTile;
   }
     var lookForAnotherSpike = true;
   while(lookForAnotherSpike){
-    var newSpike = new  sprikeClass();
+    var newSpike = new  spikeClass();
     var spikeHasTile = newSpike.reset();
     if (spikeHasTile){
       enemyList.push(newSpike);
     }
-    lookForAnotherspike = spikedHasTile;
-  }*/
+    lookForAnotherSpike = spikeHasTile;
+  }
   for(var i = 0; i < patrolEnemyList.length; i++){
 		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
 	}
