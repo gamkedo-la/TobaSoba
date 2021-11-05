@@ -123,8 +123,7 @@ this.playerCollide = function(){
    jumpTimer = 0;
    doneJumping = false;
    if (jumperSpeedY==0){
-       hurtSound.play();
-       snackHeld--;
+       takeDamage();
    }
 }
 

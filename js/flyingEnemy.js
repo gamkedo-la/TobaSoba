@@ -48,9 +48,15 @@ const FLYER_RADIUS = 25;
       }
     }
 
-    this.playerCollide = function(){
-      //console.log("Player Hit");   
-    }
+      this.playerCollide = function(){
+        // [TODO] fix jump height, make jump slightly when not holding space
+        jumpTimer = 0;
+        doneJumping = false;
+        if (jumperSpeedY==0){
+            takeDamage();
+        }
+     }
+     
      
     this.draw = function () {
       drawBitmapCenteredAtLocationWithFlip(flyingEnemyPic, this.x, this.y,this.xv > 0);

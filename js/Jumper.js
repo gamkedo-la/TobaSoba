@@ -178,6 +178,8 @@ this.moveInto = function() {
         jumperX = nextX;
         jumperY = nextY;
     }
+    var hadPowerUp;
+    var nowHasPowerUp;
     switch (walkIntoTileType) {
         case TILE_GROUND:
             break;
@@ -195,7 +197,12 @@ this.moveInto = function() {
             break;
         case TILE_SNACK:
             snackSound.play();
+            hadPowerUp = powerUpMode();
             snackHeld++; // get snack
+            nowHasPowerUp = powerUpMode();
+            if (hadPowerUp == false && nowHasPowerUp) {
+                console.log("haspoowerup");
+            }
             roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
             break;
         case TILE_WALL:
@@ -211,14 +218,24 @@ this.moveInto = function() {
             break;
     }
 }
-var playerImg;
-    if(snackHeld<4) {
+function powerUpMode() {
+    return snackHeld >= 4;
+}
+
+function takeDamage() {
+    if (powerUpMode() == false) {
+        hurtSound.play();
+        snackHeld--;
+    }
+}
+function jumperDraw() {
+    var playerImg;
+    if(powerUpMode() == false) {
         playerImg = playerPic;
         
     } else {
         playerImg =  playerPowerPic;
     }
-function jumperDraw() {
     jumperLeftSide = jumperX - jumperWidth/2;
     jumperTopSide = jumperY - jumperHeight/2;
 
