@@ -10,9 +10,12 @@ const boostPad_RADIUS = 25;
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
-          if (roomGrid[arrayIndex] == TILE_BOOSTPAD || roomGrid[arrayIndex] == TILE_BOOSTPAD_LEFT) {
+          if (roomGrid[arrayIndex] == TILE_BOOSTPAD || roomGrid[arrayIndex] == TILE_BOOSTPAD_LEFT || roomGrid[arrayIndex] == TILE_BOOSTPAD_RIGHT) {
             if (roomGrid[arrayIndex] == TILE_BOOSTPAD_LEFT) {
               this.ang = -Math.PI/2;
+            }
+            if (roomGrid[arrayIndex] == TILE_BOOSTPAD_RIGHT) {
+              this.ang = Math.PI/2;
             }
             roomGrid[arrayIndex] = TILE_GROUND;
             // this.ang = -Math.PI / 2;
