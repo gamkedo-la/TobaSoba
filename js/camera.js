@@ -1,5 +1,6 @@
 var cameraPanX = 0;
 var cameraPanY = 0;
+var zoomLevel = 2;
 
 function cameraPan() {
 	var cameraRightBoundary = ROOM_COLS * TILE_W - canvas.width;
@@ -22,6 +23,11 @@ function cameraPan() {
 	}
 	canvasContext.save();
     canvasContext.translate(Math.floor(-cameraPanX), Math.floor(-cameraPanY));
+	if (!worldEditor) {
+		canvasContext.translate(Math.floor(jumperX), Math.floor(jumperY));
+		canvasContext.scale(zoomLevel, zoomLevel);
+		canvasContext.translate(Math.floor(-jumperX), Math.floor(-jumperY));
+	}
 }
 
 function endCameraPan() {
