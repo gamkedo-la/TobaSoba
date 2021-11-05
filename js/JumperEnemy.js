@@ -8,20 +8,23 @@ function addJumperEnemy(){
 function JumperEnemyClass (){
   this.x = 100;
   this.y = 100;
+  this.timeToJumpIn = 100;
   this.width = 30;
+  this.height = 30;
   this.speedX = 0;
   this.speedY = 0;
   this.runSpeed = 0.5;
   this.moveLeft = true;
   this.moveRight = false;
   this.collisionBox = "green"
-  this.onGround = false;
+  this.onGround = true;
   this.jumperOnGroundLastFrame = false; // used to know if we just landed
   this.radius = 15;
   this.jump = false;
   this.jumpTimer = 0.0;
   this.previousFrameJumping = false;
   this.doneJumping = false;
+  this.fallDelayFrames = 0;
 
   this.init = function(whichGraphic, whichName) {
     this.myBitmap = whichGraphic;
@@ -47,11 +50,14 @@ function JumperEnemyClass (){
   } 
 
   this.move = function(){
+
     if (this.onGround) {
         this.speedX *= GROUND_FRICTION;
+        this.timeToJumpIn++;
     } else {
         this.speedX *= AIR_RESISTANCE;
         this.speedY += currentGravity;
+        this.timeToJumpIn = 0;
         if (this.speedY > JUMPER_RADIUS) { 
             this.speedY = JUMPER_RADIUS;
         }
@@ -61,6 +67,16 @@ function JumperEnemyClass (){
         currentGravity = GRAVITY * gravityFallModifier;
     } else if (jumperOnGround) {
         currentGravity = GRAVITY;
+    }
+
+    if(this.timeToJumpIn > 200){
+        this.jump = true;
+    }
+
+    if (this.fallDelayFrames > 0) {
+        this.fallDelayFrames--;
+    } else {
+        jumperSpeedY += currentGravity;  
     }
 
     if (this.jump && this.jumpTimer <= MAX_JUMP_DURATION_SECS && !this.doneJumping) {
@@ -141,7 +157,7 @@ this.changeDirection = function(){
     canvasContext.save();
     canvasContext.translate(this.x, this.y);
     canvasContext.rotate(this.x/20.0);
-    canvasContext.drawImage(patrolEnemyPic,-JUMPER_RADIUS,-JUMPER_RADIUS, patrolEnemyPic.width, patrolEnemyPic.height);
+    canvasContext.drawImage(this.myBitmap,-JUMPER_RADIUS,-JUMPER_RADIUS, this.width, this.height);
     canvasContext.restore();
   }
 }
