@@ -26,10 +26,14 @@ const spike_RADIUS = 25;
     }
 
     this.playerCollide = function(){
-      jumperSpeedX = -1.2*JUMP_POWER;
-      jumperSpeedY = 0.2*JUMP_POWER;
+      jumperSpeedX = Math.sign(jumperSpeedX)*-1* JUMP_POWER * Math.cos(.06);
+      jumperSpeedY = JUMP_POWER * Math.sin(5);
+      snackHeld--;
       hurtSound.play();
-      console.log("Player Hit");   
+      if (snackHeld < 1){
+        deathSound.play();
+        //GAMEOVER
+      } 
      }
      
     this.draw = function () {
