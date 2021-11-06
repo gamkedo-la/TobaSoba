@@ -235,12 +235,17 @@ this.moveInto = function() {
 function powerUpMode() {
     return snackHeld >= 4;
 }
-
 function takeDamage() {
     if (powerUpMode() == false) {
         hurtSound.play();
         snackHeld--;
     }
+}
+function playerDeath() {
+    if (snackHeld < 0){
+        deathSound.play();
+        gameState = STATE_GAME_OVER;
+      }
 }
 function jumperDraw() {
     var playerImg;

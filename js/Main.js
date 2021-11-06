@@ -15,6 +15,7 @@ var showCollisionBoxes = false;
 const STATE_MENU = 0;
 const STATE_PLAY = 1;
 const STATE_CREDITS = 2;
+const STATE_GAME_OVER = 3;
 var gameState = STATE_PLAY;
 
 const INDENT = 40;
@@ -114,33 +115,6 @@ function update() {
 	//variableDisplay();
 }
 
-function drawMenu() {
-  colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'black');
-  canvasContext.fillStyle = 'yellow';
-  canvasContext.font = "50px Verdana";
-  canvasContext.fillText("TobaSoba", INDENT-4, 80);
-  canvasContext.font = "30px Verdana";
-  canvasContext.fillText("created by Vaan Hope Khani", INDENT, 120);
-  canvasContext.fillText("Left right arrow keys to run", INDENT, 200); 
-  canvasContext.fillText("Up-arrow key or spacebar to jump", INDENT, 240);
-  canvasContext.fillText("Press key P to play game", INDENT, 340);
-  canvasContext.fillText("Press key C to view the Credits", INDENT, 380);
-  canvasContext.fillText("Press key M to return here", INDENT, 420);
-  canvasContext.fillText("Press L to leave editor, K to edit", INDENT, 480);
-}
-
-function drawCredits() {
-  colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'black');
-  canvasContext.font = "30px Verdana";
-  canvasContext.fillStyle = 'orange';
-  canvasContext.fillText("TobaSoba made at HomeTeam GameDev", INDENT, 80);
-
-  canvasContext.fillText("Vaan Hope Khani", INDENT, 140);
-
-  canvasContext.fillText("Press key P to play", INDENT, 420);
-  canvasContext.fillText("Press key M for menu", INDENT, 460);
-}
-
 function resizeCanvas() {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
@@ -154,6 +128,13 @@ function resizeCanvas() {
       break;
     case STATE_CREDITS:
       drawCredits();
+      break;
+      case STATE_GAME_OVER:
+        gameOverScreen();
+      if (mouseClick() && gameIsover == true){
+        reset();
+        gameState = STATE_PLAY;
+      }
       break;
   }
 }

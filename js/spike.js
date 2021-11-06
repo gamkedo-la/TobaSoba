@@ -28,12 +28,8 @@ const spike_RADIUS = 25;
     this.playerCollide = function(){
       jumperSpeedX = Math.sign(jumperSpeedX)*-1* JUMP_POWER * Math.cos(.06);
       jumperSpeedY = JUMP_POWER * Math.sin(5);
-      snackHeld--;
-      hurtSound.play();
-      if (snackHeld < 1){
-        deathSound.play();
-        //GAMEOVER
-      } 
+      takeDamage();
+      playerDeath();
      }
      
     this.draw = function () {
