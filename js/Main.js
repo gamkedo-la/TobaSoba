@@ -161,7 +161,6 @@ function resizeCanvas() {
 function drawEverything() {
 		cameraPan();
 		drawRoom();
-		jumperDraw();
     for (var i=0; i < enemyList.length; i++){
       enemyList[i].draw();
     }
@@ -171,7 +170,7 @@ function drawEverything() {
     for(var i = 0; i < jumperEnemyList.length; i++){
       jumperEnemyList[i].draw();
     }
-
+    jumperDraw();
     drawParticles();
 
     endCameraPan();

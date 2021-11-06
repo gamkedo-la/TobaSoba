@@ -35,8 +35,9 @@ var holdJump = false;
 var radiusIncrease = false;
 var radiusDecrease = false;
 
+var wheelDir;
 var mousePos;
-
+var isMouseWheel = false;
 var bMouseDown = false;
 var prevEditedTileIndex = -1;
   
@@ -55,6 +56,12 @@ function initInput() {
 			mousePos = calculateMousePos(evt);
 			editLevel();
 		});
+
+		document.addEventListener("wheel", function(evt) {
+			isMouseWheel = true;
+			wheelDir = Math.sign(evt.deltaY);
+		});
+		
 }
 
 function setKeyHoldState(thisKey, setTo) {
@@ -134,9 +141,26 @@ function editLevel() {
 				} else {
 					roomGrid[tileIndex] = 1;
 				}
+			}/*
+			const selectedItem = !roomGrid[tileIndex];
+			if(isMouseWheel && wheelDir>0) {
+					for (i=0; i<ALLTILES[tileIndex]; i++) {
+						if (selectedItem === ALLTILES[i].toString()) {
+							roomGrid[tileIndex] == ALLTILES[i].toString();
+						}
+					}
 			}
+			if(isMouseWheel && wheelDir<0 ) {
+					for (i=ALLTILES[tileIndex]; i>0; i--) {
+						if (selectedItem === ALLTILES[i].toString()) {
+							roomGrid[tileIndex] == ALLTILES[i].toString();
+						}
+					}	
+			}*/
 			//console.log(roomGrid[tileIndex]+ " " + tileIndex);
-		} else {
+		}
+		
+		else {
 			//console.log("World editor disabled - hit ` to start");
 		}
 			
