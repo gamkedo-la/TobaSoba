@@ -58,7 +58,7 @@ function jumperMove() {
     if (jumperPowerUpTime > 0) {
         jumperPowerUpTime--;
         if (jumperPowerUpTime == 0 && powerUpMode()) {
-            snackHeld = 3;
+            snackHeld = 4;
         }
     }
     if (jumperOnGround) {
@@ -233,7 +233,7 @@ this.moveInto = function() {
     }
 }
 function powerUpMode() {
-    return snackHeld >= 4;
+    return snackHeld >= 5;
 }
 function takeDamage() {
     if (powerUpMode() == false) {

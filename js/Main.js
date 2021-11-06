@@ -20,6 +20,7 @@ var gameState = STATE_PLAY;
 
 const INDENT = 40;
 const SET_FRAMES_PER_SECOND = 30;
+var snackHeld = 4;
 var paused = false;
 
 var enemyList = [];

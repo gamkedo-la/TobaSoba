@@ -6,7 +6,6 @@ function drawEnerrgyUI() {
         showSnackNum = snackHeld;
     } else {
         showSnackNum = 4;
-        snackHeld = 4;
     }
     for (var i = 0; i<4; i++) {
         canvasContext.drawImage(snackEmpty,0,pos+i*30,
