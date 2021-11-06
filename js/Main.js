@@ -169,16 +169,19 @@ function moveEverything() {
 		lastX = jumperX;
 		lastY = jumperY;
 	}
-  for (var i=0; i < enemyList.length; i++){
-    enemyList[i].move();
+  if (!worldEditor) {
+    for (var i=0; i < enemyList.length; i++){
+      enemyList[i].move();
+    }
+    //patrolEnemy1.move(); //Vince:  This will move to the enemyList once refactored 10/20/2021
+    for(var i = 0; i < patrolEnemyList.length; i++){
+      patrolEnemyList[i].move();
+    }
+    for(var i = 0; i < jumperEnemyList.length; i++){
+      jumperEnemyList[i].move();
+    }
   }
-  //patrolEnemy1.move(); //Vince:  This will move to the enemyList once refactored 10/20/2021
-  for(var i = 0; i < patrolEnemyList.length; i++){
-		patrolEnemyList[i].move();
-	}
-  for(var i = 0; i < jumperEnemyList.length; i++){
-    jumperEnemyList[i].move();
-  }
+  
   
   checkForPlayerCollision();
 }
