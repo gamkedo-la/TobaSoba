@@ -25,7 +25,10 @@ function JumperEnemyClass (){
   this.previousFrameJumping = false;
   this.doneJumping = false;
   this.fallDelayFrames = 0;
-
+  this.timeToMove = true;
+  this.timerForTimeToMove = 1000;
+  this.timePeriodForMoving = 1100;
+  
   this.init = function(whichGraphic, whichName) {
     this.myBitmap = whichGraphic;
     this.myName = whichName;
@@ -50,6 +53,30 @@ function JumperEnemyClass (){
   } 
 
   this.move = function(){
+
+    this.timerForTimeToMove++;
+
+    if(this.timerForTimeToMove > this.timePeriodForMoving){
+      this.timerForTimeToMove = 0;
+      this.timePeriodForMoving = getRndInteger(100, 200);
+      let decisionToChangeTimeToMoveBoleen = getRndInteger(1,3);
+      if(decisionToChangeTimeToMoveBoleen == 1){
+        this.timeToMove = true;
+        this.moveLeft = true;
+        this.moveRight = false;
+      } else if (decisionToChangeTimeToMoveBoleen == 2){
+        this.timeToMove = true;
+        this.moveRight = true;
+        this.moveLeft = false;
+      } else {
+        this.timeToMove = false;
+      }
+    }
+
+    if(!this.timeToMove){
+      this.moveLeft = false;
+      this.moveRight = false;
+    } 
 
     if (this.onGround) {
         this.speedX *= GROUND_FRICTION;
