@@ -4,9 +4,10 @@ var snackSound = new SoundOverlapsClass("audio/snack");
 var jumpSound = new SoundOverlapsClass("audio/jump");
 var groundSound = new SoundOverlapsClass("audio/ground");
 var hitSound = new SoundOverlapsClass("audio/hit");
-var hurtSound = new SoundOverlapsClass("audio/hurt");
+var cheerSound = new SoundOverlapsClass("audio/cheer");
 var doorSound = new SoundOverlapsClass("audio/door");
 var springSound = new SoundOverlapsClass("audio/springboard");
+var boostpadSound = new SoundOverlapsClass("audio/boostpad");
 var deathSound = new SoundOverlapsClass("audio/death");
 
 var patrolEnemy1NameList = ["Safiya","Halima", "Scipio", "Kofi", "Maisha", "Diara", "Kesia", "Tau", "Chidi", "Bahari"]

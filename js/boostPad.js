@@ -36,7 +36,8 @@ const boostPad_RADIUS = 25;
       jumperSpeedX = 3*JUMP_POWER * Math.cos(pushAng);
       jumperSpeedY = 3*JUMP_POWER * Math.sin(pushAng);
       jumperFallDelayFrames = 20; 
-      hurtSound.play();
+      boostpadSound.play();
+      cheerSound.play();
       console.log("Player Hit");   
      }
      

@@ -237,7 +237,7 @@ function powerUpMode() {
 }
 function takeDamage() {
     if (powerUpMode() == false) {
-        hurtSound.play();
+        cheerSound.play();
         snackHeld--;
     }
 }
