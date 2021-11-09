@@ -4,6 +4,7 @@ var snackSound = new SoundOverlapsClass("audio/snack");
 var jumpSound = new SoundOverlapsClass("audio/jump");
 var groundSound = new SoundOverlapsClass("audio/ground");
 var hitSound = new SoundOverlapsClass("audio/hit");
+var hurtSound = new SoundOverlapsClass("audio/hurt");
 var cheerSound = new SoundOverlapsClass("audio/cheer");
 var doorSound = new SoundOverlapsClass("audio/door");
 var springSound = new SoundOverlapsClass("audio/springboard");
@@ -17,13 +18,12 @@ const STATE_MENU = 0;
 const STATE_PLAY = 1;
 const STATE_CREDITS = 2;
 const STATE_GAME_OVER = 3;
-var gameState = STATE_PLAY;
-
 const INDENT = 40;
 const SET_FRAMES_PER_SECOND = 30;
 var snackHeld = 4;
 var paused = false;
-
+var gameState = STATE_PLAY;
+var gameIsover = false;
 var enemyList = [];
 
 window.onload = function() {

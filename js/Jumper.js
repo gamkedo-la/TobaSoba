@@ -237,7 +237,7 @@ function powerUpMode() {
 }
 function takeDamage() {
     if (powerUpMode() == false) {
-        cheerSound.play();
+        hurtSound.play();
         snackHeld--;
     }
 }
@@ -245,6 +245,7 @@ function playerDeath() {
     if (snackHeld < 0){
         deathSound.play();
         gameState = STATE_GAME_OVER;
+        gameIsOver = true;
       }
 }
 function jumperDraw() {
