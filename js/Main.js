@@ -57,6 +57,15 @@ update();
   //init( playerPic , "toba");
   reset();
   enemyList = [];
+  var lookForAnotherBigEnemy = true;
+  while(lookForAnotherBigEnemy ){
+    var newDarkEnemy = new DarkEnemyClass();
+    var darkEnemyHasTile = newDarkEnemy.reset();
+    if (darkEnemyHasTile){
+      enemyList.push(newDarkEnemy);
+    }
+    lookForAnotherBigEnemy = darkEnemyHasTile;
+  }
   var lookForAnotherFlyingEnemy = true;
   while(lookForAnotherFlyingEnemy ){
     var newFlyingEnemy = new FlyingEnemyClass();

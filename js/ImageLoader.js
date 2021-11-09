@@ -3,6 +3,7 @@ var playerPowerPic=document.createElement("img");
 var patrolEnemyPic=document.createElement("img");
 var flyingEnemyPic=document.createElement("img");
 var jumperEnemyPic=document.createElement("img");
+var darkEnemyPic=document.createElement("img");
 var snackEmpty=document.createElement("img");
 var snackFull=document.createElement("img");
 var movingPlatform=document.createElement("img");
@@ -37,6 +38,7 @@ function loadImages() {
       {varName:flyingEnemyPic, theFile:"flyingenemy.png"},
       {varName:patrolEnemyPic, theFile:"patrolenemy.png"},
       {varName:jumperEnemyPic, theFile:"jumpingEnemy.png"},
+      {varName:darkEnemyPic, theFile:"darkenemy.png"},
       {varName:snackEmpty, theFile:"snackempty.png"},
       {varName:snackFull, theFile:"snackfull.png"},
       {varName:movingPlatform, theFile:"platform.png"},
@@ -55,6 +57,9 @@ function loadImages() {
       {tileType:TILE_START, theFile:"start.png"},
       {tileType:TILE_FLYINGENEMY, theFile:"flyingenemy.png"},
       {tileType:TILE_PATROLENEMY, theFile:"patrolenemy.png"}, // Vince:  I believe this can be removed.  It duplicates patrolEnemyPic.
+      {tileType:TILE_DARKENEMY, theFile:"darkenemy.png"},
+      {tileType:TILE_JUMPINGENEMY, theFile:"jumpingEnemy.png"},
+      {tileType:TILE_DARKENEMY, theFile:"flyingenemy.png"},
       {tileType:TILE_PLATFORM, theFile:"platform.png"},
       {tileType:TILE_SPRINGBOARD, theFile:"springboard.png"},
       {tileType:TILE_BOOSTPAD, theFile:"boostpad.png"},
