@@ -243,7 +243,6 @@ function takeDamage() {
         }
         if (snackHeld == 0){
         alarmSound.play();
-        playerDeath();
         }
     }
 }
@@ -253,6 +252,10 @@ function playerDeath() {
         gameState = STATE_GAME_OVER;
         gameIsOver = true;
       }
+}
+function bouncePlayer() {
+    jumperSpeedX = Math.sign(jumperSpeedX)*-1* JUMP_POWER * Math.cos(.06);
+    jumperSpeedY = JUMP_POWER * Math.sin(5);
 }
 function jumperDraw() {
     var playerImg;

@@ -52,9 +52,11 @@ const DARK_RADIUS = 25;
         // [TODO] fix jump height, make jump slightly when not holding space
         jumpTimer = 0;
         doneJumping = false;
-        if (jumperSpeedY==0){
-            takeDamage();
-        }
+        if (this.y >= JUMP_POWER * Math.cos(.06)) {
+          takeDamage();
+          bouncePlayer();
+          playerDeath();
+      }
      }
      
      
