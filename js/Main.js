@@ -10,6 +10,7 @@ var doorSound = new SoundOverlapsClass("audio/door");
 var springSound = new SoundOverlapsClass("audio/springboard");
 var boostpadSound = new SoundOverlapsClass("audio/boostpad");
 var deathSound = new SoundOverlapsClass("audio/death");
+var alarmSound = new SoundOverlapsClass("audio/alarm");
 
 var patrolEnemy1NameList = ["Safiya","Halima", "Scipio", "Kofi", "Maisha", "Diara", "Kesia", "Tau", "Chidi", "Bahari"]
 var showCollisionBoxes = false;

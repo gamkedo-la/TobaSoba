@@ -236,9 +236,15 @@ function powerUpMode() {
     return snackHeld >= 5;
 }
 function takeDamage() {
-    if (powerUpMode() == false) {
-        hurtSound.play();
-        snackHeld--;
+    if(!worldEditor){
+        if (powerUpMode() == false) {
+            hurtSound.play();
+            snackHeld--;
+        }
+        if (snackHeld == 0){
+        alarmSound.play();
+        playerDeath();
+        }
     }
 }
 function playerDeath() {
