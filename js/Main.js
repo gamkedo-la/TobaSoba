@@ -232,6 +232,8 @@ function togglePause()
     if (!paused)
     {
         paused = true;
+        colorRect(  canvas.width/2, canvas.height/2-25 , 100,40, 'black');
+        colorText("PAUSE",canvas.width/2, canvas.height/2 , 30, 'white');
     } else if (paused)
     {
        paused= false;
