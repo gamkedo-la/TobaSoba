@@ -64,6 +64,7 @@ function loadImages() {
       {tileType:TILE_SPRINGBOARD, theFile:"springboard.png"},
       {tileType:TILE_BOOSTPAD, theFile:"boostpad.png"},
       {tileType:TILE_SPIKE, theFile:"spike.png"},
+      {tileType:TILE_WALL3, theFile:"naturewall.png"},
       ];
 
   picsToLoad = imageList.length;
