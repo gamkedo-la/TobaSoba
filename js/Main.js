@@ -75,6 +75,15 @@ update();
     }
     lookForAnotherFlyingEnemy = flyingEnemyHasTile;
   }
+  var lookForAnotherHangingBlade = true;
+  while(lookForAnotherHangingBlade ){
+    var newHangingBlade = new  HangingBladeClass();
+    var HangingBladeHasTile = newHangingBlade.reset();
+    if (HangingBladeHasTile){
+      enemyList.push(newHangingBlade);
+    }
+    lookForAnotherHangingBlade = HangingBladeHasTile;
+  }
   var lookForAnotherMovingPlatform = true;
   while(lookForAnotherMovingPlatform ){
     var newMovingPlatform = new  movingPlatformClass();
