@@ -93,6 +93,15 @@ update();
     }
     lookForAnotherMovingPlatform = movingPlatformHasTile;
   }
+  var lookForAnotherCrusher = true;
+  while(lookForAnotherCrusher ){
+    var newCrusher = new  CrusherClass();
+    var crusherHasTile = newCrusher.reset();
+    if (crusherHasTile){
+      enemyList.push(newCrusher);
+    }
+    lookForAnotherCrusher = crusherHasTile;
+  }
   var lookForAnotherSpringBoard = true;
   while(lookForAnotherSpringBoard){
     var newSpringBoard = new  springBoardClass();

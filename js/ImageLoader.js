@@ -11,6 +11,7 @@ var springBoard=document.createElement("img");
 var boostPad=document.createElement("img");
 var spike=document.createElement("img");
 var hangingBlade=document.createElement("img");
+var crusher=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -47,6 +48,7 @@ function loadImages() {
       {varName:boostPad, theFile:"boostpad.png"},
       {varName:spike, theFile:"spike.png"},
       {varName:hangingBlade, theFile:"blade.png"},
+      {varName:crusher, theFile:"crusher.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},
@@ -68,6 +70,7 @@ function loadImages() {
       {tileType:TILE_SPIKE, theFile:"spike.png"},
       {tileType:TILE_WALL3, theFile:"naturewall.png"},
       {tileType:TILE_HANGINGBLADE, theFile:"blade.png"},
+      {tileType:TILE_CRUSHER, theFile:"crusher.png"},
       ];
 
   picsToLoad = imageList.length;
