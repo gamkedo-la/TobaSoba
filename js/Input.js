@@ -24,6 +24,8 @@ const KEY_T = 84;
 const KEY_W = 87;
 const KEY_TAB = 9;
 const KEY_CTRL = 17;
+const KEY_PAGE_UP = 33;
+const KEY_PAGE_DOWN = 34;
 
 const KEY_TILDE = 192;
 const KEY_PLUS = 61;
@@ -95,18 +97,20 @@ function setKeyHoldState(thisKey, setTo) {
 		//TODO: Create delay?
 		radiusDecrease = setTo;
 		break;
-  case KEY_M:
-    gameState = STATE_MENU;
+	case KEY_M:
+		gameState = STATE_MENU;
+		break;
+	case KEY_P:
+		if (setTo == false){
+			togglePause();
+		}
+		break;
+	case KEY_R:
+		restartGame();
     break;
-  case KEY_P:
-    gameState = STATE_PLAY;
-    break;
-  case KEY_R:
-	 
-    break;
-  case KEY_C:
-    gameState = STATE_CREDITS;
-    break;
+	case KEY_C:
+		gameState = STATE_CREDITS;
+		break;
 	case KEY_T:
 		jumperX = mousePos.x + cameraPanX;	
 		jumperY = mousePos.y + cameraPanY;
@@ -145,22 +149,7 @@ function editLevel() {
 				} else {
 					roomGrid[tileIndex] = 1;
 				}
-			}/*
-			const selectedItem = !roomGrid[tileIndex];
-			if(isMouseWheel && wheelDir>0) {
-					for (i=0; i<ALLTILES[tileIndex]; i++) {
-						if (selectedItem === ALLTILES[i].toString()) {
-							roomGrid[tileIndex] == ALLTILES[i].toString();
-						}
-					}
 			}
-			if(isMouseWheel && wheelDir<0 ) {
-					for (i=ALLTILES[tileIndex]; i>0; i--) {
-						if (selectedItem === ALLTILES[i].toString()) {
-							roomGrid[tileIndex] == ALLTILES[i].toString();
-						}
-					}	
-			}*/
 			//console.log(roomGrid[tileIndex]+ " " + tileIndex);
 		}
 		

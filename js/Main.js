@@ -240,11 +240,3 @@ function togglePause()
     }
 
 }
-window.addEventListener('keydown', function (e) {
-  var key = e.keyCode;
-  if (key === 80)// p key
-  {
-      togglePause();
-  }
-  });
-  
