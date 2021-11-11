@@ -38,7 +38,7 @@ function drawTiles(){
 function selectTile(){
 
 };
-
+i = 0;
 function editorKeyCheck(keyCode) {
     if (worldEditor == false) {
         if(keyCode == KEY_TAB) {
@@ -49,7 +49,10 @@ function editorKeyCheck(keyCode) {
     let = mouseX = mousePos.x;
     let = mouseY = mousePos.y;
     tileIndex = getTileIndexAtPixelCoord(mouseX + cameraPanX, mouseY + cameraPanY);
-
+    const keys = Object.keys(ALLTILES);
+                keys.forEach((key, index) => {
+                    items = (`${key}: ${ALLTILES[key]}`);
+                });
     switch (keyCode) {
         case KEY_TAB:
             worldEditor = false;
@@ -88,6 +91,21 @@ function editorKeyCheck(keyCode) {
         case KEY_CTRL:
             exportLevel();
             break; 
+        case KEY_PAGE_UP:
+            i++;
+            if (items[i]  > items[i].length - 1) {
+                i =0;
+            }   
+            roomGrid[tileIndex] =  items[i];
+            break
+        case KEY_PAGE_DOWN:
+            i--;
+            if (items[i] < items[i].length - 1) {
+                i = 0;
+            } 
+            roomGrid[tileIndex] =  items[i];
+            console.log(items);
+            break
     } 
 }
 
