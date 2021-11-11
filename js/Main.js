@@ -57,14 +57,23 @@ update();
   //init( playerPic , "toba");
   reset();
   enemyList = [];
-  var lookForAnotherBigEnemy = true;
-  while(lookForAnotherBigEnemy ){
+  var lookForAnotherNatureBoss = true;
+  while(lookForAnotherNatureBoss ){
+    var newNatureBoss = new NatureBossClass();
+    var natureBossHasTile = newNatureBoss.reset();
+    if (natureBossHasTile){
+      enemyList.push(newNatureBoss);
+    }
+    lookForAnotherNatureBoss = natureBossHasTile;
+  }
+  var lookForAnotherDarkEnemy = true;
+  while(lookForAnotherDarkEnemy ){
     var newDarkEnemy = new DarkEnemyClass();
     var darkEnemyHasTile = newDarkEnemy.reset();
     if (darkEnemyHasTile){
       enemyList.push(newDarkEnemy);
     }
-    lookForAnotherBigEnemy = darkEnemyHasTile;
+    lookForAnotherDarkEnemy = darkEnemyHasTile;
   }
   var lookForAnotherFlyingEnemy = true;
   while(lookForAnotherFlyingEnemy ){
