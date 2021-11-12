@@ -73,6 +73,8 @@ function loadImages() {
       {tileType:TILE_PLATFORM, theFile:"platform.png"},
       {tileType:TILE_SPRINGBOARD, theFile:"springboard.png"},
       {tileType:TILE_BOOSTPAD, theFile:"boostpad.png"},
+      {tileType:TILE_BOOSTPAD_RIGHT, theFile:"boostpad_R_editoronly.png"},
+      {tileType:TILE_BOOSTPAD_LEFT, theFile:"boostpad_L_editoronly.png"},
       {tileType:TILE_SPIKE, theFile:"spike.png"},
       {tileType:TILE_WALL3, theFile:"naturewall.png"},
       {tileType:TILE_HANGINGBLADE, theFile:"blade.png"},

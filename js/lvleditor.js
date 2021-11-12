@@ -20,7 +20,7 @@ function drawEditor(){
     lineY += skipY
     shadowText("Press Control/Command key to export the level",  lineX, lineY, fgColor, bgColor)
     lineY += skipY
-    shadowText("Press number 3 to place PLAYER START",  lineX, lineY, fgColor, bgColor)
+    shadowText("Press number 9 to place " + ALLTILES[editorItem] ,  lineX, lineY, fgColor, bgColor)
     canvasContext.font = wasFont;
 };
 
@@ -38,7 +38,7 @@ function drawTiles(){
 function selectTile(){
 
 };
-i = 0;
+editorItem = 0;
 function editorKeyCheck(keyCode) {
     if (worldEditor == false) {
         if(keyCode == KEY_TAB) {
@@ -46,13 +46,13 @@ function editorKeyCheck(keyCode) {
             return;
         }
     }
-    let = mouseX = mousePos.x;
-    let = mouseY = mousePos.y;
+    let  mouseX = mousePos.x;
+    let  mouseY = mousePos.y;
     tileIndex = getTileIndexAtPixelCoord(mouseX + cameraPanX, mouseY + cameraPanY);
-    const keys = Object.keys(ALLTILES);
-                keys.forEach((key, index) => {
-                    items = (`${key}: ${ALLTILES[key]}`);
-                });
+    //const keys = Object.keys(ALLTILES);
+                //keys.forEach((key, index) => {
+                    //items = (`${key}: ${ALLTILES[key]}`);
+               // });
     switch (keyCode) {
         case KEY_TAB:
             worldEditor = false;
@@ -86,25 +86,24 @@ function editorKeyCheck(keyCode) {
             //roomGrid[tileIndex] = TILE_GROUND2;
             break;
         case KEY_9:
-            //roomGrid[tileIndex] = TILE_GROUND2;
+            roomGrid[tileIndex] = editorItem;
             break; 
         case KEY_CTRL:
             exportLevel();
             break; 
         case KEY_PAGE_UP:
-            i++;
-            if (items[i]  > items[i].length - 1) {
-                i =0;
-            }   
-            roomGrid[tileIndex] =  items[i];
+            editorItem++;
+            if (editorItem  > ALLTILES.length - 1) {
+                editorItem =0;
+            }  
+            console.log(editorItem); 
             break
         case KEY_PAGE_DOWN:
-            i--;
-            if (items[i] < items[i].length - 1) {
-                i = 0;
-            } 
-            roomGrid[tileIndex] =  items[i];
-            console.log(items);
+            editorItem--;
+            if (editorItem < 0) {
+                editorItem = ALLTILES.length -1 ;
+            }
+            console.log(editorItem); 
             break
     } 
 }
