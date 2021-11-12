@@ -25,8 +25,13 @@ const CRUSHER_RADIUS = 25;
       //console.log('flyingenemy moving');
       var nextX = this.x + this.xv;
       var nextY =  this.y + this.yv;
-      
-      var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
+      var halfTileDirectionOffset;
+      if (this.yv > 0) {
+        halfTileDirectionOffset = TILE_H/2;
+      } else {
+        halfTileDirectionOffset = -TILE_H/2;
+      }
+      var walkIntoTileIndex = getTileIndexAtPixelCoord(this.x, this.y+halfTileDirectionOffset);
       var walkIntoTileType = TILE_WALL;
   
       if (walkIntoTileIndex != undefined) {
