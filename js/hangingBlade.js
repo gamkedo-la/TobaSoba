@@ -1,10 +1,10 @@
 
 const HANGINGBLADE_RADIUS = 25;
   function HangingBladeClass() {
+    this.xb = 0;
+    this.yb = 0;
     this.x = 0;
-    this.y = 0;
-    this.xe = 0;
-    this.ye = 75;
+    this.y = 75;
     this.pendIncreasing = 0;
     this.swingAng = 0;
     this.reset = function () {
@@ -15,8 +15,8 @@ const HANGINGBLADE_RADIUS = 25;
           if (roomGrid[arrayIndex] == TILE_HANGINGBLADE) {
             roomGrid[arrayIndex] = TILE_GROUND;
             // this.ang = -Math.PI / 2;
-            this.x = eachCol * TILE_W + TILE_W / 2;
-            this.y = eachRow * TILE_H;
+            this.xb = eachCol * TILE_W + TILE_W / 2;
+            this.yb = eachRow * TILE_H;
             return true; //we found one 
           } //end of player start if
         } // end of col for
@@ -30,8 +30,8 @@ const HANGINGBLADE_RADIUS = 25;
       var swingRange = Math.PI/4;
       this.swingAng = baseAng + Math.cos(this.pendIncreasing*speedMod)*swingRange;
 
-        this.xe= this.x+Math.cos(this.swingAng)*50;
-        this.ye= this.y+Math.sin(this.swingAng)*50;
+        this.x= this.xb+Math.cos(this.swingAng)*50;
+        this.y= this.yb+Math.sin(this.swingAng)*50;
 
     }
     this.playerCollide = function(){
@@ -47,7 +47,7 @@ const HANGINGBLADE_RADIUS = 25;
      
     this.draw = function () {
       canvasContext.save();
-      canvasContext.translate(this.x,this.y);
+      canvasContext.translate(this.xb,this.yb);
       canvasContext.rotate(this.swingAng);
       canvasContext.drawImage(hangingBlade,0,-HANGINGBLADE_RADIUS,
         hangingBlade.width, 
