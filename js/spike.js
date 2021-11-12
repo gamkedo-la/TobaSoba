@@ -26,9 +26,9 @@ const spike_RADIUS = 25;
     }
 
     this.playerCollide = function(){
-      bouncePlayer();
-      takeDamage();
-      playerDeath();
+      Jumper.takeDamage();
+      Jumper.bouncePlayer();
+      Jumper.playerDeath();
      }
      
     this.draw = function () {

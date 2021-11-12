@@ -44,19 +44,149 @@ window.onload = function() {
 }
 
 function startGame() {
+  Jumper = new JumperClass();
  // these next few lines set up our game logic and render to happen 30 times per second
 	var framesPerSecond = 30;
   setInterval(function() {
     if(!paused)
-{ 
-update(); 
-}
+    { 
+    update(); 
+    }
     }, 1000/framesPerSecond);
   //backgroundMusic.loopSong("audio/S");
-
   //init( playerPic , "toba");
   reset();
+}
+
+function update() {
+	moveEverything();
+  updateParticles();
+	resizeCanvas();
+	//variableDisplay();
+}
+
+function resizeCanvas() {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+  switch (gameState) {
+    case STATE_MENU:
+      drawMenu();
+      break;
+    case STATE_PLAY:
+      drawEverything();
+      break;
+    case STATE_CREDITS:
+      drawCredits();
+      break;
+      case STATE_GAME_OVER:
+        gameOverScreen();
+      if (mouseClick() && gameIsover == true){
+        reset();
+        gameState = STATE_PLAY;
+      }
+      break;
+  }
+}
+
+function drawEverything() {
+		cameraPan();
+		drawRoom();
+    for (var i=0; i < enemyList.length; i++){
+      enemyList[i].draw();
+    }
+    for(var i=0; i < patrolEnemyList.length; i++){
+      patrolEnemyList[i].draw();
+    }
+    for(var i = 0; i < jumperEnemyList.length; i++){
+      jumperEnemyList[i].draw();
+    }
+    Jumper.Draw();
+    drawParticles();
+
+    endCameraPan();
+		drawEnerrgyUI();
+		drawEditor();
+    drawDebug();
+    
+}
+
+function moveEverything() {
+	Jumper.move();
+	Jumper.moveInto();
+	if (jumperOnGround){
+		lastX = jumperX;
+		lastY = jumperY;
+	}
+  if (!worldEditor) {
+    for (var i=0; i < enemyList.length; i++){
+      enemyList[i].move();
+    }
+    //patrolEnemy1.move(); //Vince:  This will move to the enemyList once refactored 10/20/2021
+    for(var i = 0; i < patrolEnemyList.length; i++){
+      patrolEnemyList[i].move();
+    }
+    for(var i = 0; i < jumperEnemyList.length; i++){
+      jumperEnemyList[i].move();
+    }
+  }
+  
+  
+  checkForPlayerCollision();
+}
+
+function checkForPlayerCollision(){
+  for(var i = 0; i < patrolEnemyList.length; i++){
+    Jumper.CollisionCheck(patrolEnemyList[i]);
+  }
+  for(var i = 0; i < jumperEnemyList.length; i++){
+    Jumper.CollisionCheck(jumperEnemyList[i]);
+  }
+  for(var i = 0; i < enemyList.length; i++){
+    Jumper.CollisionCheck(enemyList[i]);
+  }
+}
+
+function dist(dx, dy) {
+  return Math.sqrt(dx*dx+dy*dy);
+}
+function angTo(dx,dy){
+  return Math.atan2(dy,dx);
+}
+function variableDisplay() {
+	var jumpVariables = [jumperRadius,runSpeed,jumperSpeedX, jumpPower,jumperSpeedY, groundFriction, airResistance, gravity];
+	var textXPosition = canvas.width - 140;
+	var textYPosition = 14;
+	canvasContext.fillstyle = "white";
+	canvasContext.font = "15px Verdana";
+	for (var j = 0; j < jumpVariables.length; j++) {
+		canvasContext.fillText(jumpVariableNames[j] + " : " + jumpVariables[j],textXPosition,textYPosition);
+		textYPosition += 14;
+	}
+}
+
+function togglePause()
+{
+    if (!paused)
+    {
+        paused = true;
+        colorRect(  canvas.width/2, canvas.height/2-25 , 100,40, 'black');
+        colorText("PAUSE",canvas.width/2, canvas.height/2 , 30, 'white');
+    } else if (paused)
+    {
+       paused= false;
+    }
+
+}
+
+function reset () {
+  Jumper.reset();
   enemyList = [];
+  jumperEnemyList = [];
+  patrolEnemy1NameList = [];
+  if (worldEditor) {
+    return;
+  }
   var lookForAnotherNatureBoss = true;
   while(lookForAnotherNatureBoss ){
     var newNatureBoss = new NatureBossClass();
@@ -145,125 +275,4 @@ update();
     console.log("Found Jumper Enemy");
 		jumperEnemyList[i].init(jumperEnemyPic, patrolEnemy1NameList[i]);
 	}
-}
-
-function update() {
-	moveEverything();
-    updateParticles();
-	resizeCanvas();
-	//variableDisplay();
-}
-
-function resizeCanvas() {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-
-  switch (gameState) {
-    case STATE_MENU:
-      drawMenu();
-      break;
-    case STATE_PLAY:
-      drawEverything();
-      break;
-    case STATE_CREDITS:
-      drawCredits();
-      break;
-      case STATE_GAME_OVER:
-        gameOverScreen();
-      if (mouseClick() && gameIsover == true){
-        reset();
-        gameState = STATE_PLAY;
-      }
-      break;
-  }
-}
-
-function drawEverything() {
-		cameraPan();
-		drawRoom();
-    for (var i=0; i < enemyList.length; i++){
-      enemyList[i].draw();
-    }
-    for(var i=0; i < patrolEnemyList.length; i++){
-      patrolEnemyList[i].draw();
-    }
-    for(var i = 0; i < jumperEnemyList.length; i++){
-      jumperEnemyList[i].draw();
-    }
-    jumperDraw();
-    drawParticles();
-
-    endCameraPan();
-		drawEnerrgyUI();
-		drawEditor();
-    drawDebug();
-    
-}
-
-function moveEverything() {
-	jumperMove();
-	moveInto();
-	if (jumperOnGround){
-		lastX = jumperX;
-		lastY = jumperY;
-	}
-  if (!worldEditor) {
-    for (var i=0; i < enemyList.length; i++){
-      enemyList[i].move();
-    }
-    //patrolEnemy1.move(); //Vince:  This will move to the enemyList once refactored 10/20/2021
-    for(var i = 0; i < patrolEnemyList.length; i++){
-      patrolEnemyList[i].move();
-    }
-    for(var i = 0; i < jumperEnemyList.length; i++){
-      jumperEnemyList[i].move();
-    }
-  }
-  
-  
-  checkForPlayerCollision();
-}
-
-function checkForPlayerCollision(){
-  for(var i = 0; i < patrolEnemyList.length; i++){
-    jumperCollisionCheck(patrolEnemyList[i]);
-  }
-  for(var i = 0; i < jumperEnemyList.length; i++){
-    jumperCollisionCheck(jumperEnemyList[i]);
-  }
-  for(var i = 0; i < enemyList.length; i++){
-    jumperCollisionCheck(enemyList[i]);
-  }
-}
-
-function dist(dx, dy) {
-  return Math.sqrt(dx*dx+dy*dy);
-}
-function angTo(dx,dy){
-  return Math.atan2(dy,dx);
-}
-function variableDisplay() {
-	var jumpVariables = [jumperRadius,runSpeed,jumperSpeedX, jumpPower,jumperSpeedY, groundFriction, airResistance, gravity];
-	var textXPosition = canvas.width - 140;
-	var textYPosition = 14;
-	canvasContext.fillstyle = "white";
-	canvasContext.font = "15px Verdana";
-	for (var j = 0; j < jumpVariables.length; j++) {
-		canvasContext.fillText(jumpVariableNames[j] + " : " + jumpVariables[j],textXPosition,textYPosition);
-		textYPosition += 14;
-	}
-}
-
-function togglePause()
-{
-    if (!paused)
-    {
-        paused = true;
-        colorRect(  canvas.width/2, canvas.height/2-25 , 100,40, 'black');
-        colorText("PAUSE",canvas.width/2, canvas.height/2 , 30, 'white');
-    } else if (paused)
-    {
-       paused= false;
-    }
-
 }

@@ -37,251 +37,248 @@ var holdRight = false;
 
 var jumpVariables = [];
 var jumpVariableNames = ["jumperRadius", "runSpeed", "jumperSpeedX", "jumpPower", "jumperSpeedY", "groundFriction", "airResistance", "gravity"];
-
 var snackHeld = 0;
- function jumperCollisionCheck(against){
-    var jumperLeftSide = jumperX - jumperWidth/2;
-    var jumperTopSide = jumperY - jumperHeight/2;
-    if( against.x > jumperLeftSide &&
-        against.x < jumperLeftSide + jumperWidth &&
-        against.y > jumperTopSide &&
-        against.y < jumperTopSide + jumperHeight){
-          //console.log("Player Hit");
-          jumperCollisionBox = "red";
-          against.playerCollide();
-        } else {
-          jumperCollisionBox = "green";
-        }
-      
-  }
-function jumperMove() {
-    if (jumperPowerUpTime > 0) {
-        jumperPowerUpTime--;
-        if (jumperPowerUpTime == 0 && powerUpMode()) {
-            snackHeld = 4;
-        }
-    }
-    if (jumperOnGround) {
-        jumperSpeedX *= GROUND_FRICTION;
-    } else {
-        jumperSpeedX *= AIR_RESISTANCE;
-        if (jumperFallDelayFrames > 0) {
-            jumperFallDelayFrames--;
-        } else 
-        {
-            jumperSpeedY += currentGravity;  
-        }
-       
-        if (jumperSpeedY > JUMPER_RADIUS) { // cheap test to ensure can't fall through floor
-            jumperSpeedY = JUMPER_RADIUS;
-        }
-    }
+function JumperClass() {
 
-    if (jumperSpeedY > 0) {
-        currentGravity = GRAVITY * gravityFallModifier;
-    } else if (jumperOnGround) {
-        currentGravity = GRAVITY;
-    }
-
-    if (holdLeft) {
-        jumperSpeedX = -RUN_SPEED;
-    }
-    if (holdRight) {
-        jumperSpeedX = RUN_SPEED;
-    }
-
-    if(holdJump && jumpTimer == 0) {
-        jumpSound.play();
-    }
-
-    if (holdJump && jumpTimer <= MAX_JUMP_DURATION_SECS && !doneJumping) {
-        jumperSpeedY = -JUMP_POWER;
-        jumpTimer += 1 / framesPerSecond;
-    }
-    if (previousFrameJumping && !holdJump) {
-        doneJumping = true;
-    }
-
-    previousFrameJumping = holdJump;
-
-    if (jumperSpeedY < 0 && isBrickAtPixelCoord(jumperX, jumperY - JUMPER_RADIUS) == 1) {
-        // hit the ceiling
-        jumperY = (Math.floor(jumperY / TILE_H)) * TILE_H + JUMPER_RADIUS;
-        jumperSpeedY = 0.0;
-    }
-
-    if (jumperSpeedY > 0 && isBrickAtPixelCoord(jumperX, jumperY + JUMPER_RADIUS) == 1) {
-        // hit the floor
-        jumperY = (1 + Math.floor(jumperY / TILE_H)) * TILE_H - JUMPER_RADIUS;
-        if (!jumperOnGround) { // were we in the air last frame?
-            //console.log("just landed on the floor!");
-            particleFX(jumperX, jumperY + JUMPER_RADIUS, 16, landingParticleRGBA,
-                0.001,Math.random()*-2,landingParticleLifespan,landingParticlegravity,landingParticleRandomness);
-        }
-        jumperOnGround = true;
-        jumperSpeedY = 0;
-        jumpTimer = 0.0;
-        doneJumping = false;
-    } else if (isBrickAtPixelCoord(jumperX, jumperY + JUMPER_RADIUS + 2) == 0) {
-        jumperOnGround = false;
-    }
-
-    if (jumperSpeedX < 0 && isBrickAtPixelCoord(jumperX - JUMPER_RADIUS, jumperY) == 1) {
-        jumperX = (Math.floor(jumperX / TILE_W)) * TILE_W + JUMPER_RADIUS;
-    }
-    if (jumperSpeedX > 0 && isBrickAtPixelCoord(jumperX + JUMPER_RADIUS, jumperY) == 1) {
-        jumperX = (1 + Math.floor(jumperX / TILE_W)) * TILE_W - JUMPER_RADIUS;
-    }
-
-    //jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 
-    //jumperY += jumperSpeedY; // same as above, but for vertical
-}
-
-
-function jumperReset() {
-    // center jumper on screen
-    jumperX = canvas.width / 2;
-    jumperY = canvas.height / 2;
-}
-
-// key controls used for this
-this.setupControls = function(upKey, rightKey, downKey, leftKey) {
-    this.controlKeyForUP = upKey;
-    this.controlKeyForRIGHT = rightKey;
-    this.controlKeyForDOWN = downKey;
-    this.controlKeyForLEFT = leftKey;
-}
-
-this.init = function(whichGraphic, whichName) {
-    this.myBitmap = whichGraphic;
-    this.myName = whichName;
-    this.reset();
-}
-
-this.reset = function() {
-    //if(this.homeX == undefined) {
-    for (var i = 0; i < roomGrid.length; i++) {
-        if (roomGrid[i] == TILE_PLAYER) {
-            var tileRow = Math.floor(i / ROOM_COLS);
-            var tileCol = i % ROOM_COLS;
-            this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
-            this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-            if (worldEditor == false) {
-                roomGrid[i] = TILE_GROUND;
+    this.CollisionCheck = function(against){
+        var jumperLeftSide = jumperX - jumperWidth/2;
+        var jumperTopSide = jumperY - jumperHeight/2;
+        if( against.x > jumperLeftSide &&
+            against.x < jumperLeftSide + jumperWidth &&
+            against.y > jumperTopSide &&
+            against.y < jumperTopSide + jumperHeight){
+            //console.log("Player Hit");
+            jumperCollisionBox = "red";
+            against.playerCollide();
+            } else {
+            jumperCollisionBox = "green";
             }
-            break; // found it, so no need to keep searching 
-        } // end of if
-    } // end of for
-    //} // end of if position not saved yet
-
-    jumperX = this.homeX;
-    jumperY = this.homeY;
-} // end of reset
-
-this.moveInto = function() {
-    var nextX = jumperX + jumperSpeedX;
-    var nextY = jumperY + jumperSpeedY;
-    var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-    var walkIntoTileType = TILE_WALL;
-
-    if (walkIntoTileIndex != undefined) {
-        walkIntoTileType = roomGrid[walkIntoTileIndex];
-    }
-
-    if (walkIntoTileType != TILE_WALL) {
-        jumperX = nextX;
-        jumperY = nextY;
-    }
-    var hadPowerUp;
-    var nowHasPowerUp;
-    switch (walkIntoTileType) {
-        case TILE_GROUND:
-            break;
-        case TILE_TREASURE:
-            //trophySound.play("hit");
-            this.treasureHeld++; // get treasure
-            roomGrid[walkIntoTileIndex] = TILE_GROUND;
-            break;
-        case TILE_DOOR:
-            doorSound.play();
-            //if () {
-                 // change room
-                roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
-            //}
-            break;
-        case TILE_SNACK:
-            snackSound.play();
-            hadPowerUp = powerUpMode();
-            snackHeld++; // get snack
-            nowHasPowerUp = powerUpMode();
-            if (hadPowerUp == false && nowHasPowerUp) {
-                jumperPowerUpTime = POWER_UP_FRAME_DURATION;
-            }
-            roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
-            break;
-        case TILE_WALL:
-            break;
-        case TILE_PATROLENEMY:
-           
-            break;
-        case TILE_SPRINGBOARD:
-           
-            break;
-        default:
-            // any other tile type number was found... do nothing, for now
-            break;
-    }
-}
-function powerUpMode() {
-    return snackHeld >= 5;
-}
-function takeDamage() {
-    if(!worldEditor){
-        if (powerUpMode() == false) {
-            hurtSound.play();
-            snackHeld--;
-        }
-        if (snackHeld == 0){
-        alarmSound.play();
-        }
-    }
-}
-function playerDeath() {
-    if (snackHeld < 0){
-        deathSound.play();
-        gameState = STATE_GAME_OVER;
-        gameIsOver = true;
-      }
-}
-function bouncePlayer() {
-    jumperSpeedX = Math.sign(jumperSpeedX)*-1* JUMP_POWER * Math.cos(.06);
-    jumperSpeedY = JUMP_POWER * Math.sin(5);
-}
-function jumperDraw() {
-    var playerImg;
-    if(powerUpMode() == false) {
-        playerImg = playerPic;
         
-    } else {
-        playerImg =  playerPowerPic;
     }
-    jumperLeftSide = jumperX - jumperWidth/2;
-    jumperTopSide = jumperY - jumperHeight/2;
+    this.powerUpMode = function() {
+        return snackHeld >= 5;
+    }
+    this.move = function() {
+        if (jumperPowerUpTime > 0) {
+            jumperPowerUpTime--;
+            if (jumperPowerUpTime == 0 && this.powerUpMode()) {
+                snackHeld = 4;
+            }
+        }
+        if (jumperOnGround) {
+            jumperSpeedX *= GROUND_FRICTION;
+        } else {
+            jumperSpeedX *= AIR_RESISTANCE;
+            if (jumperFallDelayFrames > 0) {
+                jumperFallDelayFrames--;
+            } else 
+            {
+                jumperSpeedY += currentGravity;  
+            }
+        
+            if (jumperSpeedY > JUMPER_RADIUS) { // cheap test to ensure can't fall through floor
+                jumperSpeedY = JUMPER_RADIUS;
+            }
+        }
 
-    canvasContext.save();
-    canvasContext.translate(jumperX, jumperY);
-    canvasContext.rotate(jumperX / 20.0);
-    canvasContext.imageSmoothingEnabled = true;
-    canvasContext.drawImage(playerImg , -JUMPER_RADIUS, -JUMPER_RADIUS,
-        playerImg.width,
-        playerImg.height);
-    canvasContext.restore();
+        if (jumperSpeedY > 0) {
+            currentGravity = GRAVITY * gravityFallModifier;
+        } else if (jumperOnGround) {
+            currentGravity = GRAVITY;
+        }
 
-    if(showCollisionBoxes){
-        colorRect(jumperLeftSide, jumperTopSide, jumperWidth, jumperHeight, jumperCollisionBox)
-      }
-}
+        if (holdLeft) {
+            jumperSpeedX = -RUN_SPEED;
+        }
+        if (holdRight) {
+            jumperSpeedX = RUN_SPEED;
+        }
 
-this.launch = function() {
+        if(holdJump && jumpTimer == 0) {
+            jumpSound.play();
+        }
 
+        if (holdJump && jumpTimer <= MAX_JUMP_DURATION_SECS && !doneJumping) {
+            jumperSpeedY = -JUMP_POWER;
+            jumpTimer += 1 / framesPerSecond;
+        }
+        if (previousFrameJumping && !holdJump) {
+            doneJumping = true;
+        }
+
+        previousFrameJumping = holdJump;
+
+        if (jumperSpeedY < 0 && isBrickAtPixelCoord(jumperX, jumperY - JUMPER_RADIUS) == 1) {
+            // hit the ceiling
+            jumperY = (Math.floor(jumperY / TILE_H)) * TILE_H + JUMPER_RADIUS;
+            jumperSpeedY = 0.0;
+        }
+
+        if (jumperSpeedY > 0 && isBrickAtPixelCoord(jumperX, jumperY + JUMPER_RADIUS) == 1) {
+            // hit the floor
+            jumperY = (1 + Math.floor(jumperY / TILE_H)) * TILE_H - JUMPER_RADIUS;
+            if (!jumperOnGround) { // were we in the air last frame?
+                //console.log("just landed on the floor!");
+                particleFX(jumperX, jumperY + JUMPER_RADIUS, 16, landingParticleRGBA,
+                    0.001,Math.random()*-2,landingParticleLifespan,landingParticlegravity,landingParticleRandomness);
+            }
+            jumperOnGround = true;
+            jumperSpeedY = 0;
+            jumpTimer = 0.0;
+            doneJumping = false;
+        } else if (isBrickAtPixelCoord(jumperX, jumperY + JUMPER_RADIUS + 2) == 0) {
+            jumperOnGround = false;
+        }
+
+        if (jumperSpeedX < 0 && isBrickAtPixelCoord(jumperX - JUMPER_RADIUS, jumperY) == 1) {
+            jumperX = (Math.floor(jumperX / TILE_W)) * TILE_W + JUMPER_RADIUS;
+        }
+        if (jumperSpeedX > 0 && isBrickAtPixelCoord(jumperX + JUMPER_RADIUS, jumperY) == 1) {
+            jumperX = (1 + Math.floor(jumperX / TILE_W)) * TILE_W - JUMPER_RADIUS;
+        }
+
+        //jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 
+        //jumperY += jumperSpeedY; // same as above, but for vertical
+    }
+
+
+    this.jumperReset = function() {
+        // center jumper on screen
+        jumperX = canvas.width / 2;
+        jumperY = canvas.height / 2;
+    }
+
+    // key controls used for this
+    this.setupControls = function(upKey, rightKey, downKey, leftKey) {
+        this.controlKeyForUP = upKey;
+        this.controlKeyForRIGHT = rightKey;
+        this.controlKeyForDOWN = downKey;
+        this.controlKeyForLEFT = leftKey;
+    }
+
+    this.init = function(whichGraphic, whichName) {
+        this.myBitmap = whichGraphic;
+        this.myName = whichName;
+        this.reset();
+    }
+
+    this.reset = function() {
+            console.log("gamereset");
+            //if(this.homeX == undefined) {
+            for (var i = 0; i < roomGrid.length; i++) {
+                if (roomGrid[i] == TILE_PLAYER) {
+                    var tileRow = Math.floor(i / ROOM_COLS);
+                    var tileCol = i % ROOM_COLS;
+                    this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+                    this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
+                    if (worldEditor == false) {
+                        roomGrid[i] = TILE_GROUND;
+                    }
+                    break; // found it, so no need to keep searching 
+                } // end of if
+            } // end of for
+            //} // end of if position not saved yet
+
+        this.moveInto = function() {
+            var nextX = jumperX + jumperSpeedX;
+            var nextY = jumperY + jumperSpeedY;
+            var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
+            var walkIntoTileType = TILE_WALL;
+
+            if (walkIntoTileIndex != undefined) {
+                walkIntoTileType = roomGrid[walkIntoTileIndex];
+            }
+
+            if (walkIntoTileType != TILE_WALL) {
+                jumperX = nextX;
+                jumperY = nextY;
+            }
+            var hadPowerUp;
+            var nowHasPowerUp;
+            switch (walkIntoTileType) {
+                case TILE_GROUND:
+                    break;
+                case TILE_TREASURE:
+                    //trophySound.play("hit");
+                    this.treasureHeld++; // get treasure
+                    roomGrid[walkIntoTileIndex] = TILE_GROUND;
+                    break;
+                case TILE_DOOR:
+                    doorSound.play();
+                    //if () {
+                        // change room
+                        roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+                    //}
+                    break;
+                case TILE_SNACK:
+                    snackSound.play();
+                    hadPowerUp = this.powerUpMode();
+                    snackHeld++; // get snack
+                    nowHasPowerUp = this.powerUpMode();
+                    if (hadPowerUp == false && nowHasPowerUp) {
+                        jumperPowerUpTime = POWER_UP_FRAME_DURATION;
+                    }
+                    roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+                    break;
+                case TILE_WALL:
+                    break;
+                case TILE_PATROLENEMY:
+                
+                    break;
+                case TILE_SPRINGBOARD:
+                
+                    break;
+                default:
+                    // any other tile type number was found... do nothing, for now
+                    break;
+            }
+        }
+        this.takeDamage = function() {
+            if(!worldEditor){
+                if (this.powerUpMode() == false) {
+                    hurtSound.play();
+                    snackHeld--;
+                }
+                if (snackHeld == 0){
+                alarmSound.play();
+                }
+            }
+        }
+        this.playerDeath = function() {
+            if (snackHeld < 0){
+                deathSound.play();
+                gameState = STATE_GAME_OVER;
+                gameIsOver = true;
+            }
+        }
+        this.bouncePlayer = function() {
+            jumperSpeedX = Math.sign(jumperSpeedX)*-1* JUMP_POWER * Math.cos(.06);
+            jumperSpeedY = JUMP_POWER * Math.sin(5);
+        }
+        this.Draw = function() {
+            var playerImg;
+            if(this.powerUpMode() == false) {
+                playerImg = playerPic;
+                
+            } else {
+                playerImg =  playerPowerPic;
+            }
+            jumperLeftSide = jumperX - jumperWidth/2;
+            jumperTopSide = jumperY - jumperHeight/2;
+
+            canvasContext.save();
+            canvasContext.translate(jumperX, jumperY);
+            canvasContext.rotate(jumperX / 20.0);
+            canvasContext.imageSmoothingEnabled = true;
+            canvasContext.drawImage(playerImg , -JUMPER_RADIUS, -JUMPER_RADIUS,
+                playerImg.width,
+                playerImg.height);
+            canvasContext.restore();
+
+            if(showCollisionBoxes){
+                colorRect(jumperLeftSide, jumperTopSide, jumperWidth, jumperHeight, jumperCollisionBox)
+            }
+        }
+
+    }
 }

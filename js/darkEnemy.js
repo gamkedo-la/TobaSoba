@@ -53,9 +53,9 @@ const DARK_RADIUS = 25;
         jumpTimer = 0;
         doneJumping = false;
         if (this.y >= JUMP_POWER * Math.cos(.06)) {
-          takeDamage();
-          bouncePlayer();
-          playerDeath();
+          Jumper.takeDamage();
+          Jumper.bouncePlayer();
+          Jumper.playerDeath();
       }
      }
      
