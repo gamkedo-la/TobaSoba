@@ -1,10 +1,12 @@
+
 const HANGINGBLADE_RADIUS = 25;
   function HangingBladeClass() {
-    this.x = 75;
-    this.y = 75;
-    this.xv = 1;
-    this.yv = 0;
-
+    this.x = 0;
+    this.y = 0;
+    this.xe = 0;
+    this.ye = 75;
+    this.pendIncreasing = 0;
+    this.swingAng = 0;
     this.reset = function () {
 
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
@@ -14,7 +16,7 @@ const HANGINGBLADE_RADIUS = 25;
             roomGrid[arrayIndex] = TILE_GROUND;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
-            this.y = eachRow * TILE_H + TILE_H / 2;
+            this.y = eachRow * TILE_H;
             return true; //we found one 
           } //end of player start if
         } // end of col for
@@ -22,23 +24,15 @@ const HANGINGBLADE_RADIUS = 25;
       return false; // no more blade
     }
     this.move = function(){
-      var nextX = this.x + this.xv;
-      var nextY =  this.y + this.yv;
-      
-      var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-      var walkIntoTileType = TILE_WALL;
-  
-      if (walkIntoTileIndex != undefined) {
-          walkIntoTileType = roomGrid[walkIntoTileIndex];
-      }
+      this.pendIncreasing++; // global or class scope for persistence
+      var baseAng = Math.PI/2; // might be -, but offset for which way is down
+      var speedMod = 0.15;
+      var swingRange = Math.PI/4;
+      this.swingAng = baseAng + Math.cos(this.pendIncreasing*speedMod)*swingRange;
 
-      if(walkIntoTileType != TILE_GROUND) {
-        this.xv = -this.xv;
-        this.yv = -this.yv;
-      } else {
-        this.x = nextX;
-        this.y = nextY;
-      }
+        this.xe= this.x+Math.cos(this.swingAng)*50;
+        this.ye= this.y+Math.sin(this.swingAng)*50;
+
     }
     this.playerCollide = function(){
         bouncePlayer();
@@ -54,8 +48,8 @@ const HANGINGBLADE_RADIUS = 25;
     this.draw = function () {
       canvasContext.save();
       canvasContext.translate(this.x,this.y);
-      //canvasContext.rotate(jumperX/20.0);
-      canvasContext.drawImage(hangingBlade,-HANGINGBLADE_RADIUS,-HANGINGBLADE_RADIUS,
+      canvasContext.rotate(this.swingAng);
+      canvasContext.drawImage(hangingBlade,0,-HANGINGBLADE_RADIUS,
         hangingBlade.width, 
       hangingBlade.height);
       canvasContext.restore();
