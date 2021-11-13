@@ -39,7 +39,6 @@ function drawMenu() {
   }
   
   function gameOverScreen() {
-    paused = true;
     var gameOverBoxWidth = 500;
     var gameOverBoxHeight = 200;
     canvasContext.globalAlpha = 0.3;

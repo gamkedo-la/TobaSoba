@@ -42,7 +42,11 @@ window.onload = function() {
 	  }
   }
 }
-
+function resetGame() {
+  update();
+  reset();
+    gameState = STATE_PLAY;
+}
 function startGame() {
   Jumper = new JumperClass();
  // these next few lines set up our game logic and render to happen 30 times per second
@@ -81,10 +85,7 @@ function resizeCanvas() {
       break;
       case STATE_GAME_OVER:
         gameOverScreen();
-      if (mouseClick() && gameIsover == true){
-        reset();
-        gameState = STATE_PLAY;
-      }
+        pause = true;
       break;
   }
 }
@@ -180,7 +181,7 @@ function togglePause()
 }
 
 function reset () {
-  Jumper.reset();
+  Jumper.init();
   enemyList = [];
   jumperEnemyList = [];
   patrolEnemy1NameList = [];

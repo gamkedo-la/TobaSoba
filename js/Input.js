@@ -106,7 +106,10 @@ function setKeyHoldState(thisKey, setTo) {
 		}
 		break;
 	case KEY_R:
-		restartGame();
+		if (setTo == false){
+			resetGame();
+			paused = false;
+		}
     break;
 	case KEY_C:
 		gameState = STATE_CREDITS;
