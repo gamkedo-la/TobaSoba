@@ -188,6 +188,15 @@ function reset () {
   if (worldEditor) {
     return;
   }
+  var lookForAnotherNatureEnemy = true;
+  while(lookForAnotherNatureEnemy ){
+    var newNatureEnemy = new NatureEnemyClass();
+    var natureEnemyHasTile = newNatureEnemy.reset();
+    if (natureEnemyHasTile){
+      enemyList.push(newNatureEnemy);
+    }
+    lookForAnotherNatureEnemy = natureEnemyHasTile;
+  }
   var lookForAnotherNatureBoss = true;
   while(lookForAnotherNatureBoss ){
     var newNatureBoss = new NatureBossClass();

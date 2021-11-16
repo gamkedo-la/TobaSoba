@@ -49,10 +49,10 @@ function editorKeyCheck(keyCode) {
     let  mouseX = mousePos.x;
     let  mouseY = mousePos.y;
     tileIndex = getTileIndexAtPixelCoord(mouseX + cameraPanX, mouseY + cameraPanY);
-    //const keys = Object.keys(ALLTILES);
-                //keys.forEach((key, index) => {
-                    //items = (`${key}: ${ALLTILES[key]}`);
-               // });
+    /*const keys = Object.keys(ALLTILES);
+    keys.forEach((key, index) => {
+        items = (`${key}: ${ALLTILES[key]}`);
+    });*/
     switch (keyCode) {
         case KEY_TAB:
             worldEditor = false;

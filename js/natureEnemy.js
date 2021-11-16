@@ -1,5 +1,5 @@
-const NATURBOSS_RADIUS = 25;
-  function NatureBossClass() {
+const NATUREENEMY_RADIUS = 25;
+  function NatureEnemyClass() {
     this.x = 75;
     this.y = 75;
     this.xv = 1;
@@ -10,7 +10,7 @@ const NATURBOSS_RADIUS = 25;
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
-          if (roomGrid[arrayIndex] == TILE_NATUREBOSS) {
+          if (roomGrid[arrayIndex] == TILE_NATUREENEMY) {
             roomGrid[arrayIndex] = TILE_GROUND;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
@@ -19,7 +19,7 @@ const NATURBOSS_RADIUS = 25;
           } //end of player start if
         } // end of col for
       } // end foe for
-      return false; // no more nature boss
+      return false; // no more nature enemy
     }
 
     this.move = function(){
@@ -60,7 +60,7 @@ const NATURBOSS_RADIUS = 25;
      
      
     this.draw = function () {
-      drawBitmapCenteredAtLocationWithRotation(natureBossPic, this.x, this.y,this.xv > 0);
+      drawBitmapCenteredAtLocationWithRotation(natureEnemyPic, this.x, this.y,this.xv > 0);
     }
   }
   

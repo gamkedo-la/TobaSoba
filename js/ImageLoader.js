@@ -1,4 +1,5 @@
 var playerPic=document.createElement("img");
+var natureEnemyPic=document.createElement("img");
 var natureBossPic=document.createElement("img");
 var natureBossTailPic=document.createElement("img");
 var playerPowerPic=document.createElement("img");
@@ -14,8 +15,6 @@ var boostPad=document.createElement("img");
 var spike=document.createElement("img");
 var hangingBlade=document.createElement("img");
 var crusher=document.createElement("img");
-var natureboss=document.createElement("img");
-var naturebosstail=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -41,6 +40,7 @@ function loadImages() {
     var imageList = [
       {varName:playerPic, theFile:"toba.png"},
       {varName:playerPowerPic, theFile:"tobapower.png"},
+      {varName:natureEnemyPic, theFile:"natureenemy.png"},
       {varName:natureBossPic, theFile:"natureboss.png"},
       {varName:natureBossTailPic, theFile:"naturebosstail.png"},
       {varName:flyingEnemyPic, theFile:"flyingenemy.png"},
@@ -80,6 +80,7 @@ function loadImages() {
       {tileType:TILE_HANGINGBLADE, theFile:"blade.png"},
       {tileType:TILE_CRUSHER, theFile:"crusher.png"},
       {tileType:TILE_NATUREBOSS, theFile:"natureboss.png"},
+      {tileType:TILE_NATUREENEMY, theFile:"natureenemy.png"},
       ];
 
   picsToLoad = imageList.length;
