@@ -180,7 +180,6 @@ function reset () {
   jumperEnemyList = [];
   patrolEnemy1NameList = [];
   if (worldEditor) {
-    console.log("editor modeenemies don't spawn");
     return;
   }
   var lookForAnotherNatureEnemy = true;

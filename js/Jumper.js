@@ -163,7 +163,6 @@ function JumperClass() {
     }
 
     this.reset = function() {
-            console.log("gamereset");
             //if(this.homeX == undefined) {
             for (var i = 0; i < roomGrid.length; i++) {
                 if (roomGrid[i] == TILE_PLAYER) {
