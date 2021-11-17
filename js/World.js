@@ -96,12 +96,13 @@ function roomTileToIndex(tileCol, tileRow) {
 			checkTileType == TILE_SNACK ||
 			checkTileType == TILE_DOOR);
   }
+function clamp(value, min, max){
+	if(value < min) return min;
+	else if(value > max) return max;
+	return value;
+} /*
   function drawScene() {
-	function clamp(value, min, max){
-		if(value < min) return min;
-		else if(value > max) return max;
-		return value;
-	}
+
 		canvasContext.setTransform(1,0,0,1,0,0);//reset the transform matrix as it is cumulative
 		canvasContext.clearRect(0, 0, canvas.width, canvas.height);//clear the viewport AFTER the matrix is reset
 	
@@ -112,32 +113,54 @@ function roomTileToIndex(tileCol, tileRow) {
 		canvasContext.translate( camX, camY );    
 	
 		drawRoom();
-  } 
+  } */
   
   function drawRoom() {
 	var tileIndex = 0;
 	var tileLeftEdgeX = 0;
 	var tileUPEdgeY = 0;
+	var tileCol = (jumperX - canvas.width/2) / TILE_W;
+	var tileRow =(jumperY - canvas.height/2) /  TILE_H;
 	
-	for(var eachRow=0; eachRow<ROOM_ROWS; eachRow++) { // deal with one row at a time
+	// we'll use Math.floor to round down to the nearest whole number
+	tileCol = Math.floor( tileCol );
+	tileRow = Math.floor( tileRow );
+	if (tileCol <0) {
+		tileCol = 0;
+	}
+	if (tileRow <0) {
+		tileRow = 0;
+	}
+	var screenCols = Math.floor(canvas.width/TILE_W) + 2;
+	var screenRows = Math.floor(canvas.height/TILE_H) + 2;
+	
+	var leftCol = tileCol;
+	var rightCol = leftCol+screenCols;
+	var topRow = tileRow;
+	var bottomRow = topRow+screenRows;
+	if (rightCol >= TILE_COLS) {
+		rightCol = TILE_COLS-1;
+		leftCol = rightCol - screenCols;
+	}
+	if (bottomRow >= TILE_ROWS) {
+		bottomRow = TILE_ROWS-1;
+		topRow = bottomRow - screenRows;
+	}
+	for(var eachRow=topRow; eachRow<bottomRow; eachRow++) { // deal with one row at a time
 	  
 	  tileLeftEdgeX = 0; // resetting horizontal draw position for tiles to left edge
 	  
-	  for(var eachCol=0; eachCol<ROOM_COLS; eachCol++) { // left to right in each row
-  
+	  for(var eachCol=leftCol; eachCol<rightCol; eachCol++) { // left to right in each row
+		tileIndex = brickTileToIndex(eachCol,eachRow);
 		var tileTypeHere = roomGrid[ tileIndex ]; // getting the tile code for this index
+		tileLeftEdgeX = eachCol*TILE_W;
+		tileUPEdgeY = eachRow*TILE_H;
 		if( tileTypeHasTransparency(tileTypeHere) ) {
 			canvasContext.drawImage(tilePics[TILE_GROUND],tileLeftEdgeX,tileUPEdgeY);
 		}
 			canvasContext.drawImage(tilePics[tileTypeHere],tileLeftEdgeX,tileUPEdgeY);
-		
-		tileIndex++; // increment which index we're going to next check for in the room
-		tileLeftEdgeX += TILE_W; // jump horizontal draw position to next tile over by tile width
-  
+
 	  } // end of for eachCol
-	  
-	  tileUPEdgeY += TILE_H; // jump horizontal draw position down by one full tile height
-	  
 	} // end of for eachRow    
   } // end of drawRoom()
   
