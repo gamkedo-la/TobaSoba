@@ -43,6 +43,7 @@ function editorKeyCheck(keyCode) {
     if (worldEditor == false) {
         if(keyCode == KEY_TAB) {
             worldEditor = true;
+            reset();
             return;
         }
     }
@@ -56,6 +57,7 @@ function editorKeyCheck(keyCode) {
     switch (keyCode) {
         case KEY_TAB:
             worldEditor = false;
+            roomGridMaster =roomGrid.slice();
             reset();
             break;
         case KEY_0:

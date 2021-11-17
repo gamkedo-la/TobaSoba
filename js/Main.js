@@ -33,14 +33,7 @@ window.onload = function() {
 
 	initInput();
 	loadImages();
-	for(var i = 0; i < roomGrid.length; i++){
-		if(roomGrid[i] == TILE_PATROLENEMY){
-			addPatrolEnemy();
-		}
-    if(roomGrid[i] == TILE_JUMPINGENEMY){
-      addJumperEnemy();
-	  }
-  }
+
 }
 function resetGame() {
   update();
@@ -181,11 +174,13 @@ function togglePause()
 }
 
 function reset () {
+  roomGrid = roomGridMaster.slice();
   Jumper.init();
   enemyList = [];
   jumperEnemyList = [];
   patrolEnemy1NameList = [];
   if (worldEditor) {
+    console.log("editor modeenemies don't spawn");
     return;
   }
   var lookForAnotherNatureEnemy = true;
@@ -285,4 +280,12 @@ function reset () {
     console.log("Found Jumper Enemy");
 		jumperEnemyList[i].init(jumperEnemyPic, patrolEnemy1NameList[i]);
 	}
+  for(var i = 0; i < roomGrid.length; i++){
+		if(roomGrid[i] == TILE_PATROLENEMY){
+			addPatrolEnemy();
+		}
+    if(roomGrid[i] == TILE_JUMPINGENEMY){
+      addJumperEnemy();
+	  }
+  }
 }
