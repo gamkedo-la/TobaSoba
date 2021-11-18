@@ -22,6 +22,7 @@ var jumpTimer = 0.0;
 var jumperPowerUpTime = POWER_UP_FRAME_DURATION;
 var previousFrameJumping = false;
 var doneJumping = false;
+var justBumpedWall = false; // this helps us not play the sound too often
 
 var currentGravity = GRAVITY;
 var gravityFallModifier = 2;
@@ -133,12 +134,18 @@ function JumperClass() {
 
         if (jumperSpeedX < 0 && isBrickAtPixelCoord(jumperX - JUMPER_RADIUS, jumperY) == 1) {
             jumperX = (Math.floor(jumperX / TILE_W)) * TILE_W + JUMPER_RADIUS;
-            // bumped into a wall
-            groundSound.play(0.1); // thud quietly
-        }
-        if (jumperSpeedX > 0 && isBrickAtPixelCoord(jumperX + JUMPER_RADIUS, jumperY) == 1) {
+            if (!justBumpedWall) {
+                groundSound.play(0.1); // thud quietly and not too often
+                justBumpedWall = true;
+            }
+        } else if (jumperSpeedX > 0 && isBrickAtPixelCoord(jumperX + JUMPER_RADIUS, jumperY) == 1) {
             jumperX = (1 + Math.floor(jumperX / TILE_W)) * TILE_W - JUMPER_RADIUS;
-            groundSound.play(0.1); // thud quietly
+            if (!justBumpedWall) {
+                groundSound.play(0.1); // thud quietly and not too often
+                justBumpedWall = true;
+            }
+        } else {
+            justBumpedWall = false; 
         }
 
         //jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 

@@ -46,6 +46,7 @@ function SoundOverlapsClass(filenameWithPath) { // accepting argument for constr
   var altSoundTurn = false;
   
   this.play = function(optionalVolume=1) { // not "var ", keeping "this.", as we need it exposed!
+    
     if(altSoundTurn) { // note: no "this." before altSoundTurn since "var" local/private
       altSound.currentTime = 0;
       altSound.volume = optionalVolume;
