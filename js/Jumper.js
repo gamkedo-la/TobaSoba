@@ -119,7 +119,7 @@ function JumperClass() {
             jumperY = (1 + Math.floor(jumperY / TILE_H)) * TILE_H - JUMPER_RADIUS;
             if (!jumperOnGround) { // were we in the air last frame?
                 //console.log("just landed on the floor!");
-                groundSound.play(); // thud
+                groundSound.play(0.5); // thud
                 particleFX(jumperX, jumperY + JUMPER_RADIUS, 16, landingParticleRGBA,
                     0.001,Math.random()*-2,landingParticleLifespan,landingParticlegravity,landingParticleRandomness);
             }
@@ -133,9 +133,12 @@ function JumperClass() {
 
         if (jumperSpeedX < 0 && isBrickAtPixelCoord(jumperX - JUMPER_RADIUS, jumperY) == 1) {
             jumperX = (Math.floor(jumperX / TILE_W)) * TILE_W + JUMPER_RADIUS;
+            // bumped into a wall
+            groundSound.play(0.1); // thud quietly
         }
         if (jumperSpeedX > 0 && isBrickAtPixelCoord(jumperX + JUMPER_RADIUS, jumperY) == 1) {
             jumperX = (1 + Math.floor(jumperX / TILE_W)) * TILE_W - JUMPER_RADIUS;
+            groundSound.play(0.1); // thud quietly
         }
 
         //jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 
