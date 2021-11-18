@@ -23,6 +23,7 @@ var jumperPowerUpTime = POWER_UP_FRAME_DURATION;
 var previousFrameJumping = false;
 var doneJumping = false;
 var justBumpedWall = false; // this helps us not play the sound too often
+var playerBlinkFrames = 0; // when >1 the player sprite is blinking
 
 var currentGravity = GRAVITY;
 var gravityFallModifier = 2;
@@ -123,6 +124,8 @@ function JumperClass() {
                 groundSound.play(0.5); // thud
                 particleFX(jumperX, jumperY + JUMPER_RADIUS, 16, landingParticleRGBA,
                     0.001,Math.random()*-2,landingParticleLifespan,landingParticlegravity,landingParticleRandomness);
+                // when we hit the ground, we BLINK!
+                playerBlinkFrames = 8;
             }
             jumperOnGround = true;
             jumperSpeedY = 0;
@@ -268,7 +271,17 @@ function JumperClass() {
         this.Draw = function() {
             var playerImg;
             if(this.powerUpMode() == false) {
-                playerImg = playerPic;
+
+                if (playerBlinkFrames>0) { // currently blinking?
+                    playerImg =  playerBlinkingPic;
+                    playerBlinkFrames--;
+                } else { // our eyes are open
+                    playerImg = playerPic;
+                    // but blink from time to time just for life
+                    if (Math.random()<0.02) {
+                        playerBlinkFrames = 6;
+                    }
+                }
                 
             } else {
                 playerImg =  playerPowerPic;
