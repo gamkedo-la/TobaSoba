@@ -119,6 +119,7 @@ function JumperClass() {
             jumperY = (1 + Math.floor(jumperY / TILE_H)) * TILE_H - JUMPER_RADIUS;
             if (!jumperOnGround) { // were we in the air last frame?
                 //console.log("just landed on the floor!");
+                groundSound.play(); // thud
                 particleFX(jumperX, jumperY + JUMPER_RADIUS, 16, landingParticleRGBA,
                     0.001,Math.random()*-2,landingParticleLifespan,landingParticlegravity,landingParticleRandomness);
             }
