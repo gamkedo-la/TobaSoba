@@ -11,6 +11,7 @@ var darkEnemyPic=document.createElement("img");
 var snackEmpty=document.createElement("img");
 var snackFull=document.createElement("img");
 var movingPlatform=document.createElement("img");
+var stonePlatform=document.createElement("img");
 var springBoard=document.createElement("img");
 var boostPad=document.createElement("img");
 var spike=document.createElement("img");
@@ -52,6 +53,7 @@ function loadImages() {
       {varName:snackEmpty, theFile:"snackempty.png"},
       {varName:snackFull, theFile:"snackfull.png"},
       {varName:movingPlatform, theFile:"platform.png"},
+      {varName:stonePlatform, theFile:"platform2.png"},
       {varName:springBoard, theFile:"springBoard.png"},
       {varName:boostPad, theFile:"boostpad.png"},
       {varName:spike, theFile:"spike.png"},
@@ -73,6 +75,7 @@ function loadImages() {
       {tileType:TILE_JUMPINGENEMY, theFile:"jumpingEnemy.png"},
       {tileType:TILE_DARKENEMY, theFile:"darkenemy.png"},
       {tileType:TILE_PLATFORM, theFile:"platform.png"},
+      {tileType:TILE_PLATFORM2, theFile:"platform2.png"},
       {tileType:TILE_SPRINGBOARD, theFile:"springboard.png"},
       {tileType:TILE_BOOSTPAD, theFile:"boostpad.png"},
       {tileType:TILE_BOOSTPAD_RIGHT, theFile:"boostpad_R_editoronly.png"},
