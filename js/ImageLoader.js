@@ -86,6 +86,7 @@ function loadImages() {
       {tileType:TILE_CRUSHER, theFile:"crusher.png"},
       {tileType:TILE_NATUREBOSS, theFile:"natureboss.png"},
       {tileType:TILE_NATUREENEMY, theFile:"natureenemy.png"},
+      {tileType:TILE_SKY, theFile:"sky.png"},
       ];
 
   picsToLoad = imageList.length;
