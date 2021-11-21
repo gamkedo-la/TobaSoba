@@ -87,6 +87,12 @@ function loadImages() {
       {tileType:TILE_NATUREBOSS, theFile:"natureboss.png"},
       {tileType:TILE_NATUREENEMY, theFile:"natureenemy.png"},
       {tileType:TILE_SKY, theFile:"sky.png"},
+      {tileType:TILE_CLOUD1, theFile:"cloud1.png"},
+      {tileType:TILE_CLOUD2, theFile:"cloud2.png"},
+      {tileType:TILE_CLOUD3, theFile:"cloud3.png"},
+      {tileType:TILE_OAKTREE, theFile:"oaktree.png"},
+      {tileType:TILE_PINETREE, theFile:"pinetree.png"},
+      {tileType:TILE_TALLTREE, theFile:"talltree.png"},
       ];
 
   picsToLoad = imageList.length;
