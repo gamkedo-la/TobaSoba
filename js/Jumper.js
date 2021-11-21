@@ -185,7 +185,7 @@ function JumperClass() {
                     this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
                     this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
                     if (worldEditor == false) {
-                        roomGrid[i] = TILE_GROUND;
+                        roomGrid[i] = TILE_SKY;
                     }
                     break; // found it, so no need to keep searching 
                 } // end of if
@@ -196,31 +196,31 @@ function JumperClass() {
             var nextX = jumperX + jumperSpeedX;
             var nextY = jumperY + jumperSpeedY;
             var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-            var walkIntoTileType = TILE_WALL;
+            var walkIntoTileType = TILE_WALL3;
 
             if (walkIntoTileIndex != undefined) {
                 walkIntoTileType = roomGrid[walkIntoTileIndex];
             }
 
-            if (walkIntoTileType != TILE_WALL) {
+            if (walkIntoTileType != TILE_WALL || TILE_WALL3) {
                 jumperX = nextX;
                 jumperY = nextY;
             }
             var hadPowerUp;
             var nowHasPowerUp;
             switch (walkIntoTileType) {
-                case TILE_GROUND:
+                case TILE_SKY:
                     break;
                 case TILE_TREASURE:
                     //trophySound.play("hit");
                     this.treasureHeld++; // get treasure
-                    roomGrid[walkIntoTileIndex] = TILE_GROUND;
+                    roomGrid[walkIntoTileIndex] = TILE_SKY;
                     break;
                 case TILE_DOOR:
                     doorSound.play();
                     //if () {
                         // change room
-                        roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+                        roomGrid[walkIntoTileIndex] = TILE_SKY; // remove door
                     //}
                     break;
                 case TILE_SNACK:
@@ -231,7 +231,7 @@ function JumperClass() {
                     if (hadPowerUp == false && nowHasPowerUp) {
                         jumperPowerUpTime = POWER_UP_FRAME_DURATION;
                     }
-                    roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+                    roomGrid[walkIntoTileIndex] = TILE_SKY; // remove key
                     break;
                 case TILE_WALL:
                     break;

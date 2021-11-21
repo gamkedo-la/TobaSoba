@@ -24,12 +24,6 @@ function drawEditor(){
     canvasContext.font = wasFont;
 };
 
-function shadowText(text, atX, atY, foregroundColor, backgroundColor){
-    canvasContext.fillStyle = backgroundColor;
-    canvasContext.fillText(text, atX+2, atY+2)
-    canvasContext.fillStyle = foregroundColor;
-    canvasContext.fillText(text, atX, atY)
-}
 
 function drawTiles(){
 
@@ -79,13 +73,13 @@ function editorKeyCheck(keyCode) {
             roomGrid[tileIndex] = TILE_FLYINGENEMY;
             break;   
         case KEY_6:
-            //roomGrid[tileIndex] = TILE_GROUND2;
+            //roomGrid[tileIndex] = TILE_SKY2;
             break;   
         case KEY_7:
-            //roomGrid[tileIndex] = TILE_GROUND2;
+            //roomGrid[tileIndex] = TILE_SKY2;
             break;   
         case KEY_8:
-            //roomGrid[tileIndex] = TILE_GROUND2;
+            //roomGrid[tileIndex] = TILE_SKY2;
             break;
         case KEY_9:
             roomGrid[tileIndex] = editorItem;

@@ -11,7 +11,7 @@ const NATUREENEMY_RADIUS = 25;
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
           if (roomGrid[arrayIndex] == TILE_NATUREENEMY) {
-            roomGrid[arrayIndex] = TILE_GROUND;
+            roomGrid[arrayIndex] = TILE_SKY;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
             this.y = eachRow * TILE_H + TILE_H / 2;
@@ -38,7 +38,7 @@ const NATUREENEMY_RADIUS = 25;
           walkIntoTileType = roomGrid[walkIntoTileIndex];
       }
       
-      if(walkIntoTileType != TILE_GROUND) {
+      if(walkIntoTileType != TILE_SKY) {
         this.xv = -this.xv;
         this.yv = -this.yv;
       } else {

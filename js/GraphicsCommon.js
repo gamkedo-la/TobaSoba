@@ -36,7 +36,6 @@ function shadowText(text, atX, atY, foregroundColor, backgroundColor){
 	canvasContext.fillText(text, atX, atY)
 }
 
-
 function colorText(showWords, textX, textY, fontSize, fillColor) {
 	canvasContext.font = font = fontSize + "px Arial";
 	  canvasContext.fillStyle = fillColor;

@@ -43,7 +43,7 @@ function JumperEnemyClass (){
             this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
             this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
           //  if (!worldEditor) {      //Vince:  This will need a work around.  It is preventing Enemy's from erasing their tile upon initiation.  10/20/2021
-                roomGrid[i] = TILE_GROUND;
+                roomGrid[i] = TILE_SKY;
             //}
             this.x = this.homeX;
             this.y = this.homeY;
@@ -148,7 +148,7 @@ function JumperEnemyClass (){
     }
 
     switch (walkIntoTileType) {
-        case TILE_GROUND:
+        case TILE_SKY:
         case TILE_TREASURE:
         case TILE_SNACK:
           this.x = nextX;
