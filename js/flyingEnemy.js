@@ -26,8 +26,10 @@ const FLYER_RADIUS = 25;
       //console.log('flyingenemy moving');
       if (dist(this.x - jumperX, this.y - jumperY) < 3*TILE_W) {
         var toPlayer = angTo(jumperX - this.x, jumperY - this.y);
-        this.xv = Math.cos(toPlayer);
-        this.yv = Math.sin(toPlayer);
+        this.xv = Math.sign(this.x)*-1 +  Math.cos(toPlayer);
+        this.yv = Math.sign(this.x)*-1 +  Math.sin(toPlayer);
+        //this.xv = Math.cos(toPlayer);
+        //this.yv = Math.sin(toPlayer);
       }
       var nextX = this.x + this.xv;
       var nextY =  this.y + this.yv;
