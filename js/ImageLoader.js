@@ -93,6 +93,7 @@ function loadImages() {
       {tileType:TILE_OAKTREE, theFile:"oaktree.png"},
       {tileType:TILE_PINETREE, theFile:"pinetree.png"},
       {tileType:TILE_TALLTREE, theFile:"talltree.png"},
+      {tileType:TILE_WALL4, theFile:"wall4.png"},
       ];
 
   picsToLoad = imageList.length;
