@@ -1,3 +1,4 @@
+var menuPic=document.createElement("img");
 var playerPic=document.createElement("img");
 var playerBlinkingPic=document.createElement("img");
 var natureEnemyPic=document.createElement("img");
@@ -40,6 +41,7 @@ function loadImageForTileCode(tileCode, fileName) {
 
 function loadImages() {
     var imageList = [
+      {varName:menuPic, theFile:"menu.png"},
       {varName:playerPic, theFile:"toba.png"},
       {varName:playerBlinkingPic, theFile:"toba-blinking.png"},
       {varName:playerPowerPic, theFile:"tobapower.png"},

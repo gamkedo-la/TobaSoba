@@ -38,7 +38,7 @@ window.onload = function() {
 function resetGame() {
   update();
   reset();
-    gameState = STATE_PLAY;
+  gameState = STATE_PLAY;
 }
 function startGame() {
   Jumper = new JumperClass();
@@ -56,8 +56,10 @@ function startGame() {
 }
 
 function update() {
-	moveEverything();
-  updateParticles();
+	if (gameState==STATE_PLAY) {
+        moveEverything();
+    }
+    updateParticles();
 	resizeCanvas();
 	//variableDisplay();
 }
@@ -68,6 +70,7 @@ function resizeCanvas() {
 
   switch (gameState) {
     case STATE_MENU:
+      drawEverything();
       drawMenu();
       break;
     case STATE_PLAY:

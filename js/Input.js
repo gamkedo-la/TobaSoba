@@ -98,7 +98,13 @@ function setKeyHoldState(thisKey, setTo) {
 		radiusDecrease = setTo;
 		break;
 	case KEY_M:
-		gameState = STATE_MENU;
+        if (setTo == false) {
+            if (gameState == STATE_MENU) { // toggle on/off	
+                gameState = STATE_PLAY;
+            } else { 
+                gameState = STATE_MENU;
+            }
+        }
 		break;
 	case KEY_P:
 		if (setTo == false){

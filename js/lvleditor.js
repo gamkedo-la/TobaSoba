@@ -1,6 +1,9 @@
 var worldEditor = true;
 
 function drawEditor(){
+
+    if (gameState == STATE_MENU) return;
+
     if (worldEditor == false) {
         return;
     }
@@ -34,6 +37,9 @@ function selectTile(){
 };
 editorItem = 0;
 function editorKeyCheck(keyCode) {
+
+    if (gameState == STATE_MENU) return;
+
     if (worldEditor == false) {
         if(keyCode == KEY_TAB) {
             worldEditor = true;

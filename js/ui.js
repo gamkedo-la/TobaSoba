@@ -23,19 +23,54 @@ function drawEnerrgyUI() {
 
 }
 
+function shadowText(txt,x,y,color='white',font='20px Verdana',align='center') {
+    canvasContext.font = font;
+    canvasContext.textAlign = align;
+    canvasContext.fillStyle = 'black';
+    canvasContext.fillText(txt,x+1,y+1);
+    canvasContext.fillStyle = color;
+    canvasContext.fillText(txt,x,y);
+}
+
+function generateGradientSprite(rgba1,x1,y1,rgba2,x2,y2,isVertical) {
+    let can = document.createElement('canvas');
+	let w = x2-x1;
+	let h = y2-y1;
+	can.width = w;
+	can.height = h
+	let ctx = can.getContext('2d');
+	let grd = ctx.createLinearGradient(0,0,isVertical?0:w,isVertical?h:0);
+	grd.addColorStop(0,rgba1);
+	grd.addColorStop(1,rgba2);
+	ctx.fillStyle = grd;
+	ctx.fillRect(x1,y1,w,h);
+	return can;
+}
+
+var menuBGimage;
 function drawMenu() {
-    colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'black');
-    canvasContext.fillStyle = 'yellow';
-    canvasContext.font = "50px Verdana";
-    canvasContext.fillText("TobaSoba", INDENT-4, 80);
-    canvasContext.font = "30px Verdana";
-    canvasContext.fillText("created by Vaan Hope Khani", INDENT, 120);
-    canvasContext.fillText("Left right arrow keys to run", INDENT, 200); 
-    canvasContext.fillText("Up-arrow key or spacebar to jump", INDENT, 240);
-    canvasContext.fillText("Press key P to play game", INDENT, 340);
-    canvasContext.fillText("Press key C to view the Credits", INDENT, 380);
-    canvasContext.fillText("Press key M to return here", INDENT, 420);
-    canvasContext.fillText("Press L to leave editor, K to edit", INDENT, 480);
+
+    if (!menuBGimage) menuBGimage = generateGradientSprite('rgba(0,0,0,1)',0,0,'rgba(0,0,0,0.5)',canvas.width,canvas.height,true);
+    canvasContext.drawImage(menuBGimage,0,0);
+    
+    canvasContext.drawImage(menuPic,
+        Math.round(canvas.width/2-menuPic.width/2), // horizontally centered
+        0, //Math.round(canvas.height/2-menuPic.height/2) // vertically centered?
+        );
+
+    var menuX = Math.round(canvas.width/2);
+    var menuY = menuPic.height;
+    var menuLineHeight = 26;
+
+    // centered
+    shadowText("created by Vaan Hope Khani",menuX,menuY+=menuLineHeight);
+    shadowText("Left right arrow keys to run",menuX,menuY+=menuLineHeight*2);
+    shadowText("Up-arrow key or spacebar to jump",menuX,menuY+=menuLineHeight);
+    // not centered
+    shadowText("[P] Pause",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
+    shadowText("[C] Credits",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
+    shadowText("[M] Menu",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
+    shadowText("[K] Editor",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
   }
   
   function gameOverScreen() {
