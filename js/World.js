@@ -113,7 +113,13 @@ function roomTileToIndex(tileCol, tileRow) {
   function tileTypeHasTransparency(checkTileType) {
 	return (checkTileType == TILE_TREASURE ||
 			checkTileType == TILE_SNACK ||
-			checkTileType == TILE_DOOR);
+			checkTileType == TILE_DOOR ||
+			checkTileType == TILE_CLOUD1|| 
+			checkTileType == TILE_CLOUD2|| 
+			checkTileType == TILE_CLOUD3 ||
+			checkTileType == TILE_OAKTREE|| 
+			checkTileType == TILE_PINETREE|| 
+			checkTileType == TILE_TALLTREE);
   }
 function clamp(value, min, max){
 	if(value < min) return min;
@@ -172,7 +178,7 @@ function clamp(value, min, max){
 		tileLeftEdgeX = eachCol*TILE_W;
 		tileUPEdgeY = eachRow*TILE_H;
 		if( tileTypeHasTransparency(tileTypeHere) ) {
-			canvasContext.drawImage(tilePics[TILE_WALL],tileLeftEdgeX,tileUPEdgeY);
+			canvasContext.drawImage(tilePics[TILE_SKY],tileLeftEdgeX,tileUPEdgeY);
 		}
 		canvasContext.drawImage(tilePics[tileTypeHere],tileLeftEdgeX,tileUPEdgeY);
 

@@ -38,7 +38,7 @@ const CRUSHER_RADIUS = 25;
           walkIntoTileType = roomGrid[walkIntoTileIndex];
       }
 
-      if(walkIntoTileType != TILE_WALL) {
+      if(walkIntoTileType != TILE_SKY) {
         this.xv = -this.xv;
         this.yv = -this.yv;
       } else {
