@@ -18,6 +18,9 @@ var boostPad=document.createElement("img");
 var spike=document.createElement("img");
 var hangingBlade=document.createElement("img");
 var crusher=document.createElement("img");
+var cloud1=document.createElement("img");
+var cloud2=document.createElement("img");
+var cloud3=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -61,6 +64,9 @@ function loadImages() {
       {varName:spike, theFile:"spike.png"},
       {varName:hangingBlade, theFile:"blade.png"},
       {varName:crusher, theFile:"crusher.png"},
+      {varName:cloud1, theFile:"cloud1.png"},
+      {varName:cloud2, theFile:"cloud2.png"},
+      {varName:cloud3, theFile:"cloud3.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},
@@ -96,6 +102,13 @@ function loadImages() {
       {tileType:TILE_PINETREE, theFile:"pinetree.png"},
       {tileType:TILE_TALLTREE, theFile:"talltree.png"},
       {tileType:TILE_WALL4, theFile:"wall4.png"},
+      {tileType:TILE_MOVINGCLOUD, theFile:"movingcloud.png"},
+      {tileType:TILE_PIPEH, theFile:"pipeh.png"},
+      {tileType:TILE_PIPEV, theFile:"pipev.png"},
+      {tileType:TILE_PIPE1, theFile:"pipe1.png"},
+      {tileType:TILE_PIPE2, theFile:"pipe2.png"},
+      {tileType:TILE_PIPE3, theFile:"pipe3.png"},
+      {tileType:TILE_PIPE4, theFile:"pipe3.png"},
       ];
 
   picsToLoad = imageList.length;
