@@ -230,6 +230,15 @@ function reset () {
     }
     lookForAnotherHangingBlade = HangingBladeHasTile;
   }
+  var lookForAnotherMovingCloud = true;
+  while(lookForAnotherMovingCloud ){
+    var newMovingCloud = new cloudClass();
+    var movingCloudHasTile = newMovingCloud.reset();
+    if (movingCloudHasTile){
+      enemyList.push(newMovingCloud);
+    }
+    lookForAnotherMovingCloud = movingCloudHasTile;
+  }
   var lookForAnotherMovingPlatform = true;
   while(lookForAnotherMovingPlatform ){
     var newMovingPlatform = new  movingPlatformClass();
@@ -238,6 +247,15 @@ function reset () {
       enemyList.push(newMovingPlatform);
     }
     lookForAnotherMovingPlatform = movingPlatformHasTile;
+  }
+  var lookForAnotherStonePlatform = true;
+  while(lookForAnotherStonePlatform ){
+    var newStonePlatform = new  movingPlatformClass();
+    var stonePlatformHasTile = newStonePlatform.reset();
+    if (stonePlatformHasTile){
+      enemyList.push(newStonePlatform);
+    }
+    lookForAnotherStonePlatform = stonePlatformHasTile;
   }
   var lookForAnotherCrusher = true;
   while(lookForAnotherCrusher ){
