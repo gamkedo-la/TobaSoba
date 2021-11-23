@@ -4,13 +4,16 @@ const PLATFORM_RADIUS = 25;
     this.y = 75;
     this.xv = 1;
     this.yv = 0;
-
+    let myPlatforms = [movingPlatform,stonePlatform];
+    let myPlatformTiles = [TILE_PLATFORM,TILE_PLATFORM2];
+    platformTile = myPlatformTiles[1];//check level
+    platform = myPlatforms[1]//check level;
     this.reset = function () {
 
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
-          if (roomGrid[arrayIndex] == TILE_PLATFORM) {
+          if (roomGrid[arrayIndex] == platformTile) {
             roomGrid[arrayIndex] = TILE_SKY;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
@@ -52,12 +55,12 @@ const PLATFORM_RADIUS = 25;
       }
       console.log("Player Hit");   
      }
-     
+
     this.draw = function () {
       canvasContext.save();
       canvasContext.translate(this.x,this.y);
       //canvasContext.rotate(jumperX/20.0);
-      canvasContext.drawImage(movingPlatform,-PLATFORM_RADIUS,-PLATFORM_RADIUS,
+      canvasContext.drawImage(platform,-PLATFORM_RADIUS,-PLATFORM_RADIUS,
         movingPlatform.width, 
       movingPlatform.height);
       canvasContext.restore();
