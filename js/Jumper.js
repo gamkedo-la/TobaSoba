@@ -9,6 +9,7 @@ const PIPE_SPEED = 8;
 var framesPerSecond = 30;
 var jumperFallDelayFrames = 0;
 var jumperInPipe = false;
+var lastJumpedPipeIndexChangedBy = -1; // to tell enter/exit
 var jumperX = 75, jumperY = 75;
 var jumperSpeedX = 0, jumperSpeedY = 0;
 var jumperWidth = 30;
@@ -209,13 +210,17 @@ function JumperClass() {
             }
             var hadPowerUp;
             var nowHasPowerUp;
-            console.log(pipesTouchingIndex(walkIntoTileIndex));
+            //console.log(pipesTouchingIndex(walkIntoTileIndex));
             if (jumperInPipe) {
-                if (pipesTouchingIndex(walkIntoTileIndex) < 2) {
+                if (lastJumpedPipeIndexChangedBy != walkIntoTileIndex &&
+                    pipesTouchingIndex(walkIntoTileIndex) == 0) {
+                    lastJumpedPipeIndexChangedBy = walkIntoTileIndex;
                     jumperInPipe = false;
                 }
             } else {
-                if (pipesTouchingIndex(walkIntoTileIndex) < 2) {
+                if (lastJumpedPipeIndexChangedBy != walkIntoTileIndex &&
+                    pipesTouchingIndex(walkIntoTileIndex) == 1) {
+                    lastJumpedPipeIndexChangedBy = walkIntoTileIndex;
                     jumperInPipe = true;
                 }
             }
