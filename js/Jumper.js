@@ -8,7 +8,7 @@ const POWER_UP_FRAME_DURATION = 120;
 const PIPE_SPEED = 8;
 var framesPerSecond = 30;
 var jumperFallDelayFrames = 0;
-
+var jumperInPipe = false;
 var jumperX = 75, jumperY = 75;
 var jumperSpeedX = 0, jumperSpeedY = 0;
 var jumperWidth = 30;
@@ -209,32 +209,50 @@ function JumperClass() {
             }
             var hadPowerUp;
             var nowHasPowerUp;
+            console.log(pipesTouchingIndex(walkIntoTileIndex));
+            if (jumperInPipe) {
+                if (pipesTouchingIndex(walkIntoTileIndex) < 2) {
+                    jumperInPipe = false;
+                }
+            } else {
+                if (pipesTouchingIndex(walkIntoTileIndex) < 2) {
+                    jumperInPipe = true;
+                }
+            }
             switch (walkIntoTileType) {
                 case TILE_SKY:
                     break;
                 case TILE_PIPEUP:
-                    jumperY-=PIPE_SPEED;
-                    jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
-                    jumperSpeedX = 0;
-                    jumperSpeedY = 0;
+                    if (jumperInPipe) {
+                        jumperY-=PIPE_SPEED;
+                        jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
+                        jumperSpeedX = 0;
+                        jumperSpeedY = 0;
+                    }
                     break;
                 case TILE_PIPEDOWN:
-                    jumperY+=PIPE_SPEED;
-                    jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
-                     jumperSpeedX = 0;
-                     jumperSpeedY = 0;
+                    if (jumperInPipe) {
+                        jumperY+=PIPE_SPEED;
+                        jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
+                        jumperSpeedX = 0;
+                        jumperSpeedY = 0;
+                    }
                     break;
                 case TILE_PIPELEFT:
-                    jumperX-=PIPE_SPEED;
-                    jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
-                    jumperSpeedX = 0;
-                    jumperSpeedY = 0;
+                    if (jumperInPipe) {
+                        jumperX-=PIPE_SPEED;
+                        jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
+                        jumperSpeedX = 0;
+                        jumperSpeedY = 0;
+                    }
                     break;
                 case TILE_PIPERIGHT:
-                    jumperX+=PIPE_SPEED;
-                    jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
-                    jumperSpeedX = 0;
-                    jumperSpeedY = 0;
+                    if (jumperInPipe) {
+                        jumperX+=PIPE_SPEED;
+                        jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
+                        jumperSpeedX = 0;
+                        jumperSpeedY = 0;
+                    }
                     break;
                 case TILE_TREASURE:
                     //trophySound.play("hit");

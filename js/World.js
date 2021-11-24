@@ -137,7 +137,38 @@ function clamp(value, min, max){
 	
 		drawRoom();
   } */
-  
+  function isAnyPipe(tileValue) {
+	  switch  (tileValue) {
+		  case TILE_PIPEUP:
+			case TILE_PIPEDOWN:
+			case TILE_PIPERIGHT:
+			case TILE_PIPELEFT:
+			  
+				return true;
+		  default:
+			  return false;
+	  } 
+  }
+  function pipesTouchingIndex(tileIndex){
+	//wanring do not use at map edge
+	if (isAnyPipe(roomGrid[tileIndex]) == false) {//center
+		return 0;
+	}
+	var pipesTouching = 0;
+	if (isAnyPipe(roomGrid[tileIndex-1])) {//left 
+		pipesTouching++;
+	}
+	if (isAnyPipe( roomGrid[tileIndex+1])) {//right
+		pipesTouching++;	
+	}
+	if (isAnyPipe(roomGrid[tileIndex-ROOM_COLS])) {//up
+		pipesTouching++;
+	}
+	if (isAnyPipe(roomGrid[tileIndex+ROOM_COLS])) {//down
+		pipesTouching++;
+	}
+	return pipesTouching;
+  }
   function drawRoom() {
 	var tileIndex = 0;
 	var tileLeftEdgeX = 0;
