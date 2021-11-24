@@ -92,12 +92,6 @@ function drawEverything() {
     for (var i=0; i < enemyList.length; i++){
       enemyList[i].draw();
     }
-    for(var i=0; i < patrolEnemyList.length; i++){
-      patrolEnemyList[i].draw();
-    }
-    for(var i = 0; i < jumperEnemyList.length; i++){
-      jumperEnemyList[i].draw();
-    }
     Jumper.Draw();
     drawParticles();
 
@@ -120,12 +114,7 @@ function moveEverything() {
       enemyList[i].move();
     }
     //patrolEnemy1.move(); //Vince:  This will move to the enemyList once refactored 10/20/2021
-    for(var i = 0; i < patrolEnemyList.length; i++){
-      patrolEnemyList[i].move();
-    }
-    for(var i = 0; i < jumperEnemyList.length; i++){
-      jumperEnemyList[i].move();
-    }
+
   }
   
   
@@ -133,12 +122,6 @@ function moveEverything() {
 }
 
 function checkForPlayerCollision(){
-  for(var i = 0; i < patrolEnemyList.length; i++){
-    Jumper.CollisionCheck(patrolEnemyList[i]);
-  }
-  for(var i = 0; i < jumperEnemyList.length; i++){
-    Jumper.CollisionCheck(jumperEnemyList[i]);
-  }
   for(var i = 0; i < enemyList.length; i++){
     Jumper.CollisionCheck(enemyList[i]);
   }
@@ -293,6 +276,25 @@ function reset () {
     }
     lookForAnotherSpike = spikeHasTile;
   }
+  var lookForAnotherPatrolEnemy = true;
+  while(lookForAnotherPatrolEnemy){
+    var newPatrolEnemy = new  PatrolEnemyClass();
+    var patrolEnemyHasTile = newPatrolEnemy.reset();
+    if (patrolEnemyHasTile){
+      enemyList.push(newPatrolEnemy);
+    }
+    lookForAnotherPatrolEnemy = patrolEnemyHasTile;
+  }
+  var lookForAnotherJumpingEnemy = true;
+  while(lookForAnotherJumpingEnemy){
+    var newJumpingEnemy = new  PatrolEnemyClass();
+    var jumpingEnemyHasTile = newJumpingEnemy.reset();
+    if (jumpingEnemyHasTile){
+      enemyList.push(newJumpingEnemy);
+    }
+    lookForAnotherJumpingEnemy = jumpingEnemyHasTile;
+  }
+  /*
   for(var i = 0; i < patrolEnemyList.length; i++){
 		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);
 	}
@@ -307,5 +309,5 @@ function reset () {
     if(roomGrid[i] == TILE_JUMPINGENEMY){
       addJumperEnemy();
 	  }
-  }
+  }*/
 }

@@ -1,9 +1,3 @@
-var patrolEnemyList = [];
-
-function addPatrolEnemy(){
-	var tempPatrolEnemy = new PatrolEnemyClass();
-	patrolEnemyList.push(tempPatrolEnemy);
-}
 
 function PatrolEnemyClass (){
 
@@ -18,12 +12,6 @@ function PatrolEnemyClass (){
   this.collisionBox = "green";
   this.timeToMove = true;
 
-  this.init = function(whichGraphic, whichName) {
-    this.myBitmap = whichGraphic;
-    this.myName = whichName;
-    this.reset();
-  }
-
   this.reset = function() {
     for (var i = 0; i < roomGrid.length; i++) {
         if (roomGrid[i] == TILE_PATROLENEMY) {
@@ -36,9 +24,10 @@ function PatrolEnemyClass (){
             //}
             this.x = this.homeX;
             this.y = this.homeY;
-            break; 
+            return true; 
         } 
     } 
+    return false;
   } 
 
   this.move = function(){

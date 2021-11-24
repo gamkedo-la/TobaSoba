@@ -1,9 +1,3 @@
-var jumperEnemyList = [];
-
-function addJumperEnemy(){
-	var tempJumperEnemy = new JumperEnemyClass();
-	jumperEnemyList.push(tempJumperEnemy);
-}
 
 function JumperEnemyClass (){
   this.x = 100;
@@ -29,11 +23,6 @@ function JumperEnemyClass (){
   this.timerForTimeToMove = 1000;
   this.timePeriodForMoving = 1100;
   
-  this.init = function(whichGraphic, whichName) {
-    this.myBitmap = whichGraphic;
-    this.myName = whichName;
-    this.reset();
-  }
 
   this.reset = function() {
     for (var i = 0; i < roomGrid.length; i++) {
@@ -47,9 +36,10 @@ function JumperEnemyClass (){
             //}
             this.x = this.homeX;
             this.y = this.homeY;
-            break; 
+            return true; 
         } 
     } 
+    return false;
   } 
 
   this.move = function(){
@@ -186,7 +176,7 @@ this.changeDirection = function(){
     canvasContext.save();
     canvasContext.translate(this.x, this.y);
     canvasContext.rotate(this.x/20.0);
-    canvasContext.drawImage(this.myBitmap,-JUMPER_RADIUS,-JUMPER_RADIUS, this.width, this.height);
+    canvasContext.drawImage(jumperEnemyPic,-JUMPER_RADIUS,-JUMPER_RADIUS, this.width, this.height);
     canvasContext.restore();
   }
 }
