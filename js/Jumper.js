@@ -5,6 +5,7 @@ const JUMP_POWER = 12.0;
 const GRAVITY = 0.6;
 const MAX_JUMP_DURATION_SECS = 0.5;
 const POWER_UP_FRAME_DURATION = 120;
+const PIPE_SPEED = 8;
 var framesPerSecond = 30;
 var jumperFallDelayFrames = 0;
 
@@ -210,6 +211,30 @@ function JumperClass() {
             var nowHasPowerUp;
             switch (walkIntoTileType) {
                 case TILE_SKY:
+                    break;
+                case TILE_PIPEUP:
+                    jumperY-=PIPE_SPEED;
+                    jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
+                    jumperSpeedX = 0;
+                    jumperSpeedY = 0;
+                    break;
+                case TILE_PIPEDOWN:
+                    jumperY+=PIPE_SPEED;
+                    jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
+                     jumperSpeedX = 0;
+                     jumperSpeedY = 0;
+                    break;
+                case TILE_PIPELEFT:
+                    jumperX-=PIPE_SPEED;
+                    jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
+                    jumperSpeedX = 0;
+                    jumperSpeedY = 0;
+                    break;
+                case TILE_PIPERIGHT:
+                    jumperX+=PIPE_SPEED;
+                    jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
+                    jumperSpeedX = 0;
+                    jumperSpeedY = 0;
                     break;
                 case TILE_TREASURE:
                     //trophySound.play("hit");

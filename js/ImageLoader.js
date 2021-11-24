@@ -21,6 +21,8 @@ var crusher=document.createElement("img");
 var cloud1=document.createElement("img");
 var cloud2=document.createElement("img");
 var cloud3=document.createElement("img");
+
+
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -103,12 +105,10 @@ function loadImages() {
       {tileType:TILE_TALLTREE, theFile:"talltree.png"},
       {tileType:TILE_WALL4, theFile:"wall4.png"},
       {tileType:TILE_MOVINGCLOUD, theFile:"movingcloud.png"},
-      {tileType:TILE_PIPEH, theFile:"pipeh.png"},
-      {tileType:TILE_PIPEV, theFile:"pipev.png"},
-      {tileType:TILE_PIPE1, theFile:"pipe1.png"},
-      {tileType:TILE_PIPE2, theFile:"pipe2.png"},
-      {tileType:TILE_PIPE3, theFile:"pipe3.png"},
-      {tileType:TILE_PIPE4, theFile:"pipe3.png"},
+      {tileType:TILE_PIPEUP, theFile:"pipeU.png"},
+      {tileType:TILE_PIPEDOWN, theFile:"pipeD.png"},
+      {tileType:TILE_PIPELEFT, theFile:"pipeL.png"},
+      {tileType:TILE_PIPERIGHT, theFile:"pipeR.png"},
       ];
 
   picsToLoad = imageList.length;
