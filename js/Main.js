@@ -287,7 +287,7 @@ function reset () {
   }
   var lookForAnotherJumpingEnemy = true;
   while(lookForAnotherJumpingEnemy){
-    var newJumpingEnemy = new  PatrolEnemyClass();
+    var newJumpingEnemy = new  JumperEnemyClass();
     var jumpingEnemyHasTile = newJumpingEnemy.reset();
     if (jumpingEnemyHasTile){
       enemyList.push(newJumpingEnemy);

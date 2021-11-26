@@ -21,6 +21,7 @@ var crusher=document.createElement("img");
 var cloud1=document.createElement("img");
 var cloud2=document.createElement("img");
 var cloud3=document.createElement("img");
+var waterfall=document.createElement("img");
 
 
 var tilePics = [];
@@ -69,6 +70,7 @@ function loadImages() {
       {varName:cloud1, theFile:"cloud1.png"},
       {varName:cloud2, theFile:"cloud2.png"},
       {varName:cloud3, theFile:"cloud3.png"},
+      {varName:waterfall, theFile:"waterfall1.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},
@@ -109,6 +111,7 @@ function loadImages() {
       {tileType:TILE_PIPEDOWN, theFile:"pipeD.png"},
       {tileType:TILE_PIPELEFT, theFile:"pipeL.png"},
       {tileType:TILE_PIPERIGHT, theFile:"pipeR.png"},
+      {tileType:TILE_WATERFALL, theFile:"waterfall-editoronly.png"},
       ];
 
   picsToLoad = imageList.length;
