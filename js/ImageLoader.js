@@ -107,10 +107,10 @@ function loadImages() {
       {tileType:TILE_TALLTREE, theFile:"talltree.png"},
       {tileType:TILE_WALL4, theFile:"wall4.png"},
       {tileType:TILE_MOVINGCLOUD, theFile:"movingcloud.png"},
-      {tileType:TILE_PIPEUP, theFile:"pipeU.png"},
-      {tileType:TILE_PIPEDOWN, theFile:"pipeD.png"},
-      {tileType:TILE_PIPELEFT, theFile:"pipeL.png"},
-      {tileType:TILE_PIPERIGHT, theFile:"pipeR.png"},
+      {tileType:TILE_PIPEUP, theFile:"pipe-up.png"},
+      {tileType:TILE_PIPEDOWN, theFile:"pipe-down.png"},
+      {tileType:TILE_PIPELEFT, theFile:"pipe-left.png"},
+      {tileType:TILE_PIPERIGHT, theFile:"pipe-right.png"},
       {tileType:TILE_WATERFALL, theFile:"waterfall-editoronly.png"},
       ];
 
