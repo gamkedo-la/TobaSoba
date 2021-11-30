@@ -112,6 +112,7 @@ function loadImages() {
       {tileType:TILE_PIPELEFT, theFile:"pipe-left.png"},
       {tileType:TILE_PIPERIGHT, theFile:"pipe-right.png"},
       {tileType:TILE_WATERFALL, theFile:"waterfall-editoronly.png"},
+      {tileType:TILE_POND, theFile:"pond.png"},
       ];
 
   picsToLoad = imageList.length;
