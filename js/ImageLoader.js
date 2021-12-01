@@ -113,6 +113,9 @@ function loadImages() {
       {tileType:TILE_PIPERIGHT, theFile:"pipe-right.png"},
       {tileType:TILE_WATERFALL, theFile:"waterfall-editoronly.png"},
       {tileType:TILE_POND, theFile:"pond.png"},
+      {tileType:TILE_WALL5, theFile:"wall5.png"},
+      {tileType:TILE_WALL6, theFile:"wall6.png"},
+      {tileType:TILE_ROOF, theFile:"roof.png"},
       ];
 
   picsToLoad = imageList.length;
