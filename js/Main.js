@@ -26,7 +26,7 @@ var paused = false;
 var gameState = STATE_PLAY;
 var gameIsover = false;
 var enemyList = [];
-
+WATERFALL_FRAMES=5;
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -293,6 +293,15 @@ function reset () {
       enemyList.push(newJumpingEnemy);
     }
     lookForAnotherJumpingEnemy = jumpingEnemyHasTile;
+  }
+  var lookForAnotherMagnetLifter = true;
+  while(lookForAnotherMagnetLifter){
+    var newMagnetLifter = new  MagnetLifterClass();
+    var magnetLifterHasTile = newMagnetLifter.reset();
+    if (magnetLifterHasTile){
+      enemyList.push(newMagnetLifter);
+    }
+    lookForAnotherMagnetLifter = magnetLifterHasTile;
   }
   /*
   for(var i = 0; i < patrolEnemyList.length; i++){
