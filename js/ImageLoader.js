@@ -23,6 +23,7 @@ var cloud2=document.createElement("img");
 var cloud3=document.createElement("img");
 var waterfall=document.createElement("img");
 var magnetLifter=document.createElement("img");
+var rollLine=document.createElement("img");
 
 var tilePics = [];
 
@@ -72,6 +73,7 @@ function loadImages() {
       {varName:cloud3, theFile:"cloud3.png"},
       {varName:waterfall, theFile:"waterfall1.png"},
       {varName:magnetLifter, theFile:"magnetlifter.png"},
+      {varName:rollLine, theFile:"rollLine.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},
@@ -118,6 +120,7 @@ function loadImages() {
       {tileType:TILE_WALL6, theFile:"wall6.png"},
       {tileType:TILE_ROOF, theFile:"roof.png"},
       {tileType:TILE_MAGNETLIFTER, theFile:"magnetlifter.png"},
+      {tileType:TILE_ROLLLINE, theFile:"rollline.png"},
       ];
 
   picsToLoad = imageList.length;
