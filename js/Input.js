@@ -69,6 +69,21 @@ function initInput() {
 
 function setKeyHoldState(thisKey, setTo) {
 	switch (thisKey) {
+	case KEY_1:
+		if(gameState == STATE_MENU){
+			loadLevel(0);
+		}
+		break;
+	case KEY_2:
+		if(gameState == STATE_MENU){
+			loadLevel(1);
+		}
+		break;
+	case KEY_3:
+		if(gameState == STATE_MENU){
+			loadLevel(2);
+		}
+		break;
 	case KEY_LEFT_ARROW:
 	case KEY_A: 
 		holdLeft = setTo;
@@ -113,7 +128,7 @@ function setKeyHoldState(thisKey, setTo) {
 		break;
 	case KEY_R:
 		if (setTo == false){
-			resetGame();
+			//resetGame();
 			paused = false;
 		}
     break;
@@ -153,10 +168,10 @@ function editLevel() {
 		
 			if(bMouseDown && prevEditedTileIndex != tileIndex) {
 				prevEditedTileIndex = tileIndex;
-				if (roomGrid[tileIndex] == TILE_WALL4) {
+				if (roomGrid[tileIndex] == TILE_WALL) {
 					roomGrid[tileIndex] = TILE_SKY;
 				} else {
-					roomGrid[tileIndex] = TILE_WALL4;
+					roomGrid[tileIndex] = TILE_WALL;
 				}
 			}
 			//console.log(roomGrid[tileIndex]+ " " + tileIndex);

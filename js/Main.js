@@ -158,7 +158,12 @@ function togglePause()
     }
 
 }
-
+function loadLevel (whichLevel) {
+  roomGridMaster = roomGridList[whichLevel];
+  ROOM_COLS = roomSizes[whichLevel].roomCols;
+  ROOM_ROWS = roomSizes[whichLevel].roomRows;
+  reset();
+}
 function reset () {
   roomGrid = roomGridMaster.slice();
   Jumper.init();
