@@ -185,6 +185,7 @@ const NATUREBOSS_RADIUS = 25;
      
     this.draw = function () {
       drawBitmapCenteredAtLocationWithRotation(natureBossPic, this.x, this.y,this.xv > 0);
+      drawBitmapCenteredAtLocationWithRotation(natureBossTailPic, -(Math.sign(jumperY)) * this.x  - this.speedX, -(Math.sign(jumperY))  * this.y - this.speedY,this.xv > 0);
     }
   }
   

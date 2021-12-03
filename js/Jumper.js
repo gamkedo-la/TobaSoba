@@ -198,13 +198,13 @@ function JumperClass() {
             var nextX = jumperX + jumperSpeedX;
             var nextY = jumperY + jumperSpeedY;
             var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-            var walkIntoTileType = TILE_WALL3;
+            var walkIntoTileType = TILE_WALL;
 
             if (walkIntoTileIndex != undefined) {
                 walkIntoTileType = roomGrid[walkIntoTileIndex];
             }
 
-            if (walkIntoTileType != TILE_WALL || TILE_WALL3) {
+            if (tileTypeHasWallCollision (walkIntoTileType) == false) {
                 jumperX = nextX;
                 jumperY = nextY;
             }

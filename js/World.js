@@ -118,7 +118,7 @@ function roomTileToIndex(tileCol, tileRow) {
 	  }
   
 	  var brickIndex = brickTileToIndex(tileCol, tileRow);
-	  return (roomGrid[brickIndex] == 1);
+	  return tileTypeHasWallCollision(roomGrid[brickIndex]);
   }
   
   function tileTypeHasTransparency(checkTileType) {
@@ -131,6 +131,13 @@ function roomTileToIndex(tileCol, tileRow) {
 			checkTileType == TILE_OAKTREE|| 
 			checkTileType == TILE_PINETREE|| 
 			checkTileType == TILE_TALLTREE);
+  }
+  function tileTypeHasWallCollision(checkTileType) {
+	return (checkTileType == TILE_WALL ||
+		checkTileType == TILE_WALL5 ||
+		checkTileType == TILE_WALL6 ||
+		checkTileType == TILE_WALL4
+	);
   }
 function clamp(value, min, max){
 	if(value < min) return min;
