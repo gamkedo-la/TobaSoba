@@ -85,7 +85,7 @@ function editorKeyCheck(keyCode) {
             //roomGrid[tileIndex] = TILE_SKY2;
             break;   
         case KEY_8:
-            //roomGrid[tileIndex] = TILE_SKY2;
+            updateMiniMap();
             break;
         case KEY_9:
             roomGrid[tileIndex] = editorItem;

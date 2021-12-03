@@ -1,3 +1,5 @@
+var miniMapCanvas;
+var miniMapCanvasContext;
 var canvas, canvasContext;
 var backgroundMusic = new BackgroundMusicClass();
 var snackSound = new SoundOverlapsClass("audio/snack");
@@ -30,16 +32,15 @@ WATERFALL_FRAMES=5;
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
-
+  miniMapCanvas = document.createElement('canvas');
+  miniMapCanvas.width = MINIMAP_TILE_SIZE*ROOM_COLS;
+  miniMapCanvas.height = MINIMAP_TILE_SIZE*ROOM_ROWS;
+  miniMapCanvasContext = miniMapCanvas.getContext('2d');
 	initInput();
 	loadImages();
 
 }
-function resetGame() {
-  update();
-  reset();
-  gameState = STATE_PLAY;
-}
+
 function startGame() {
   Jumper = new JumperClass();
  // these next few lines set up our game logic and render to happen 30 times per second
@@ -52,7 +53,7 @@ function startGame() {
     }, 1000/framesPerSecond);
   //backgroundMusic.loopSong("audio/S");
   //init( playerPic , "toba");
-  reset();
+    loadLevel(2);
 }
 
 function update() {
@@ -163,7 +164,11 @@ function loadLevel (whichLevel) {
   roomGridMaster = roomGridList[whichLevel];
   ROOM_COLS = roomSizes[whichLevel].roomCols;
   ROOM_ROWS = roomSizes[whichLevel].roomRows;
+  miniMapCanvas.width = MINIMAP_TILE_SIZE*ROOM_COLS;
+  miniMapCanvas.height = MINIMAP_TILE_SIZE*ROOM_ROWS;
+  miniMapCanvasContext = miniMapCanvas.getContext('2d');
   reset();
+  updateMiniMap();
 }
 function reset () {
   roomGrid = roomGridMaster.slice();
