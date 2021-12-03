@@ -99,6 +99,7 @@ function drawEverything() {
 		drawEnerrgyUI();
 		drawEditor();
     drawDebug();
+    drawMiniMap();
     
 }
 
