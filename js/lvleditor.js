@@ -1,6 +1,6 @@
 var worldEditor = true;
 
-function drawEditor(){
+function drawEditor(minimapY){
 
     if (gameState == STATE_MENU) return;
 
@@ -12,7 +12,7 @@ function drawEditor(){
     var fgColor = 'white';
     var bgColor = 'black';
     var lineX = 230;
-    var lineY = 35;
+    var lineY = minimapY + 100;
     var skipY = 30;
     shadowText("EDITOR MODE",lineX,lineY, fgColor, bgColor);
     canvasContext.font = "18px Verdana";

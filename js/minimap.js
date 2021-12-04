@@ -1,6 +1,6 @@
 const MINIMAP_TILE_SIZE = 1;
-function drawMiniMap () {
-    canvasContext.drawImage(miniMapCanvas, 40,40);
+function drawMiniMap (x, y) {
+    canvasContext.drawImage(miniMapCanvas, x,y);
 } 
 function updateMiniMap() {
 	var tileIndex = 0;
@@ -50,7 +50,7 @@ function updateMiniMap() {
         } else {
             miniMapColor = "white";
         }
-        mapRect(tileLeftEdgeX ,tileUpEdgeY, MINIMAP_TILE_SIZE, MINIMAP_TILE_SIZE, miniMapColor);
+        mapRect(tileLeftEdgeX, tileUpEdgeY, MINIMAP_TILE_SIZE, MINIMAP_TILE_SIZE, miniMapColor);
 
 	  } // end of for eachCol
 	} // end of for eachRow

@@ -96,11 +96,13 @@ function drawEverything() {
     Jumper.Draw();
     drawParticles();
 
+    const minimapX = 40;
+    const minimapY = 40;
     endCameraPan();
 		drawEnerrgyUI();
-		drawEditor();
+		drawEditor(minimapY);
     drawDebug();
-    drawMiniMap();
+    drawMiniMap(minimapX, minimapY);
     
 }
 
