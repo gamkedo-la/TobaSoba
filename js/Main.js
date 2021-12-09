@@ -307,6 +307,24 @@ function reset () {
     }
     lookForAnotherJumpingEnemy = jumpingEnemyHasTile;
   }
+  var lookForAnotherFactoryEnemy = true;
+  while(lookForAnotherFactoryEnemy){
+    var newFactoryEnemy = new  FactoryEnemyClass();
+    var factoryEnemyHasTile = newFactoryEnemy.reset();
+    if (factoryEnemyHasTile){
+      enemyList.push(newFactoryEnemy);
+    }
+    lookForAnotherFactoryEnemy = factoryEnemyHasTile;
+  }
+  var lookForAnotherFactoryBoss = true;
+  while(lookForAnotherFactoryBoss){
+    var newFactoryBoss = new FactoryBossClass();
+    var factoryBossHasTile = newFactoryBoss.reset();
+    if (factoryBossHasTile){
+      enemyList.push(newFactoryBoss);
+    }
+    lookForAnotherFactoryBoss = factoryBossHasTile;
+  }
   var lookForAnotherMagnetLifter = true;
   while(lookForAnotherMagnetLifter){
     var newMagnetLifter = new  MagnetLifterClass();

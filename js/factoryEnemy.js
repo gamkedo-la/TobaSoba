@@ -1,5 +1,5 @@
-const NATUREENEMY_RADIUS = 25;
-  function NatureEnemyClass() {
+const FACTORYENEMY_RADIUS = 25;
+  function FactoryEnemyClass() {
     this.x = 75;
     this.y = 75;
     this.xv = 1;
@@ -10,8 +10,8 @@ const NATUREENEMY_RADIUS = 25;
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
-          if (roomGrid[arrayIndex] == TILE_NATUREENEMY) {
-            roomGrid[arrayIndex] = TILE_SKY;
+          if (roomGrid[arrayIndex] == TILE_FACTORYENEMY) {
+            roomGrid[arrayIndex] = TILE_ROOF;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
             this.y = eachRow * TILE_H + TILE_H / 2;
@@ -32,13 +32,13 @@ const NATUREENEMY_RADIUS = 25;
       var nextY =  this.y + this.yv;
       
       var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-      var walkIntoTileType = TILE_WALL;
+      var walkIntoTileType = TILE_WALL5;
   
       if (walkIntoTileIndex != undefined) {
           walkIntoTileType = roomGrid[walkIntoTileIndex];
       }
       
-      if(walkIntoTileType != TILE_SKY) {
+      if(walkIntoTileType != TILE_ROOF) {
         this.xv = -this.xv;
         this.yv = -this.yv;
       } else {
@@ -62,14 +62,14 @@ const NATUREENEMY_RADIUS = 25;
       }
   
       switch (walkIntoTileType) {
-          case TILE_SKY:
+          case TILE_ROOF:
           case TILE_TREASURE:
           case TILE_SNACK:
             this.x = nextX;
             this.y = nextY;
               break;
           case TILE_DOOR:
-          case TILE_WALL:
+          case TILE_WALL5:
             case TILE_PLAYER:
               break;
       }
@@ -91,7 +91,7 @@ const NATUREENEMY_RADIUS = 25;
      
      
     this.draw = function () {
-      drawBitmapCenteredAtLocationWithRotation(natureEnemyPic, this.x, this.y,this.xv > 0);
+      drawBitmapCenteredAtLocationWithRotation(factoryEnemyPic, this.x, this.y,this.xv > 0);
     }
   }
   

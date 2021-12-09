@@ -9,6 +9,8 @@ var patrolEnemyPic=document.createElement("img");
 var flyingEnemyPic=document.createElement("img");
 var jumperEnemyPic=document.createElement("img");
 var darkEnemyPic=document.createElement("img");
+var factoryEnemyPic=document.createElement("img");
+var factoryBossPic=document.createElement("img");
 var snackEmpty=document.createElement("img");
 var snackFull=document.createElement("img");
 var movingPlatform=document.createElement("img");
@@ -74,6 +76,8 @@ function loadImages() {
       {varName:waterfall, theFile:"waterfall1.png"},
       {varName:magnetLifter, theFile:"magnetlifter.png"},
       {varName:rollLine, theFile:"rollLine.png"},
+      {varName:factoryEnemyPic, theFile:"factoryenemy.png"},
+      {varName:factoryBossPic, theFile:"factoryboss.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},
@@ -121,6 +125,8 @@ function loadImages() {
       {tileType:TILE_ROOF, theFile:"roof.png"},
       {tileType:TILE_MAGNETLIFTER, theFile:"magnetlifter.png"},
       {tileType:TILE_ROLLLINE, theFile:"rollline.png"},
+      {tileType:TILE_FACTORYENEMY, theFile:"factoryenemy.png"},
+      {tileType:TILE_FACTORYBOSS, theFile:"factoryboss.png"},
       ];
 
   picsToLoad = imageList.length;
