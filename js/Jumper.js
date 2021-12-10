@@ -317,6 +317,10 @@ function JumperClass() {
             jumperSpeedY = JUMP_POWER * Math.sin(5);
         }
         this.Draw = function() {
+
+            if (!this.trail) this.trail = new trailsFX(); // first time
+            this.trail.draw(jumperX, jumperY); // every frame
+
             var playerImg;
             if(this.powerUpMode() == false) {
 
