@@ -24,18 +24,15 @@ const NATUREBOSS_RADIUS = 25;
     this.gravityFallModifier = 2;
     
     this.CollisionCheck = function(against){
-      var jumperLeftSide = jumperX - natureBossWidth/2;
-      var jumperTopSide = jumperY -  natureBossHeight/2;
+      var jumperLeftSide = this.x - natureBossWidth/2;
+      var jumperTopSide = this.y -  natureBossHeight/2;
       if( against.x > jumperLeftSide &&
           against.x < jumperLeftSide + natureBossWidth &&
           against.y > jumperTopSide &&
           against.y < jumperTopSide +  natureBossHeight){
           //console.log("Player Hit");
-          jumperCollisionBox = "red";
           against.playerCollide();
-          } else {
-          jumperCollisionBox = "green";
-          }
+      }
       
   }
 
@@ -76,7 +73,7 @@ const NATUREBOSS_RADIUS = 25;
         }
     }
 
-    if (jumperSpeedY > 0) {
+    if (this.speedY > 0) {
         this.currentGravity = GRAVITY * this.gravityFallModifier;
     } else if (this.onGround) {
         this.currentGravity = GRAVITY;
@@ -89,11 +86,11 @@ const NATUREBOSS_RADIUS = 25;
         this.speedX = RUN_SPEED;
     }
 
-    if (this.x > jumperX && this.x < jumperX && jumpTimer <= MAX_JUMP_DURATION_SECS && !this.doneJumping) {
+    /*if (this.x > jumperX && this.x < jumperX && jumpTimer <= MAX_JUMP_DURATION_SECS && !this.doneJumping) {
         this.speedY = -JUMP_POWER;
         this.jumpTimer += 1 / framesPerSecond;
-    }
-    if (previousFrameJumping && jumperSpeedY==0) {
+    }*/
+    if (previousFrameJumping && this.speedY==0) {
         this.doneJumping = true;
     }
 
@@ -103,7 +100,7 @@ const NATUREBOSS_RADIUS = 25;
         this.speedY = 0.0;
     }
 
-    if (this.speedY > 0 && isBrickAtPixelCoord(this.x, this.y + JUMPER_RADIUS) == 1) {
+    if (this.speedY > 0 && isBrickAtPixelCoord(this.x, this.y + NATUREBOSS_RADIUS) == 1) {
         // hit the floor
         this.y = (1 + Math.floor(this.y / TILE_H)) * TILE_H - NATUREBOSS_RADIUS;
         if (!this.onGround) { // were we in the air last frame?
@@ -111,8 +108,6 @@ const NATUREBOSS_RADIUS = 25;
             groundSound.play(0.5); // thud
             particleFX(this.x, this.y + NATUREBOSS_RADIUS, 16, landingParticleRGBA,
                 0.001,Math.random()*-2,landingParticleLifespan,landingParticlegravity,landingParticleRandomness);
-            // when we hit the ground, we BLINK!
-            playerBlinkFrames = 8;
         }
         this.onGround = true;
         this.speedY = 0;
@@ -131,7 +126,6 @@ const NATUREBOSS_RADIUS = 25;
     } else if (this.speedX > 0 && isBrickAtPixelCoord(this.x + NATUREBOSS_RADIUS, this.y) == 1) {
         this.x = (1 + Math.floor(jumperX / TILE_W)) * TILE_W - NATUREBOSS_RADIUS;
         if (!this.justBumpedWall) {
-            groundSound.play(0.1); // thud quietly and not too often
             this.justBumpedWall = true;
         }
     } else {
@@ -146,8 +140,8 @@ const NATUREBOSS_RADIUS = 25;
         this.xv =  Math.cos(toPlayer);
         this.yv = Math.sin(toPlayer);
       }
-      var nextX = this.xv - this.x ;
-      var nextY =  this.yv - this.x;
+      var nextX = this.xv + this.x ;
+      var nextY =  this.yv + this.y;
       
       var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
       var walkIntoTileType =  TILE_WALL;
@@ -164,7 +158,7 @@ const NATUREBOSS_RADIUS = 25;
         this.xv = -this.xv;
         this.yv = -this.yv;
       }
-  console.log(this.x);
+  //console.log(this.x);
   
       switch (walkIntoTileType) {
         case TILE_SKY:
@@ -173,7 +167,6 @@ const NATUREBOSS_RADIUS = 25;
     }
       this.playerCollide = function(){
         // [TODO] fix jump height, make jump slightly when not holding space
-        jumpTimer = 0;
         doneJumping = false;
         if (this.y >= JUMP_POWER * Math.cos(.06)) {
           Jumper.takeDamage();

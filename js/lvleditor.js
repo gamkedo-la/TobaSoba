@@ -82,7 +82,9 @@ function editorKeyCheck(keyCode) {
             //roomGrid[tileIndex] = TILE_SKY2;
             break;   
         case KEY_7:
-            //roomGrid[tileIndex] = TILE_SKY2;
+            loadLevel(1);
+            jumperX = 23365;
+            jumperY = 2435;
             break;   
         case KEY_8:
             updateMiniMap();
