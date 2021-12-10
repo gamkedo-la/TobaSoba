@@ -1,9 +1,9 @@
 const NATUREBOSS_RADIUS = 25;
+const BOSS_RUN_SPEED = 2.5;
+const BOSS_JUMP_POWER = 15;
   function NatureBossClass() {
     this.x = 75;
     this.y = 75;
-    this.xv = 1;
-    this.yv = 0.5;
     this.speedX = 0;
     this.speedY = 0;
    
@@ -11,13 +11,9 @@ const NATUREBOSS_RADIUS = 25;
     var natureBossWidth = 30;
     var natureBossHeight = 30;
     var framesPerSecond = 30;
-    var jumperCollisionBox = "green";
     this.onGround = false;
     this.onnGroundLastFrame = false; // used to know if we just landed
-    var jumpTimer = 0.0;
-    this.powerUpTime = POWER_UP_FRAME_DURATION;
     var previousFrameJumping = false;
-    this.doneJumping = false;
     this.justBumpedWall = false; // this helps us not play the sound too often
     
     this.currentGravity = GRAVITY;
@@ -53,9 +49,6 @@ const NATUREBOSS_RADIUS = 25;
     }
 
     this.move = function(){
-      if (this.PowerUpTime > 0) {
-        this.PowerUpTime--;
-    }
     if (this.onGround) {
         this.speedX *= GROUND_FRICTION;
     } else {
@@ -74,19 +67,16 @@ const NATUREBOSS_RADIUS = 25;
 
 
     if (this.x < jumperX) {
-        this.speedX = RUN_SPEED;
+        this.speedX = BOSS_RUN_SPEED;
     }
     if (this.x > jumperX) {
-        this.speedX = -RUN_SPEED;
+        this.speedX = -BOSS_RUN_SPEED;
     }
-
-    /*if (this.x > jumperX && this.x < jumperX && jumpTimer <= MAX_JUMP_DURATION_SECS && !this.doneJumping) {
-        this.speedY = -JUMP_POWER;
-        this.jumpTimer += 1 / framesPerSecond;
-    }*/
-    if (previousFrameJumping && this.speedY==0) {
-        this.doneJumping = true;
+    var jumpMargin = TILE_W*3;
+    if (this.x > jumperX-jumpMargin && this.x < jumperX+jumpMargin && this.onGround) {
+        this.speedY = -BOSS_JUMP_POWER ;
     }
+    
 
       if (this.speedY < 0 && isBrickAtPixelCoord(this.x, this.y -NATUREBOSS_RADIUS) == 1) {
         // hit the ceiling
@@ -105,8 +95,6 @@ const NATUREBOSS_RADIUS = 25;
         }
         this.onGround = true;
         this.speedY = 0;
-        this.jumpTimer = 0.0;
-        this.doneJumping = false;
     } else if (isBrickAtPixelCoord(this.x, this.y + NATUREBOSS_RADIUS + 2) == 0) {
         this.onGround = false;
     }
@@ -161,7 +149,6 @@ const NATUREBOSS_RADIUS = 25;
     }
       this.playerCollide = function(){
         // [TODO] fix jump height, make jump slightly when not holding space
-        doneJumping = false;
         if (this.y >= JUMP_POWER * Math.cos(.06)) {
           Jumper.takeDamage();
           Jumper.bouncePlayer();
