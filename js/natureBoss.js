@@ -4,6 +4,8 @@ const BOSS_JUMP_POWER = 15;
   function NatureBossClass() {
     this.x = 75;
     this.y = 75;
+    this.tailX = 75;
+    this.tailY = 75;
     this.speedX = 0;
     this.speedY = 0;
    
@@ -122,6 +124,8 @@ const BOSS_JUMP_POWER = 15;
         //this.xv =  Math.cos(toPlayer);
         //this.yv = Math.sin(toPlayer);
       }
+      this.tailX = this.x - this.speedX*5;
+      this.tailY = this.y - this.speedY*5;
       var nextX = this.speedX + this.x ;
       var nextY =  this.speedY + this.y;
       
@@ -140,8 +144,10 @@ const BOSS_JUMP_POWER = 15;
         this.speedX = -this.speedX;
         this.speedY = -this.speedY;
       }
-  //console.log(this.x);
-  
+      var tailAng = Math.atan2(this.tailY-this.y, this.tailX-this.x);
+      var tailCenterDist = NATUREBOSS_RADIUS+12;
+      this.tailX = this.x+tailCenterDist*Math.cos(tailAng);
+      this.tailY = this.y+tailCenterDist*Math.sin(tailAng);
       switch (walkIntoTileType) {
         case TILE_SKY:
             break;
@@ -158,9 +164,9 @@ const BOSS_JUMP_POWER = 15;
      
      
     this.draw = function () {
-      drawBitmapCenteredAtLocationWithRotation(natureBossPic, this.x, this.y,this.speedX > 0);
-      drawBitmapCenteredAtLocationWithRotation(natureBossTailPic, this.x-10*this.speedX, this.y-10*this.speedY,this.speedX > 0);
-      //drawBitmapCenteredAtLocationWithRotation(natureBossTailPic, -(Math.sign(jumperY)) * this.x  - this.speedX, -(Math.sign(jumperY))  * this.y - this.speedY,this.xv > 0);
+      drawBitmapCenteredAtLocationWithFlip(natureBossPic, this.x, this.y,this.speedX > 0);
+      var tailAng = Math.atan2(this.tailY-this.y, this.tailX-this.x)+Math.PI*0.5;
+      drawBitmapCenteredAtLocationWithRotation(natureBossTailPic, this.tailX, this.tailY,tailAng);
       
     }
   }

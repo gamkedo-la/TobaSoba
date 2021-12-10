@@ -11,6 +11,7 @@ var jumperEnemyPic=document.createElement("img");
 var darkEnemyPic=document.createElement("img");
 var factoryEnemyPic=document.createElement("img");
 var factoryBossPic=document.createElement("img");
+var factoryBossArmPic=document.createElement("img");
 var snackEmpty=document.createElement("img");
 var snackFull=document.createElement("img");
 var movingPlatform=document.createElement("img");
@@ -78,6 +79,7 @@ function loadImages() {
       {varName:rollLine, theFile:"rollLine.png"},
       {varName:factoryEnemyPic, theFile:"factoryenemy.png"},
       {varName:factoryBossPic, theFile:"factoryboss.png"},
+      {varName:factoryBossArmPic, theFile:"factorybossarm.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},
