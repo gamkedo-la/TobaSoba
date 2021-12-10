@@ -21,7 +21,6 @@ const NATUREBOSS_RADIUS = 25;
     this.justBumpedWall = false; // this helps us not play the sound too often
     
     this.currentGravity = GRAVITY;
-    this.gravityFallModifier = 2;
     
     this.CollisionCheck = function(against){
       var jumperLeftSide = this.x - natureBossWidth/2;
@@ -65,7 +64,7 @@ const NATUREBOSS_RADIUS = 25;
             this.fallDelayFrames--;
         } else 
         {
-           this.speedY += this.currentGravity;  
+           this.speedY += GRAVITY;  
         }
     
         if (this.speedY > NATUREBOSS_RADIUS) { // cheap test to ensure can't fall through floor
@@ -73,17 +72,12 @@ const NATUREBOSS_RADIUS = 25;
         }
     }
 
-    if (this.speedY > 0) {
-        this.currentGravity = GRAVITY * this.gravityFallModifier;
-    } else if (this.onGround) {
-        this.currentGravity = GRAVITY;
-    }
 
     if (this.x < jumperX) {
-        this.speedX = -RUN_SPEED;
+        this.speedX = RUN_SPEED;
     }
     if (this.x > jumperX) {
-        this.speedX = RUN_SPEED;
+        this.speedX = -RUN_SPEED;
     }
 
     /*if (this.x > jumperX && this.x < jumperX && jumpTimer <= MAX_JUMP_DURATION_SECS && !this.doneJumping) {
@@ -137,11 +131,11 @@ const NATUREBOSS_RADIUS = 25;
     this.moveInto = function() {
       if (dist(this.x - jumperX, this.y - jumperY) < 3*TILE_W) {
         var toPlayer = angTo(jumperX - this.x, jumperY - this.y);
-        this.xv =  Math.cos(toPlayer);
-        this.yv = Math.sin(toPlayer);
+        //this.xv =  Math.cos(toPlayer);
+        //this.yv = Math.sin(toPlayer);
       }
-      var nextX = this.xv + this.x ;
-      var nextY =  this.yv + this.y;
+      var nextX = this.speedX + this.x ;
+      var nextY =  this.speedY + this.y;
       
       var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
       var walkIntoTileType =  TILE_WALL;
@@ -155,8 +149,8 @@ const NATUREBOSS_RADIUS = 25;
         this.y = nextY;
        
       } else {
-        this.xv = -this.xv;
-        this.yv = -this.yv;
+        this.speedX = -this.speedX;
+        this.speedY = -this.speedY;
       }
   //console.log(this.x);
   
@@ -177,8 +171,10 @@ const NATUREBOSS_RADIUS = 25;
      
      
     this.draw = function () {
-      drawBitmapCenteredAtLocationWithRotation(natureBossPic, this.x, this.y,this.xv > 0);
-      drawBitmapCenteredAtLocationWithRotation(natureBossTailPic, -(Math.sign(jumperY)) * this.x  - this.speedX, -(Math.sign(jumperY))  * this.y - this.speedY,this.xv > 0);
+      drawBitmapCenteredAtLocationWithRotation(natureBossPic, this.x, this.y,this.speedX > 0);
+      drawBitmapCenteredAtLocationWithRotation(natureBossTailPic, this.x-10*this.speedX, this.y-10*this.speedY,this.speedX > 0);
+      //drawBitmapCenteredAtLocationWithRotation(natureBossTailPic, -(Math.sign(jumperY)) * this.x  - this.speedX, -(Math.sign(jumperY))  * this.y - this.speedY,this.xv > 0);
+      
     }
   }
   
