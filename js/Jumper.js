@@ -31,10 +31,10 @@ var currentGravity = GRAVITY;
 var gravityFallModifier = 2;
 
 // a poof of dust when we land on the ground after jumping
-const landingParticleRGBA = "rgba(90,90,90,0.25)"; // grey
-const landingParticleLifespan = 0.5;
-const landingParticlegravity = 0.2;
-const landingParticleRandomness = 2; // speed variation
+const landingParticleRGBA = "rgba(255,255,255,0.25)";
+const landingParticleLifespan = 0.75;
+const landingParticlegravity = 0.15;
+const landingParticleRandomness = 3; // speed variation
 
 var holdLeft = false;
 var holdRight = false;
