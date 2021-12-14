@@ -101,7 +101,7 @@ function drawMenu() {
   
     canvasContext.fillText("Vaan Hope Khani", INDENT, 140);
   
-    canvasContext.fillText("Press key P to play", INDENT, 420);
-    canvasContext.fillText("Press key M for menu", INDENT, 460);
+    canvasContext.fillText("Press key P to play", INDENT, 320);
+    canvasContext.fillText("Press key M for menu", INDENT, 360);
   }
   
