@@ -91,8 +91,8 @@ function drawEverything() {
 
     if (USE_BIG_SKY) {
         // optionally draw a big sky image as a backrop
-        console.log("drawing a big sky!");
-        canvasContext.drawImage(bigskyPic,0,0,canvas.width,canvas.height);//ROOM_COLS*TILE_W,ROOM_ROWS*TILE_H);
+        // console.log("drawing a big sky!");
+        canvasContext.drawImage(bigskyPic,0,0,canvas.width,canvas.height);
     }
     
     cameraPan();
