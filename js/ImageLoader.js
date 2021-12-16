@@ -27,6 +27,7 @@ var cloud3=document.createElement("img");
 var waterfall=document.createElement("img");
 var magnetLifter=document.createElement("img");
 var rollLine=document.createElement("img");
+var bigskyPic=document.createElement("img");
 
 var tilePics = [];
 
@@ -80,6 +81,7 @@ function loadImages() {
       {varName:factoryEnemyPic, theFile:"factoryenemy.png"},
       {varName:factoryBossPic, theFile:"factoryboss.png"},
       {varName:factoryBossArmPic, theFile:"factorybossarm.png"},
+      {varName:bigskyPic, theFile:"bigsky.png"},
       {tileType:TILE_GROUND, theFile:"ground.png"},
       {tileType:TILE_WALL, theFile:"wall.png"},
       {tileType:TILE_PLAYER, theFile:"toba.png"},

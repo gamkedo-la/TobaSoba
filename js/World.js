@@ -1,3 +1,4 @@
+const USE_BIG_SKY = true; // if true, we don't draw TILE_SKY and use bigsky.png underneath everything instead
 const TILE_W = 50;
 const TILE_H = 50;
 const TILE_GAP = 1;
@@ -194,7 +195,8 @@ function clamp(value, min, max){
 	return pipesTouching;
   }
   function drawRoom() {
-	var tileIndex = 0;
+	
+    var tileIndex = 0;
 	var tileLeftEdgeX = 0;
 	var tileUPEdgeY = 0;
 	var tileCol = (jumperX - canvas.width/2) / TILE_W;
@@ -231,9 +233,14 @@ function clamp(value, min, max){
 		tileLeftEdgeX = eachCol*TILE_W;
 		tileUPEdgeY = eachRow*TILE_H;
 		if( tileTypeHasTransparency(tileTypeHere) ) {
-			canvasContext.drawImage(tilePics[TILE_SKY],tileLeftEdgeX,tileUPEdgeY);
+			if (!USE_BIG_SKY) {
+                // we leave sky tiles blank if we have a backdrop in place
+                canvasContext.drawImage(tilePics[TILE_SKY],tileLeftEdgeX,tileUPEdgeY);
+            }
 		}
-		canvasContext.drawImage(tilePics[tileTypeHere],tileLeftEdgeX,tileUPEdgeY);
+        if (!(USE_BIG_SKY&&tileTypeHere==TILE_SKY)) {
+		    canvasContext.drawImage(tilePics[tileTypeHere],tileLeftEdgeX,tileUPEdgeY);
+        }
 
 	  } // end of for eachCol
 	} // end of for eachRow

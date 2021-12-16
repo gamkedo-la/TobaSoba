@@ -88,11 +88,20 @@ function resizeCanvas() {
 }
 
 function drawEverything() {
-		cameraPan();
-		drawRoom();
+
+    if (USE_BIG_SKY) {
+        // optionally draw a big sky image as a backrop
+        console.log("drawing a big sky!");
+        canvasContext.drawImage(bigskyPic,0,0,canvas.width,canvas.height);//ROOM_COLS*TILE_W,ROOM_ROWS*TILE_H);
+    }
+    
+    cameraPan();
+	drawRoom();
+
     for (var i=0; i < enemyList.length; i++){
       enemyList[i].draw();
     }
+
     Jumper.Draw();
     drawParticles();
 
