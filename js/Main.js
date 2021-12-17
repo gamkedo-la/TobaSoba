@@ -126,8 +126,11 @@ function moveEverything() {
     for (var i=0; i < enemyList.length; i++){
       enemyList[i].move();
     }
-    //patrolEnemy1.move(); //Vince:  This will move to the enemyList once refactored 10/20/2021
-
+    for (var i = enemyList.length-1; i>=0;i--) {
+      if (enemyList[i].readyToRemove) {
+        enemyList.splice(i,1);
+      }
+    }
   }
   
   

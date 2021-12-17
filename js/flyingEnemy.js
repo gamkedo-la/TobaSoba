@@ -51,12 +51,14 @@ const FLYER_RADIUS = 25;
     }
 
       this.playerCollide = function(){
-        // [TODO] fix jump height, make jump slightly when not holding space
         jumpTimer = 0;
         doneJumping = false;
-        if (this.y >= JUMP_POWER * Math.cos(.06)) {
-            Jumper.takeDamage();
-            Jumper.bouncePlayer(this);
+        if (this.y - jumperY < 0) {
+          Jumper.takeDamage();
+          Jumper.bouncePlayer(this);
+          Jumper.playerDeath();
+        } else { 
+          this.readyToRemove = true;
         }
      }
      

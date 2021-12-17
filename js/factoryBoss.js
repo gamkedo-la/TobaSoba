@@ -150,8 +150,6 @@ const ROBO_JUMP_POWER = 15;
           }
         }
           this.playerCollide = function(){
-            // [TODO] fix jump height, make jump slightly when not holding space
-            
             if (this.y - jumperY < 0) {
               Jumper.takeDamage();
               Jumper.bouncePlayer(this);

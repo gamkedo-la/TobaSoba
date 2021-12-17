@@ -152,13 +152,14 @@ function JumperEnemyClass (){
 }
 
 this.playerCollide = function(){
-   // [TODO] fix jump height, make jump slightly when not holding space
    jumpTimer = 0;
    doneJumping = false;
-   if (this.y >= JUMP_POWER * Math.cos(.06)) {
+   if (this.y - jumperY < 0) {
     Jumper.takeDamage();
-    Jumper.bouncePlayer();
+    Jumper.bouncePlayer(this);
     Jumper.playerDeath();
+  } else { 
+    this.readyToRemove = true;
   }
 }
 
