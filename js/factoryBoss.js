@@ -20,19 +20,6 @@ const ROBO_JUMP_POWER = 15;
         
         this.currentGravity = GRAVITY;
         
-        this.CollisionCheck = function(against){
-          var jumperLeftSide = this.x - factoryBossWidth/2;
-          var jumperTopSide = this.y -  factoryBossHeight/2;
-          if( against.x > jumperLeftSide &&
-              against.x < jumperLeftSide + factoryBossWidth &&
-              against.y > jumperTopSide &&
-              against.y < jumperTopSide +  factoryBossHeight){
-              console.log("Player Hit");
-              this.phase = 1;
-              against.playerCollide();
-          }
-          
-      }
     
         this.reset = function () {
     
@@ -168,6 +155,8 @@ const ROBO_JUMP_POWER = 15;
               Jumper.takeDamage();
               Jumper.bouncePlayer();
               Jumper.playerDeath();
+              console.log("Player Hit");
+              this.phase = 1;  
           }
          }
          

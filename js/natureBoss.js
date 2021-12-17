@@ -20,18 +20,6 @@ const BOSS_JUMP_POWER = 15;
     
     this.currentGravity = GRAVITY;
     
-    this.CollisionCheck = function(against){
-      var jumperLeftSide = this.x - natureBossWidth/2;
-      var jumperTopSide = this.y -  natureBossHeight/2;
-      if( against.x > jumperLeftSide &&
-          against.x < jumperLeftSide + natureBossWidth &&
-          against.y > jumperTopSide &&
-          against.y < jumperTopSide +  natureBossHeight){
-          //console.log("Player Hit");
-          against.playerCollide();
-      }
-      
-  }
 
     this.reset = function () {
 
@@ -159,6 +147,7 @@ const BOSS_JUMP_POWER = 15;
           Jumper.takeDamage();
           Jumper.bouncePlayer();
           Jumper.playerDeath();
+          console.log("Player Hit"); 
       }
      }
      
