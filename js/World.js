@@ -167,6 +167,7 @@ function clamp(value, min, max){
 			case TILE_PIPEDOWN:
 			case TILE_PIPERIGHT:
 			case TILE_PIPELEFT:
+			case TILE_ROLLLINE:
 			  
 				return true;
 		  default:

@@ -259,6 +259,14 @@ function JumperClass() {
                         jumperSpeedY = 0;
                     }
                     break;
+                case TILE_ROLLLINE:
+                    if (jumperInPipe) {
+                        jumperX+=PIPE_SPEED;
+                        jumperY = TILE_H*Math.floor(jumperY/TILE_H);
+                        jumperSpeedX = 0;
+                        jumperSpeedY = 0;
+                    }
+                    break;
                 case TILE_TREASURE:
                     //trophySound.play("hit");
                     this.treasureHeld++; // get treasure
