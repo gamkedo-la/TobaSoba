@@ -8,7 +8,7 @@ const ROBO_JUMP_POWER = 15;
         this.armY = 75;
         this.speedX = 0;
         this.speedY = 0;
-       
+       this.phase = 0;
         this.fallDelayFrames = 0;
         var factoryBossWidth = 30;
         var factoryBossHeight = 30;
@@ -27,7 +27,8 @@ const ROBO_JUMP_POWER = 15;
               against.x < jumperLeftSide + factoryBossWidth &&
               against.y > jumperTopSide &&
               against.y < jumperTopSide +  factoryBossHeight){
-              //console.log("Player Hit");
+              console.log("Player Hit");
+              this.phase = 1;
               against.playerCollide();
           }
           
@@ -39,7 +40,7 @@ const ROBO_JUMP_POWER = 15;
             for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
               var arrayIndex = roomTileToIndex(eachCol, eachRow);
               if (roomGrid[arrayIndex] == TILE_FACTORYBOSS) {
-                roomGrid[arrayIndex] = TILE_SKY;
+                roomGrid[arrayIndex] = TILE_ROOF;
                 // this.ang = -Math.PI / 2;
                 this.x = eachCol * TILE_W + TILE_W / 2;
                 this.y = eachRow * TILE_H + TILE_H / 2;
@@ -53,7 +54,7 @@ const ROBO_JUMP_POWER = 15;
         this.move = function(){
         if (this.onGround) {
             this.speedX *= GROUND_FRICTION;
-        } else {
+        } else if (this.phase == 0){
             this.speedX *= AIR_RESISTANCE;
             if (this.fallDelayFrames > 0) {
                 this.fallDelayFrames--;
@@ -74,9 +75,17 @@ const ROBO_JUMP_POWER = 15;
         if (this.x > jumperX) {
             this.speedX = -ROBO_RUN_SPEED;
         }
+        if (this.phase == 1) {
+          if (this.y < jumperY) {
+              this.speedY = ROBO_RUN_SPEED;
+          }
+          if (this.y > jumperY) {
+              this.speedY = -ROBO_RUN_SPEED;
+          }
+        }
         var jumpMargin = TILE_W*3;
         if (this.x > jumperX-jumpMargin && this.x < jumperX+jumpMargin && this.onGround) {
-            this.speedY = -ROBO_JUMP_POWER ;
+           // this.speedY = -ROBO_JUMP_POWER ;
         }
         
     
@@ -130,13 +139,13 @@ const ROBO_JUMP_POWER = 15;
           var nextY =  this.speedY + this.y;
           
           var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-          var walkIntoTileType =  TILE_WALL;
+          var walkIntoTileType =  TILE_WALL5;
       
           if (walkIntoTileIndex != undefined) {
               walkIntoTileType = roomGrid[walkIntoTileIndex];
           }
           
-          if(walkIntoTileType != TILE_WALL) {
+          if(walkIntoTileType != TILE_WALL5) {
             this.x = nextX;
             this.y = nextY;
            
@@ -149,7 +158,7 @@ const ROBO_JUMP_POWER = 15;
           this.armX = this.x+armCenterDist*Math.cos(armAng);
           this.armY = this.y+armCenterDist*Math.sin(armAng);
           switch (walkIntoTileType) {
-            case TILE_SKY:
+            case TILE_ROOF:
                 break;
           }
         }

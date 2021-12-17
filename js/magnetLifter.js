@@ -2,8 +2,8 @@ const MAGNETLIFTER_RADIUS = 25;
   function MagnetLifterClass() {
     this.x = 75;
     this.y = 75;
-    this.xv = 1;
-    this.yv = 0;
+    this.xv = 0;
+    this.yv = 1;
   
     this.reset = function () {
 
