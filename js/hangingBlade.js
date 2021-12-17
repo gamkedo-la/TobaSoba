@@ -35,7 +35,7 @@ const HANGINGBLADE_RADIUS = 25;
 
     }
     this.playerCollide = function(){
-        Jumper.bouncePlayer();
+        Jumper.bouncePlayer(this);
         Jumper.takeDamage();
         Jumper.playerDeath();
 

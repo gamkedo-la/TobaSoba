@@ -84,7 +84,7 @@ const FACTORYENEMY_RADIUS = 25;
       }
       if (this.y <= jumperY * Math.cos(.06)) {
         Jumper.takeDamage();
-        Jumper.bouncePlayer();
+        Jumper.bouncePlayer(this);
         Jumper.playerDeath();
     }
      }

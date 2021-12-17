@@ -320,9 +320,12 @@ function JumperClass() {
                 gameIsOver = true;
             }
         }
-        this.bouncePlayer = function() {
-            jumperSpeedX = Math.sign(jumperSpeedX)*-1* JUMP_POWER * Math.cos(.06);
-            jumperSpeedY = JUMP_POWER * Math.sin(5);
+        this.bouncePlayer = function(against) {
+            var dx = jumperX - against.x;
+            var dy = jumperY - against.y;
+            var angle = Math.atan2(dy,dx) + Math.PI;
+            jumperSpeedX = Math.cos(angle)* JUMP_POWER * 2;
+            jumperSpeedY = Math.sin(angle)* JUMP_POWER * 2;
         }
         this.Draw = function() {
 

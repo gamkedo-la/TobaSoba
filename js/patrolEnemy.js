@@ -106,7 +106,7 @@ this.playerCollide = function(){
    doneJumping = false;
    if (this.y >= JUMP_POWER * Math.cos(.06)) {
     Jumper.takeDamage();
-    Jumper.bouncePlayer();
+    Jumper.bouncePlayer(this);
     Jumper.playerDeath();
   }
 }

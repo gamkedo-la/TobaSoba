@@ -151,12 +151,15 @@ const ROBO_JUMP_POWER = 15;
         }
           this.playerCollide = function(){
             // [TODO] fix jump height, make jump slightly when not holding space
-            if (this.y >= JUMP_POWER * Math.cos(.06)) {
+            
+            if (this.y - jumperY < 0) {
               Jumper.takeDamage();
-              Jumper.bouncePlayer();
+              Jumper.bouncePlayer(this);
               Jumper.playerDeath();
-              console.log("Player Hit");
-              this.phase = 1;  
+              console.log("Player Hit");   
+          } else {
+            this.phase = 1;
+            console.log("FAC BOOSS HURT");
           }
          }
          

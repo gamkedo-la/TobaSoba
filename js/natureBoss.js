@@ -145,7 +145,7 @@ const BOSS_JUMP_POWER = 15;
         // [TODO] fix jump height, make jump slightly when not holding space
         if (this.y >= JUMP_POWER * Math.cos(.06)) {
           Jumper.takeDamage();
-          Jumper.bouncePlayer();
+          Jumper.bouncePlayer(this);
           Jumper.playerDeath();
           console.log("Player Hit"); 
       }
