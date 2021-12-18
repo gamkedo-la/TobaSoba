@@ -109,6 +109,7 @@ function drawEverything() {
     const minimapY = 40;
     endCameraPan();
 		drawEnerrgyUI();
+    drawTrophyUI();
 		drawEditor(minimapY);
     drawDebug();
     drawMiniMap(minimapX, minimapY);

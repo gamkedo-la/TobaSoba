@@ -23,6 +23,17 @@ function drawEnerrgyUI() {
 
 }
 
+function drawTrophyUI() {
+    var showTrophyNum;
+    showTrophyNum = trophyHeld;
+    shadowText(showTrophyNum,trophy.width/1.5,120+trophy.height/2,'gold','25px Verdana','left');
+    canvasContext.globalAlpha = 0.8;
+    canvasContext.drawImage(trophy,0,120,
+        trophy.width/1.5, 
+        trophy.height/1.5);
+    console.log(showTrophyNum);
+}
+
 function shadowText(txt,x,y,color='white',font='20px Verdana',align='center') {
     canvasContext.font = font;
     canvasContext.textAlign = align;

@@ -12,6 +12,7 @@ var darkEnemyPic=document.createElement("img");
 var factoryEnemyPic=document.createElement("img");
 var factoryBossPic=document.createElement("img");
 var factoryBossArmPic=document.createElement("img");
+var trophy=document.createElement("img");
 var snackEmpty=document.createElement("img");
 var snackFull=document.createElement("img");
 var movingPlatform=document.createElement("img");
@@ -63,6 +64,7 @@ function loadImages() {
       {varName:patrolEnemyPic, theFile:"patrolenemy.png"},
       {varName:jumperEnemyPic, theFile:"jumpingEnemy.png"},
       {varName:darkEnemyPic, theFile:"darkenemy.png"},
+      {varName:trophy, theFile:"treasure.png"},
       {varName:snackEmpty, theFile:"snackempty.png"},
       {varName:snackFull, theFile:"snackfull.png"},
       {varName:movingPlatform, theFile:"platform.png"},

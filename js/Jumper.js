@@ -42,6 +42,7 @@ var holdRight = false;
 var jumpVariables = [];
 var jumpVariableNames = ["jumperRadius", "runSpeed", "jumperSpeedX", "jumpPower", "jumperSpeedY", "groundFriction", "airResistance", "gravity"];
 var snackHeld = 0;
+var trophyHeld = 0;
 function JumperClass() {
 
     this.CollisionCheck = function(against){
@@ -269,7 +270,7 @@ function JumperClass() {
                     break;
                 case TILE_TREASURE:
                     //trophySound.play("hit");
-                    this.treasureHeld++; // get treasure
+                    this.trophyHeld++; // get treasure
                     roomGrid[walkIntoTileIndex] = TILE_SKY;
                     break;
                 case TILE_DOOR:
