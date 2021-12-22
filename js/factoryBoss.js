@@ -1,14 +1,23 @@
 const FACTORYBOSS_RADIUS = 25;
+const ARM_RADIUS = 10;
 const ROBO_RUN_SPEED = 2.5;
 const ROBO_JUMP_POWER = 15;
   function FactoryBossClass() {
         this.x = 75;
         this.y = 75;
+        this.armAng = 0;
+        this.arm2Ang = 0;
         this.armX = 75;
         this.armY = 75;
+        this.arm2X = 35;
+        this.arm2Y = 35;
         this.speedX = 0;
         this.speedY = 0;
-       this.phase = 0;
+        this.phase = 0;
+        this.shoulderX1= 0;
+        this.shoulderY1= 0;
+        this.shoulderX2= 0;
+        this.shoulderY2= 0;
         this.fallDelayFrames = 0;
         var factoryBossWidth = 30;
         var factoryBossHeight = 30;
@@ -120,8 +129,6 @@ const ROBO_JUMP_POWER = 15;
             //this.xv =  Math.cos(toPlayer);
             //this.yv = Math.sin(toPlayer);
           }
-          this.armX = this.x - this.speedX*5;
-          this.armY = this.y - this.speedY*5;
           var nextX = this.speedX + this.x ;
           var nextY =  this.speedY + this.y;
           
@@ -140,10 +147,17 @@ const ROBO_JUMP_POWER = 15;
             this.speedX = -this.speedX;
             this.speedY = -this.speedY;
           }
-          var armAng = Math.atan2(this.armY-this.y, this.armX-this.x);
-          var armCenterDist = FACTORYBOSS_RADIUS+12;
-          this.armX = this.x+armCenterDist*Math.cos(armAng);
-          this.armY = this.y+armCenterDist*Math.sin(armAng);
+          var shoulderRadius = FACTORYBOSS_RADIUS - 6;
+          this.shoulderX1 = this.x-shoulderRadius;
+          this.shoulderX2 = this.x+shoulderRadius;
+          this.shoulderY1 = this.y+10;
+          this.shoulderY2 = this.shoulderY1;
+          this.armAng = Math.atan2(jumperY - this.shoulderY1, jumperX - this.shoulderX1);
+          this.arm2Ang = Math.atan2(jumperY - this.shoulderY2, jumperX - this.shoulderX2);;
+          this.armX = this.shoulderX1+ARM_RADIUS*Math.cos(this.armAng);
+          this.armY = this.shoulderY1+ARM_RADIUS*Math.sin(this.armAng);
+          this.arm2X = this.shoulderX2+ARM_RADIUS*Math.cos(this.arm2Ang);
+          this.arm2Y = this.shoulderY2+ARM_RADIUS*Math.sin(this.arm2Ang);
           switch (walkIntoTileType) {
             case TILE_ROOF:
                 break;
@@ -164,8 +178,8 @@ const ROBO_JUMP_POWER = 15;
          
         this.draw = function () {
           drawBitmapCenteredAtLocationWithFlip(factoryBossPic, this.x, this.y,this.speedX > 0);
-          var armAng = Math.atan2(this.armY-this.y, this.armX-this.x)+Math.PI*0.5;
-          drawBitmapCenteredAtLocationWithRotation(factoryBossArmPic, this.armX, this.armY,armAng);
+          drawBitmapCenteredAtLocationWithRotation(factoryBossArmPic, this.armX, this.armY,this.armAng);
+          drawBitmapCenteredAtLocationWithRotation(factoryBossArmPic, this.arm2X, this.arm2Y,this.arm2Ang);
           
         }
       }
