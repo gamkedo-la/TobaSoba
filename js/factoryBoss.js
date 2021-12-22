@@ -1,7 +1,31 @@
 const FACTORYBOSS_RADIUS = 25;
-const ARM_RADIUS = 10;
 const ROBO_RUN_SPEED = 2.5;
 const ROBO_JUMP_POWER = 15;
+
+const ARM_RADIUS = 10;
+const ARM_SPEED = 3.5;
+const ARM_RELOAD_FRAMES = 70;
+function FactoryArmClass(startX, startY, startAng) {
+  this.x = startX;
+  this.y = startY;
+  this.ang = startAng;
+  this.move = function() {
+    this.x += Math.cos(this.ang)*ARM_SPEED;
+    this.y += Math.sin(this.ang)*ARM_SPEED;
+    if(isBrickAtPixelCoord(this.x, this.y)) {
+      this.readyToRemove = true;
+    }
+  }
+  this.draw = function() {
+    drawBitmapCenteredAtLocationWithRotation(factoryBossArmPic, this.x, this.y,this.ang);
+  }
+  this.playerCollide = function(){
+   this.readyToRemove = true;
+   Jumper.takeDamage();
+   Jumper.bouncePlayer(this);
+   Jumper.playerDeath();
+ }
+}
   function FactoryBossClass() {
         this.x = 75;
         this.y = 75;
@@ -18,6 +42,8 @@ const ROBO_JUMP_POWER = 15;
         this.shoulderY1= 0;
         this.shoulderX2= 0;
         this.shoulderY2= 0;
+        this.fireArmDelay = 0;
+        this.fireLeftNext = true;
         this.fallDelayFrames = 0;
         var factoryBossWidth = 30;
         var factoryBossHeight = 30;
@@ -121,6 +147,18 @@ const ROBO_JUMP_POWER = 15;
             this.justBumpedWall = false; 
         }
         this.moveInto();
+
+        if(this.fireArmDelay-- < 0){
+          this.fireArmDelay = ARM_RELOAD_FRAMES;
+          var newArm;
+          if (this.fireLeftNext) {
+            newArm = new FactoryArmClass(this.armX, this.armY,this.armAng);
+          } else {
+            newArm = new FactoryArmClass(this.arm2X, this.arm2Y,this.arm2Ang);
+          }
+          this.fireLeftNext = !this.fireLeftNext;
+          enemyList.push(newArm);
+        }
       }
       
         this.moveInto = function() {
@@ -178,8 +216,14 @@ const ROBO_JUMP_POWER = 15;
          
         this.draw = function () {
           drawBitmapCenteredAtLocationWithFlip(factoryBossPic, this.x, this.y,this.speedX > 0);
-          drawBitmapCenteredAtLocationWithRotation(factoryBossArmPic, this.armX, this.armY,this.armAng);
-          drawBitmapCenteredAtLocationWithRotation(factoryBossArmPic, this.arm2X, this.arm2Y,this.arm2Ang);
+          var drawBoth = this.fireArmDelay < ARM_RELOAD_FRAMES* 0.5;
+          if (this.fireLeftNext || drawBoth) {
+            drawBitmapCenteredAtLocationWithRotation(factoryBossArmPic, this.armX, this.armY,this.armAng);
+          } 
+          if (this.fireLeftNext == false || drawBoth) {
+            drawBitmapCenteredAtLocationWithRotation(factoryBossArmPic, this.arm2X, this.arm2Y,this.arm2Ang);
+          }
+         
           
         }
       }
