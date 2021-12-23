@@ -34,6 +34,7 @@ const KEY_MINUS = 173;
 var holdLeft = false;
 var holdRight = false;
 var holdJump = false;
+var setTo = false;
 
 var radiusIncrease = false;
 var radiusDecrease = false;
@@ -72,22 +73,22 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_1:
 		if(gameState == STATE_MENU){
 			loadLevel(0);
-      gameState = STATE_PLAY;
-      worldEditor = false;
+      		gameState = STATE_PLAY;
+      		worldEditor = false;
 		}
 		break;
 	case KEY_2:
 		if(gameState == STATE_MENU){
 			loadLevel(1);
-      gameState = STATE_PLAY;
-      worldEditor = false;
+      		gameState = STATE_PLAY;
+      		worldEditor = false;
 		}
 		break;
 	case KEY_3:
 		if(gameState == STATE_MENU){
 			loadLevel(2);
-      gameState = STATE_PLAY;
-      worldEditor = false;
+      		gameState = STATE_PLAY;
+      		worldEditor = false;
 		}
 		break;
 	case KEY_LEFT_ARROW:
@@ -136,7 +137,7 @@ function setKeyHoldState(thisKey, setTo) {
 		if (setTo == false){
 			//resetGame();
 			paused = false;
-      gameState = STATE_PLAY;
+      		gameState = STATE_MENU;
 		}
     break;
 	case KEY_C:
