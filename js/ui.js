@@ -82,6 +82,7 @@ function drawMenu() {
     shadowText("[C] Credits",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[M] Menu",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[K] Editor",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
+    shadowText("[X] Music on/off",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[1] House Level",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[2] Nature Level",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[3] Factory Level",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');

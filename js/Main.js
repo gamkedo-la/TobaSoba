@@ -51,7 +51,7 @@ function startGame() {
     update(); 
     }
     }, 1000/framesPerSecond);
-  backgroundMusic.loopSong("TobaSoba_Music_2");
+  backgroundMusic.loopSong("audio/TobaSoba_Music_2");
   //init( playerPic , "toba");
     loadLevel(2);
 }

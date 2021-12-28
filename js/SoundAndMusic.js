@@ -9,7 +9,7 @@ function setFormat() {
   }
 }
 
-function BackgroundMusicClass() {
+function BackgroundMusicClass(ilenameWithPath) {
 
   var musicSound = null;
     

@@ -22,6 +22,7 @@ const KEY_P = 80;
 const KEY_R = 82;
 const KEY_T = 84;
 const KEY_W = 87;
+const KEY_X = 88;
 const KEY_TAB = 9;
 const KEY_CTRL = 17;
 const KEY_PAGE_UP = 33;
@@ -70,9 +71,13 @@ function initInput() {
 
 function setKeyHoldState(thisKey, setTo) {
 	switch (thisKey) {
+
+	case KEY_X:
+		backgroundMusic.startOrStopMusic();
+		break; 
 	case KEY_1:
 		if(gameState == STATE_MENU){
-			loadLevel(0);
+			loadLevel(0);		
       		gameState = STATE_PLAY;
       		worldEditor = false;
 		}
@@ -87,6 +92,7 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_3:
 		if(gameState == STATE_MENU){
 			loadLevel(2);
+			backgroundMusic.startOrStopMusic();
       		gameState = STATE_PLAY;
       		worldEditor = false;
 		}
