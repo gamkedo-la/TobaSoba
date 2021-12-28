@@ -1,7 +1,7 @@
 var miniMapCanvas;
 var miniMapCanvasContext;
 var canvas, canvasContext;
-var backgroundMusic = new BackgroundMusicClass();
+var backgroundMusic = new BackgroundMusicClass("audio/TobaSoba_Music_2");
 var snackSound = new SoundOverlapsClass("audio/snack");
 var jumpSound = new SoundOverlapsClass("audio/jump");
 var groundSound = new SoundOverlapsClass("audio/ground");
@@ -51,7 +51,7 @@ function startGame() {
     update(); 
     }
     }, 1000/framesPerSecond);
-  //backgroundMusic.loopSong("audio/S");
+  backgroundMusic.loopSong("TobaSoba_Music_2");
   //init( playerPic , "toba");
     loadLevel(2);
 }
