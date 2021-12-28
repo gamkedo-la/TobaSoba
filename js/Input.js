@@ -92,7 +92,6 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_3:
 		if(gameState == STATE_MENU){
 			loadLevel(2);
-			backgroundMusic.startOrStopMusic();
       		gameState = STATE_PLAY;
       		worldEditor = false;
 		}
@@ -164,7 +163,9 @@ function setKeyHoldState(thisKey, setTo) {
 }
 
 function mouseClick(evt){
-	//backgroundMusic.startOrStopMusic();
+	if(gameState == STATE_MENU) {
+		backgroundMusic.startOrStopMusic();
+	}
 	bMouseDown = true;
 	editLevel();
 }

@@ -21,6 +21,7 @@ const STATE_MENU = 0;
 const STATE_PLAY = 1;
 const STATE_CREDITS = 2;
 const STATE_GAME_OVER = 3;
+const STATE_EDIT = 4;
 const INDENT = 40;
 const SET_FRAMES_PER_SECOND = 30;
 var snackHeld = 4;
