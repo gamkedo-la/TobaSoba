@@ -1,6 +1,16 @@
 const MINIMAP_TILE_SIZE = 1;
 function drawMiniMap (x, y) {
-    canvasContext.drawImage(miniMapCanvas, x,y);
+	var tileCol = (jumperX - canvas.width/2) / TILE_W;
+	var tileRow =(jumperY - canvas.height/2) /  TILE_H;
+	var screenCols = Math.floor(canvas.width/TILE_W) + 2;
+	var screenRows = Math.floor(canvas.height/TILE_H) + 2;
+	var minimapHorizantalPercent = tileCol/ROOM_COLS;
+	var scrollOverlap = ROOM_COLS - canvas.width;
+	if (scrollOverlap > 0) {
+		x -= scrollOverlap*minimapHorizantalPercent;
+	} 
+	canvasContext.drawImage(miniMapCanvas, x,y);
+	mapRectOutline(x+tileCol*MINIMAP_TILE_SIZE, y+tileRow*MINIMAP_TILE_SIZE, screenCols*MINIMAP_TILE_SIZE, screenRows*MINIMAP_TILE_SIZE, "yellow");
 } 
 function updateMiniMap() {
 	var tileIndex = 0;
