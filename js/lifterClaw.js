@@ -1,9 +1,11 @@
 const LIFTERCLAW_RADIUS = 25;
   function LifterClawClass() {
+    this.clawClosed = false;
     this.x = 75;
     this.y = 75;
     this.xv = 0;
     this.yv = 1;
+    this.ignoreGrabFrame = 0;
   
     this.reset = function () {
 
@@ -22,6 +24,9 @@ const LIFTERCLAW_RADIUS = 25;
       return false; // no more clawLifter
     }
     this.move = function(){
+      if (this.ignoreGrabFrame > 0) {
+        this.ignoreGrabFrame--;
+      } 
       //console.log('flyingenemy moving');
       var nextX = this.x + this.xv;
       var nextY =  this.y + this.yv;
@@ -40,8 +45,30 @@ const LIFTERCLAW_RADIUS = 25;
         this.x = nextX;
         this.y = nextY;
       }
+      if (this.clawClosed) {
+        jumperX = this.x;//move with the clawLifter
+        jumperY = this.y;
+
+        jumperOnGround = true;
+        jumperSpeedY = 0;
+        jumpTimer = 0.0;
+        doneJumping = false;
+      }
+    }
+
+    this.playerEscaped = function() {
+      this.clawClosed = false;
+      jumperHeldByClaw = null;
+      this.ignoreGrabFrame = 20;
+      console.log("playerEscaped");
     }
     this.playerCollide = function(){
+      if (jumperHeldByClaw == null && this.ignoreGrabFrame<=0) { 
+        this.clawClosed = true;
+        jumperHeldByClaw = this;
+      }
+ 
+      /*
       if(jumperY >= this.y && jumperY <= this.y) {
         jumperX = this.x;//move with the clawLifter
         jumperY = this.y;
@@ -51,15 +78,20 @@ const LIFTERCLAW_RADIUS = 25;
           jumperOnGround = false;
         jumperX += jumperSpeedY;//move with the clawLifter
         jumperY += jumperSpeedY;
-        }
-      console.log("Player Hit");   
+        }*/ 
      }
 
     this.draw = function () {
       canvasContext.save();
       canvasContext.translate(this.x,this.y);
+      var useImage;
+      if (this.clawClosed) {
+        useImage = lifterClawClosed;
+      } else {
+        useImage = lifterClaw;
+      }
       //canvasContext.rotate(jumperX/20.0);
-      canvasContext.drawImage(lifterClaw,-LIFTERCLAW_RADIUS,-LIFTERCLAW_RADIUS,
+      canvasContext.drawImage(useImage,-LIFTERCLAW_RADIUS,-LIFTERCLAW_RADIUS,
         lifterClaw.width,
       lifterClaw.height);
       canvasContext.restore();

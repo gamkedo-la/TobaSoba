@@ -31,7 +31,6 @@ function drawTrophyUI() {
     canvasContext.drawImage(trophy,0,120,
         trophy.width/1.5, 
         trophy.height/1.5);
-    console.log(showTrophyNum);
 }
 
 function shadowText(txt,x,y,color='white',font='20px Verdana',align='center') {

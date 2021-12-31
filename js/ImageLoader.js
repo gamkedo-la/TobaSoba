@@ -28,6 +28,7 @@ var cloud3=document.createElement("img");
 var waterfall=document.createElement("img");
 var magnetLifter=document.createElement("img");
 var lifterClaw=document.createElement("img");
+var lifterClawClosed=document.createElement("img");
 var rollLine=document.createElement("img");
 var bigskyPic=document.createElement("img");
 
@@ -81,6 +82,7 @@ function loadImages() {
       {varName:waterfall, theFile:"waterfall1.png"},
       {varName:magnetLifter, theFile:"magnetlifter.png"},
       {varName:lifterClaw, theFile:"lifter-claw-open.png"},
+      {varName:lifterClawClosed, theFile:"lifter-claw-closed.png"},
       {varName:rollLine, theFile:"rollLine.png"},
       {varName:factoryEnemyPic, theFile:"factoryenemy.png"},
       {varName:factoryBossPic, theFile:"factoryboss.png"},

@@ -107,6 +107,11 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_UP_ARROW:
 	case KEY_SPACE:
 	case KEY_W:
+		if (setTo) {
+			if (jumperHeldByClaw != null) {
+                jumperHeldByClaw.playerEscaped();
+            }
+		}
 		holdJump = setTo;
 		break;
 	case KEY_K:

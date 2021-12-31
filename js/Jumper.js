@@ -19,6 +19,7 @@ var jumperTopSide = jumperY - jumperHeight/2;
 var jumperCollisionBox = "green";
 var jumperOnGround = false;
 var jumperOnGroundLastFrame = false; // used to know if we just landed
+var jumperHeldByClaw = null;
 var JUMPER_RADIUS = 15;
 var jumpTimer = 0.0;
 var jumperPowerUpTime = POWER_UP_FRAME_DURATION;
@@ -106,6 +107,9 @@ function JumperClass() {
         if (holdJump && jumpTimer <= MAX_JUMP_DURATION_SECS && !doneJumping) {
             jumperSpeedY = -JUMP_POWER;
             jumpTimer += 1 / framesPerSecond;
+            if (jumperHeldByClaw != null) {
+                jumperHeldByClaw.playerEscaped();
+            }
         }
         if (previousFrameJumping && !holdJump) {
             doneJumping = true;
