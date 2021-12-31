@@ -348,6 +348,15 @@ function reset () {
     }
     lookForAnotherMagnetLifter = magnetLifterHasTile;
   }
+  var lookForAnotherLifterClaw = true;
+  while(lookForAnotherLifterClaw){
+    var newLifterClaw = new  LifterClawClass();
+    var lifterClawHasTile = newLifterClaw.reset();
+    if (lifterClawHasTile){
+      enemyList.push(newLifterClaw);
+    }
+    lookForAnotherLifterClaw = lifterClawHasTile;
+  }
   /*
   for(var i = 0; i < patrolEnemyList.length; i++){
 		patrolEnemyList[i].init(patrolEnemyPic, patrolEnemy1NameList[i]);

@@ -1,5 +1,5 @@
-const MAGNETLIFTER_RADIUS = 25;
-  function MagnetLifterClass() {
+const LIFTERCLAW_RADIUS = 25;
+  function LifterClawClass() {
     this.x = 75;
     this.y = 75;
     this.xv = 0;
@@ -10,7 +10,7 @@ const MAGNETLIFTER_RADIUS = 25;
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
-          if (roomGrid[arrayIndex] == TILE_MAGNETLIFTER) {
+          if (roomGrid[arrayIndex] == TILE_LIFTERCLAW) {
             roomGrid[arrayIndex] = TILE_ROOF;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
@@ -19,7 +19,7 @@ const MAGNETLIFTER_RADIUS = 25;
           } //end of player start if
         } // end of col for
       } // end of row for
-      return false; // no more magnetLifter
+      return false; // no more clawLifter
     }
     this.move = function(){
       //console.log('flyingenemy moving');
@@ -43,13 +43,13 @@ const MAGNETLIFTER_RADIUS = 25;
     }
     this.playerCollide = function(){
       if(jumperY >= this.y && jumperY <= this.y) {
-        jumperX = this.x;//move with the magnetLifter
+        jumperX = this.x;//move with the clawLifter
         jumperY = this.y;
         jumperOnGround = true;
       }
       if (jumperSpeedY>0){
           jumperOnGround = false;
-        jumperX += jumperSpeedY;//move with the magnetLifter
+        jumperX += jumperSpeedY;//move with the clawLifter
         jumperY += jumperSpeedY;
         }
       console.log("Player Hit");   
@@ -59,9 +59,9 @@ const MAGNETLIFTER_RADIUS = 25;
       canvasContext.save();
       canvasContext.translate(this.x,this.y);
       //canvasContext.rotate(jumperX/20.0);
-      canvasContext.drawImage(magnetLifter,-MAGNETLIFTER_RADIUS,-MAGNETLIFTER_RADIUS,
-        magnetLifter.width,
-      magnetLifter.height);
+      canvasContext.drawImage(lifterClaw,-LIFTERCLAW_RADIUS,-LIFTERCLAW_RADIUS,
+        lifterClaw.width,
+      lifterClaw.height);
       canvasContext.restore();
     }
   }
