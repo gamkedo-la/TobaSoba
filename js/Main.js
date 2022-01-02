@@ -180,6 +180,8 @@ function loadLevel (whichLevel) {
   roomGridMaster = roomGridList[whichLevel];
   ROOM_COLS = roomSizes[whichLevel].roomCols;
   ROOM_ROWS = roomSizes[whichLevel].roomRows;
+  roomBackground = roomTilesBack[whichLevel];
+  roomForeground = roomTilesFor[whichLevel];
   miniMapCanvas.width = MINIMAP_TILE_SIZE*ROOM_COLS;
   miniMapCanvas.height = MINIMAP_TILE_SIZE*ROOM_ROWS;
   miniMapCanvasContext = miniMapCanvas.getContext('2d');
