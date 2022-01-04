@@ -4,17 +4,14 @@ const PLATFORM_RADIUS = 25;
     this.y = 75;
     this.xv = 1;
     this.yv = 0;
-    let myPlatforms = [movingPlatform,stonePlatform];
-    let myPlatformTiles = [TILE_PLATFORM,TILE_PLATFORM2];
-    platformTile = myPlatformTiles[1];//check level
-    platform = myPlatforms[1]//check level;
+
     this.reset = function () {
 
       for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
-          if (roomGrid[arrayIndex] == platformTile) {
-            roomGrid[arrayIndex] = TILE_SKY;
+          if (roomGrid[arrayIndex] == TILE_PLATFORM2) {
+            roomGrid[arrayIndex] = roomBackground;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
             this.y = eachRow * TILE_H + TILE_H / 2;
@@ -30,13 +27,13 @@ const PLATFORM_RADIUS = 25;
       var nextY =  this.y + this.yv;
       
       var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-      var walkIntoTileType = TILE_WALL;
+      var walkIntoTileType = roomForeground;
   
       if (walkIntoTileIndex != undefined) {
           walkIntoTileType = roomGrid[walkIntoTileIndex];
       }
 
-      if(walkIntoTileType != TILE_SKY) {
+      if(walkIntoTileType != roomBackground) {
         this.xv = -this.xv;
         this.yv = -this.yv;
       } else {
@@ -60,8 +57,8 @@ const PLATFORM_RADIUS = 25;
       canvasContext.save();
       canvasContext.translate(this.x,this.y);
       //canvasContext.rotate(jumperX/20.0);
-      canvasContext.drawImage(platform,-PLATFORM_RADIUS,-PLATFORM_RADIUS,
-        movingPlatform.width, 
+      canvasContext.drawImage(stonePlatform,-PLATFORM_RADIUS,-PLATFORM_RADIUS,
+        movingPlatform.width,
       movingPlatform.height);
       canvasContext.restore();
     }
