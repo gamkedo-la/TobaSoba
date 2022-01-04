@@ -7,7 +7,7 @@ function drawMiniMap (x, y) {
 	var minimapHorizantalPercent = tileCol/ROOM_COLS;
 	var scrollOverlap = ROOM_COLS - canvas.width;
 	if (scrollOverlap > 0) {
-		x -= scrollOverlap*minimapHorizantalPercent;
+		x -= scrollOverlap*minimapHorizantalPercent*1.99;
 	} 
 	canvasContext.drawImage(miniMapCanvas, x,y);
 	mapRectOutline(x+tileCol*MINIMAP_TILE_SIZE, y+tileRow*MINIMAP_TILE_SIZE, screenCols*MINIMAP_TILE_SIZE, screenRows*MINIMAP_TILE_SIZE, "yellow");
