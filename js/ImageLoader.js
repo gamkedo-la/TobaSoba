@@ -20,6 +20,8 @@ var stonePlatform=document.createElement("img");
 var springBoard=document.createElement("img");
 var boostPad=document.createElement("img");
 var spike=document.createElement("img");
+var snack=document.createElement("img");
+var treasure=document.createElement("img");
 var hangingBlade=document.createElement("img");
 var crusher=document.createElement("img");
 var cloud1=document.createElement("img");
@@ -74,6 +76,8 @@ function loadImages() {
       {varName:springBoard, theFile:"springBoard.png"},
       {varName:boostPad, theFile:"boostpad.png"},
       {varName:spike, theFile:"spike.png"},
+      {varName:snack, theFile:"snack.png"},
+      {varName:treasure, theFile:"treasure.png"},
       {varName:hangingBlade, theFile:"blade.png"},
       {varName:crusher, theFile:"crusher.png"},
       {varName:cloud1, theFile:"cloud1.png"},

@@ -96,7 +96,7 @@ function drawEverything() {
         canvasContext.drawImage(bigskyPic,0,0,canvas.width,canvas.height);
     }
     
-    cameraPan();
+  cameraPan();
 	drawRoom();
 
     for (var i=0; i < enemyList.length; i++){
@@ -304,6 +304,24 @@ function reset () {
       enemyList.push(newSpike);
     }
     lookForAnotherSpike = spikeHasTile;
+  }
+  var lookForAnotherSnack = true;
+  while(lookForAnotherSnack){
+    var newSnack = new  snackClass();
+    var snackHasTile = newSnack.reset();
+    if (snackHasTile){
+      enemyList.push(newSnack);
+    }
+    lookForAnotherSnack = snackHasTile;
+  }
+  var lookForAnotherTreasure = true;
+  while(lookForAnotherTreasure){
+    var newTreasure = new  treasureClass();
+    var treasureHasTile = newTreasure.reset();
+    if (treasureHasTile){
+      enemyList.push(newTreasure);
+    }
+    lookForAnotherTreasure = treasureHasTile;
   }
   var lookForAnotherPatrolEnemy = true;
   while(lookForAnotherPatrolEnemy){

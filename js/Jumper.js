@@ -269,27 +269,12 @@ function JumperClass() {
                         jumperSpeedY = 0;
                     }
                     break;
-                case TILE_TREASURE:
-                    //trophySound.play("hit");
-                    this.trophyHeld++; // get treasure
-                    roomGrid[walkIntoTileIndex] = roomBackground;
-                    break;
                 case TILE_DOOR:
                     doorSound.play();
                     //if () {
                         // change room
                         roomGrid[walkIntoTileIndex] = roomBackground; // remove door
                     //}
-                    break;
-                case TILE_SNACK:
-                    snackSound.play();
-                    hadPowerUp = this.powerUpMode();
-                    snackHeld++; // get snack
-                    nowHasPowerUp = this.powerUpMode();
-                    if (hadPowerUp == false && nowHasPowerUp) {
-                        jumperPowerUpTime = POWER_UP_FRAME_DURATION;
-                    }
-                    roomGrid[walkIntoTileIndex] = roomBackground; // remove key
                     break;
                 case TILE_WALL:
                     break;
