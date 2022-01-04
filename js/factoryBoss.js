@@ -62,7 +62,7 @@ function FactoryArmClass(startX, startY, startAng) {
             for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
               var arrayIndex = roomTileToIndex(eachCol, eachRow);
               if (roomGrid[arrayIndex] == TILE_FACTORYBOSS) {
-                roomGrid[arrayIndex] = TILE_ROOF;
+                roomGrid[arrayIndex] = roomBackground;
                 // this.ang = -Math.PI / 2;
                 this.x = eachCol * TILE_W + TILE_W / 2;
                 this.y = eachRow * TILE_H + TILE_H / 2;
@@ -197,7 +197,7 @@ function FactoryArmClass(startX, startY, startAng) {
           this.arm2X = this.shoulderX2+ARM_RADIUS*Math.cos(this.arm2Ang);
           this.arm2Y = this.shoulderY2+ARM_RADIUS*Math.sin(this.arm2Ang);
           switch (walkIntoTileType) {
-            case TILE_ROOF:
+            case roomBackground:
                 break;
           }
         }

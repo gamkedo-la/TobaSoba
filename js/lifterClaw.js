@@ -13,7 +13,7 @@ const LIFTERCLAW_RADIUS = 25;
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
           if (roomGrid[arrayIndex] == TILE_LIFTERCLAW) {
-            roomGrid[arrayIndex] = TILE_ROOF;
+            roomGrid[arrayIndex] = roomBackground;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
             this.y = eachRow * TILE_H + TILE_H / 2;
@@ -32,13 +32,13 @@ const LIFTERCLAW_RADIUS = 25;
       var nextY =  this.y + this.yv;
       
       var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-      var walkIntoTileType = TILE_WALL5;
+      var walkIntoTileType = roomForeground;
   
       if (walkIntoTileIndex != undefined) {
           walkIntoTileType = roomGrid[walkIntoTileIndex];
       }
 
-      if(walkIntoTileType != TILE_ROOF) {
+      if(walkIntoTileType != roomBackground) {
         this.xv = -this.xv;
         this.yv = -this.yv;
       } else {

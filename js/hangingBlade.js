@@ -13,7 +13,7 @@ const HANGINGBLADE_RADIUS = 25;
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
           if (roomGrid[arrayIndex] == TILE_HANGINGBLADE) {
-            roomGrid[arrayIndex] = TILE_SKY;
+            roomGrid[arrayIndex] = roomBackground;
             // this.ang = -Math.PI / 2;
             this.xb = eachCol * TILE_W + TILE_W / 2;
             this.yb = eachRow * TILE_H;

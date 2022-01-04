@@ -188,10 +188,10 @@ function editLevel() {
 		
 			if(bMouseDown && prevEditedTileIndex != tileIndex) {
 				prevEditedTileIndex = tileIndex;
-				if (roomGrid[tileIndex] == TILE_WALL) {
-					roomGrid[tileIndex] = TILE_SKY;
+				if (roomGrid[tileIndex] == TILE_WALL5) {
+					roomGrid[tileIndex] = TILE_ROOF;
 				} else {
-					roomGrid[tileIndex] = TILE_WALL;
+					roomGrid[tileIndex] = TILE_WALL5;
 				}
 			}
 			//console.log(roomGrid[tileIndex]+ " " + tileIndex);

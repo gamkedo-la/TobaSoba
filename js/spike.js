@@ -11,7 +11,7 @@ const spike_RADIUS = 25;
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
           if (roomGrid[arrayIndex] == TILE_SPIKE) {
-            roomGrid[arrayIndex] = TILE_SKY;
+            roomGrid[arrayIndex] = roomBackground;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
             this.y = eachRow * TILE_H + TILE_H / 2;

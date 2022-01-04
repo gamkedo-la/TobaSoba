@@ -17,7 +17,7 @@ const boostPad_RADIUS = 25;
             if (roomGrid[arrayIndex] == TILE_BOOSTPAD_RIGHT) {
               this.ang = Math.PI/2;
             }
-          roomGrid[arrayIndex] = TILE_SKY;
+          roomGrid[arrayIndex] = roomBackground;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
             this.y = eachRow * TILE_H + TILE_H / 2;

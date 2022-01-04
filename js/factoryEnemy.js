@@ -11,7 +11,7 @@ const FACTORYENEMY_RADIUS = 25;
         for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
           var arrayIndex = roomTileToIndex(eachCol, eachRow);
           if (roomGrid[arrayIndex] == TILE_FACTORYENEMY) {
-            roomGrid[arrayIndex] = TILE_ROOF;
+            roomGrid[arrayIndex] = roomBackground;
             // this.ang = -Math.PI / 2;
             this.x = eachCol * TILE_W + TILE_W / 2;
             this.y = eachRow * TILE_H + TILE_H / 2;
@@ -38,7 +38,7 @@ const FACTORYENEMY_RADIUS = 25;
           walkIntoTileType = roomGrid[walkIntoTileIndex];
       }
       
-      if(walkIntoTileType != TILE_ROOF) {
+      if(walkIntoTileType != roomBackground) {
         this.xv = -this.xv;
         this.yv = -this.yv;
       } else {
@@ -62,7 +62,7 @@ const FACTORYENEMY_RADIUS = 25;
       }
   
       switch (walkIntoTileType) {
-          case TILE_ROOF:
+          case roomBackground:
           case TILE_TREASURE:
           case TILE_SNACK:
             this.x = nextX;

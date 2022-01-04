@@ -107,9 +107,6 @@ function JumperClass() {
         if (holdJump && jumpTimer <= MAX_JUMP_DURATION_SECS && !doneJumping) {
             jumperSpeedY = -JUMP_POWER;
             jumpTimer += 1 / framesPerSecond;
-            if (jumperHeldByClaw != null) {
-                jumperHeldByClaw.playerEscaped();
-            }
         }
         if (previousFrameJumping && !holdJump) {
             doneJumping = true;
@@ -192,7 +189,7 @@ function JumperClass() {
                     this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
                     this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
                     if (worldEditor == false) {
-                        roomGrid[i] = TILE_SKY;
+                        roomGrid[i] = roomBackground;
                     }
                     break; // found it, so no need to keep searching 
                 } // end of if
@@ -275,13 +272,13 @@ function JumperClass() {
                 case TILE_TREASURE:
                     //trophySound.play("hit");
                     this.trophyHeld++; // get treasure
-                    roomGrid[walkIntoTileIndex] = TILE_SKY;
+                    roomGrid[walkIntoTileIndex] = roomBackground;
                     break;
                 case TILE_DOOR:
                     doorSound.play();
                     //if () {
                         // change room
-                        roomGrid[walkIntoTileIndex] = TILE_SKY; // remove door
+                        roomGrid[walkIntoTileIndex] = roomBackground; // remove door
                     //}
                     break;
                 case TILE_SNACK:
@@ -292,7 +289,7 @@ function JumperClass() {
                     if (hadPowerUp == false && nowHasPowerUp) {
                         jumperPowerUpTime = POWER_UP_FRAME_DURATION;
                     }
-                    roomGrid[walkIntoTileIndex] = TILE_SKY; // remove key
+                    roomGrid[walkIntoTileIndex] = roomBackground; // remove key
                     break;
                 case TILE_WALL:
                     break;
