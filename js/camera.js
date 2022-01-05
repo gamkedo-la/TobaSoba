@@ -1,14 +1,18 @@
 var cameraPanX = 0;
 var cameraPanY = 0;
-var zoomLevel = 2;
+var zoomLevel = 1.5;
 
 function cameraPan() {
 	var cameraRightBoundary = ROOM_COLS * TILE_W - canvas.width;
 	var cameraBottomBoundary = ROOM_ROWS * TILE_H - canvas.height;
 	var cameraPanXWas = cameraPanX;
 	var cameraPanYWas = cameraPanY;
-	cameraPanX = jumperX - canvas.width/2;
-	cameraPanY = jumperY - canvas.height/2;
+	//cameraPanX = (jumperX - canvas.width/2);
+	//cameraPanY = (jumperY - canvas.height/2);
+	var cameraSmooth = 0.05;
+	var cameraSmoothInverse = 1.0-cameraSmooth;
+	cameraPanX = (jumperX - canvas.width/2) * cameraSmooth + cameraPanX *cameraSmoothInverse;
+	cameraPanY = (jumperY - canvas.height/2) * cameraSmooth + cameraPanY *cameraSmoothInverse;
 	if (cameraPanX < 0) {
 		cameraPanX = 0;
 	}
@@ -21,6 +25,7 @@ function cameraPan() {
 	if (cameraPanY > cameraBottomBoundary) {
 		cameraPanY = cameraBottomBoundary;
 	}
+
 	canvasContext.save();
     canvasContext.translate(Math.floor(-cameraPanX), Math.floor(-cameraPanY));
 	if (!worldEditor) {
