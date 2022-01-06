@@ -38,6 +38,9 @@ function selectTile(){
 editorItem = 0;
 function editorKeyCheck(keyCode) {
 
+    if(mousePos == null)
+        return;
+
     if (gameState == STATE_MENU) return;
 
     if (worldEditor == false) {
@@ -71,45 +74,45 @@ function editorKeyCheck(keyCode) {
             break;
          case KEY_3:
             roomGrid[tileIndex] = TILE_PLAYER;
-             break;   
+             break;
         case KEY_4:
             roomGrid[tileIndex] = TILE_PATROLENEMY;
             break;
         case KEY_5:
             roomGrid[tileIndex] = TILE_FLYINGENEMY;
-            break;   
+            break;
         case KEY_6:
             //roomGrid[tileIndex] = TILE_SKY2;
-            break;   
+            break;
         case KEY_7:
             loadLevel(1);
             jumperX = 23365;
             jumperY = 2435;
-            break;   
+            break;
         case KEY_8:
             updateMiniMap();
             break;
         case KEY_9:
             roomGrid[tileIndex] = editorItem;
-            break; 
+            break;
         case KEY_CTRL:
             exportLevel();
-            break; 
+            break;
         case KEY_PAGE_UP:
             editorItem++;
             if (editorItem  > ALLTILES.length - 1) {
                 editorItem =0;
-            }  
-            console.log(editorItem); 
+            }
+            console.log(editorItem);
             break
         case KEY_PAGE_DOWN:
             editorItem--;
             if (editorItem < 0) {
                 editorItem = ALLTILES.length -1 ;
             }
-            console.log(editorItem); 
+            console.log(editorItem);
             break
-    } 
+    }
 }
 
 function exportLevel(){
