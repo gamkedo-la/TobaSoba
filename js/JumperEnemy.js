@@ -80,12 +80,6 @@ function JumperEnemyClass (){
         }
     }
 
-    if (jumperSpeedY > 0) {
-        currentGravity = GRAVITY * gravityFallModifier;
-    } else if (jumperOnGround) {
-        currentGravity = GRAVITY;
-    }
-
     if(this.timeToJumpIn > 200){
         this.jump = true;
     }
@@ -93,7 +87,7 @@ function JumperEnemyClass (){
     if (this.fallDelayFrames > 0) {
         this.fallDelayFrames--;
     } else {
-        jumperSpeedY += currentGravity;  
+        //jumperSpeedY += currentGravity;  
     }
 
     if (this.jump && this.jumpTimer <= MAX_JUMP_DURATION_SECS && !this.doneJumping) {

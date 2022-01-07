@@ -54,7 +54,7 @@ function startGame() {
     }, 1000/framesPerSecond);
   backgroundMusic.loopSong("audio/TobaSoba_Music_2");
   //init( playerPic , "toba");
-    loadLevel(2);
+    loadLevel(1);
 }
 
 function update() {
@@ -89,7 +89,6 @@ function resizeCanvas() {
 }
 
 function drawEverything() {
-
     if (USE_BIG_SKY) {
         // optionally draw a big sky image as a backrop
         // console.log("drawing a big sky!");
@@ -100,7 +99,9 @@ function drawEverything() {
 	drawRoom();
 
     for (var i=0; i < enemyList.length; i++){
-      enemyList[i].draw();
+      if (enemyList[i].sleep == false) {
+        enemyList[i].draw();
+      }
     }
 
     Jumper.Draw();
@@ -126,7 +127,11 @@ function moveEverything() {
 	}
   if (!worldEditor) {
     for (var i=0; i < enemyList.length; i++){
-      enemyList[i].move();
+      var playerDist = dist(enemyList[i].x - jumperX, enemyList[i].y - jumperY);
+      enemyList[i].sleep = playerDist > 2000;
+      if (enemyList[i].sleep == false) {
+        enemyList[i].move();
+      }
     }
     for (var i = enemyList.length-1; i>=0;i--) {
       if (enemyList[i].readyToRemove) {
