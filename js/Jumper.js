@@ -181,177 +181,177 @@ function JumperClass() {
     }
 
     this.reset = function() {
-            //if(this.homeX == undefined) {
-            for (var i = 0; i < roomGrid.length; i++) {
-                if (roomGrid[i] == TILE_PLAYER) {
-                    var tileRow = Math.floor(i / ROOM_COLS);
-                    var tileCol = i % ROOM_COLS;
-                    this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
-                    this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-                    if (worldEditor == false) {
-                        roomGrid[i] = roomBackground;
-                    }
-                    break; // found it, so no need to keep searching 
-                } // end of if
-            } // end of for
-            //} // end of if position not saved yet
-
-        this.moveInto = function() {
-            var nextX = jumperX + jumperSpeedX;
-            var nextY = jumperY + jumperSpeedY;
-            var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-            var walkIntoTileType = TILE_WALL;
-
-            if (walkIntoTileIndex != undefined) {
-                walkIntoTileType = roomGrid[walkIntoTileIndex];
-            }
-
-            if (tileTypeHasWallCollision (walkIntoTileType) == false) {
-                jumperX = nextX;
-                jumperY = nextY;
-            }
-            var hadPowerUp;
-            var nowHasPowerUp;
-            //console.log(pipesTouchingIndex(walkIntoTileIndex));
-            if (jumperInPipe) {
-                if (lastJumpedPipeIndexChangedBy != walkIntoTileIndex &&
-                    pipesTouchingIndex(walkIntoTileIndex) == 0) {
-                    lastJumpedPipeIndexChangedBy = walkIntoTileIndex;
-                    jumperInPipe = false;
+        //if(this.homeX == undefined) {
+        for (var i = 0; i < roomGrid.length; i++) {
+            if (roomGrid[i] == TILE_PLAYER) {
+                var tileRow = Math.floor(i / ROOM_COLS);
+                var tileCol = i % ROOM_COLS;
+                this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
+                this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
+                if (worldEditor == false) {
+                    roomGrid[i] = roomBackground;
                 }
-            } else {
-                if (lastJumpedPipeIndexChangedBy != walkIntoTileIndex &&
-                    pipesTouchingIndex(walkIntoTileIndex) == 1) {
-                    lastJumpedPipeIndexChangedBy = walkIntoTileIndex;
-                    jumperInPipe = true;
-                }
-            }
-            switch (walkIntoTileType) {
-                case TILE_SKY:
-                    break;
-                case TILE_PIPEUP:
-                    if (jumperInPipe) {
-                        jumperY-=PIPE_SPEED;
-                        jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
-                        jumperSpeedX = 0;
-                        jumperSpeedY = 0;
-                    }
-                    break;
-                case TILE_PIPEDOWN:
-                    if (jumperInPipe) {
-                        jumperY+=PIPE_SPEED;
-                        jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
-                        jumperSpeedX = 0;
-                        jumperSpeedY = 0;
-                    }
-                    break;
-                case TILE_PIPELEFT:
-                    if (jumperInPipe) {
-                        jumperX-=PIPE_SPEED;
-                        jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
-                        jumperSpeedX = 0;
-                        jumperSpeedY = 0;
-                    }
-                    break;
-                case TILE_PIPERIGHT:
-                    if (jumperInPipe) {
-                        jumperX+=PIPE_SPEED;
-                        jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
-                        jumperSpeedX = 0;
-                        jumperSpeedY = 0;
-                    }
-                    break;
-                case TILE_ROLLLINE:
-                    if (jumperInPipe) {
-                        jumperX+=PIPE_SPEED;
-                        jumperY = TILE_H*Math.floor(jumperY/TILE_H);
-                        jumperSpeedX = 0;
-                        jumperSpeedY = 0;
-                    }
-                    break;
-                case TILE_DOOR:
-                    doorSound.play();
-                    //if () {
-                        // change room
-                        roomGrid[walkIntoTileIndex] = roomBackground; // remove door
-                    //}
-                    break;
-                case TILE_WALL:
-                    break;
-                case TILE_PATROLENEMY:
-                
-                    break;
-                case TILE_SPRINGBOARD:
-                
-                    break;
-                default:
-                    // any other tile type number was found... do nothing, for now
-                    break;
-            }
-        }
-        this.takeDamage = function() {
-            if(!worldEditor){
-                if (this.powerUpMode() == false) {
-                    hurtSound.play();
-                    snackHeld--;
-                }
-                if (snackHeld == 0){
-                alarmSound.play();
-                }
-            }
-        }
-        this.playerDeath = function() {
-            if (snackHeld < 0){
-                deathSound.play();
-                gameState = STATE_GAME_OVER;
-                gameIsOver = true;
-            }
-        }
-        this.bouncePlayer = function(against) {
-            var dx = jumperX - against.x;
-            var dy = jumperY - against.y;
-            var angle = Math.atan2(dy,dx) + Math.PI;
-            jumperSpeedX = Math.cos(angle)* JUMP_POWER * 2;
-            jumperSpeedY = Math.sin(angle)* JUMP_POWER * 2;
-        }
-        this.Draw = function() {
+                jumperX = this.homeX;
+                jumperY = this.homeY;
+                break; // found it, so no need to keep searching 
+            } // end of if
+        } // end of for
+    }
+    
+    this.moveInto = function() {
+        var nextX = jumperX + jumperSpeedX;
+        var nextY = jumperY + jumperSpeedY;
+        var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
+        var walkIntoTileType = TILE_WALL;
 
-            if (!this.trail) this.trail = new trailsFX(); // first time
-            this.trail.draw(jumperX, jumperY); // every frame
-
-            var playerImg;
-            if(this.powerUpMode() == false) {
-
-                if (playerBlinkFrames>0) { // currently blinking?
-                    playerImg =  playerBlinkingPic;
-                    playerBlinkFrames--;
-                } else { // our eyes are open
-                    playerImg = playerPic;
-                    // but blink from time to time just for life
-                    if (Math.random()<0.02) {
-                        playerBlinkFrames = 6;
-                    }
-                }
-                
-            } else {
-                playerImg =  playerPowerPic;
-            }
-            jumperLeftSide = jumperX - jumperWidth/2;
-            jumperTopSide = jumperY - jumperHeight/2;
-
-            canvasContext.save();
-            canvasContext.translate(jumperX, jumperY);
-            canvasContext.rotate(jumperX / 20.0);
-            canvasContext.imageSmoothingEnabled = true;
-            canvasContext.drawImage(playerImg , -JUMPER_RADIUS, -JUMPER_RADIUS,
-                playerImg.width,
-                playerImg.height);
-            canvasContext.restore();
-
-            if(showCollisionBoxes){
-                colorRect(jumperLeftSide, jumperTopSide, jumperWidth, jumperHeight, jumperCollisionBox)
-            }
+        if (walkIntoTileIndex != undefined) {
+            walkIntoTileType = roomGrid[walkIntoTileIndex];
         }
 
+        if (tileTypeHasWallCollision (walkIntoTileType) == false) {
+            jumperX = nextX;
+            jumperY = nextY;
+        }
+        var hadPowerUp;
+        var nowHasPowerUp;
+        //console.log(pipesTouchingIndex(walkIntoTileIndex));
+        if (jumperInPipe) {
+            if (lastJumpedPipeIndexChangedBy != walkIntoTileIndex &&
+                pipesTouchingIndex(walkIntoTileIndex) == 0) {
+                lastJumpedPipeIndexChangedBy = walkIntoTileIndex;
+                jumperInPipe = false;
+            }
+        } else {
+            if (lastJumpedPipeIndexChangedBy != walkIntoTileIndex &&
+                pipesTouchingIndex(walkIntoTileIndex) == 1) {
+                lastJumpedPipeIndexChangedBy = walkIntoTileIndex;
+                jumperInPipe = true;
+            }
+        }
+        switch (walkIntoTileType) {
+            case TILE_SKY:
+                break;
+            case TILE_PIPEUP:
+                if (jumperInPipe) {
+                    jumperY-=PIPE_SPEED;
+                    jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
+                    jumperSpeedX = 0;
+                    jumperSpeedY = 0;
+                }
+                break;
+            case TILE_PIPEDOWN:
+                if (jumperInPipe) {
+                    jumperY+=PIPE_SPEED;
+                    jumperX = TILE_W*Math.floor(jumperX/TILE_W)+TILE_W/2;
+                    jumperSpeedX = 0;
+                    jumperSpeedY = 0;
+                }
+                break;
+            case TILE_PIPELEFT:
+                if (jumperInPipe) {
+                    jumperX-=PIPE_SPEED;
+                    jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
+                    jumperSpeedX = 0;
+                    jumperSpeedY = 0;
+                }
+                break;
+            case TILE_PIPERIGHT:
+                if (jumperInPipe) {
+                    jumperX+=PIPE_SPEED;
+                    jumperY = TILE_H*Math.floor(jumperY/TILE_H)+TILE_H/2;
+                    jumperSpeedX = 0;
+                    jumperSpeedY = 0;
+                }
+                break;
+            case TILE_ROLLLINE:
+                if (jumperInPipe) {
+                    jumperX+=PIPE_SPEED;
+                    jumperY = TILE_H*Math.floor(jumperY/TILE_H);
+                    jumperSpeedX = 0;
+                    jumperSpeedY = 0;
+                }
+                break;
+            case TILE_DOOR:
+                doorSound.play();
+                if (roomGridMaster) {
+                    // change room
+                    roomGrid[walkIntoTileIndex] = roomBackground; // remove door
+                }
+                break;
+            case TILE_WALL:
+                break;
+            case TILE_PATROLENEMY:
+            
+                break;
+            case TILE_SPRINGBOARD:
+            
+                break;
+            default:
+                // any other tile type number was found... do nothing, for now
+                break;
+        }
+    }
+    this.takeDamage = function() {
+        if(!worldEditor){
+            if (this.powerUpMode() == false) {
+                hurtSound.play();
+                snackHeld--;
+            }
+            if (snackHeld == 0){
+            alarmSound.play();
+            }
+        }
+    }
+    this.playerDeath = function() {
+        if (snackHeld < 0){
+            deathSound.play();
+            gameState = STATE_GAME_OVER;
+            gameIsOver = true;
+        }
+    }
+    this.bouncePlayer = function(against) {
+        var dx = jumperX - against.x;
+        var dy = jumperY - against.y;
+        var angle = Math.atan2(dy,dx) + Math.PI;
+        jumperSpeedX = Math.cos(angle)* JUMP_POWER * 2;
+        jumperSpeedY = Math.sin(angle)* JUMP_POWER * 2;
+    }
+    this.Draw = function() {
+
+        if (!this.trail) this.trail = new trailsFX(); // first time
+        this.trail.draw(jumperX, jumperY); // every frame
+
+        var playerImg;
+        if(this.powerUpMode() == false) {
+
+            if (playerBlinkFrames>0) { // currently blinking?
+                playerImg =  playerBlinkingPic;
+                playerBlinkFrames--;
+            } else { // our eyes are open
+                playerImg = playerPic;
+                // but blink from time to time just for life
+                if (Math.random()<0.02) {
+                    playerBlinkFrames = 6;
+                }
+            }
+            
+        } else {
+            playerImg =  playerPowerPic;
+        }
+        jumperLeftSide = jumperX - jumperWidth/2;
+        jumperTopSide = jumperY - jumperHeight/2;
+
+        canvasContext.save();
+        canvasContext.translate(jumperX, jumperY);
+        canvasContext.rotate(jumperX / 20.0);
+        canvasContext.imageSmoothingEnabled = true;
+        canvasContext.drawImage(playerImg , -JUMPER_RADIUS, -JUMPER_RADIUS,
+            playerImg.width,
+            playerImg.height);
+        canvasContext.restore();
+
+        if(showCollisionBoxes){
+            colorRect(jumperLeftSide, jumperTopSide, jumperWidth, jumperHeight, jumperCollisionBox)
+        }
     }
 }
