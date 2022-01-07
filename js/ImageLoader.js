@@ -61,7 +61,7 @@ function loadImages() {
       {varName:playerPic, theFile:"toba.png"},
       {varName:playerBlinkingPic, theFile:"toba-blinking.png"},
       {varName:playerPowerPic, theFile:"tobapower.png"},
-      {varName:natureEnemyPic, theFile:"natureenemy.png"},
+      {varName:natureEnemyPic, theFile:"natureEnemy.png"},
       {varName:natureBossPic, theFile:"natureboss.png"},
       {varName:natureBossTailPic, theFile:"naturebosstail.png"},
       {varName:flyingEnemyPic, theFile:"flyingenemy.png"},
