@@ -206,8 +206,8 @@ function clamp(value, min, max){
     var tileIndex = 0;
 	var tileLeftEdgeX = 0;
 	var tileUPEdgeY = 0;
-	var tileCol = (jumperX - canvas.width/2) / TILE_W;
-	var tileRow =(jumperY - canvas.height/2) /  TILE_H;
+	var tileCol = (cameraPanX) / TILE_W;
+	var tileRow =(cameraPanY) /  TILE_H;
 	
 	// we'll use Math.floor to round down to the nearest whole number
 	tileCol = Math.floor( tileCol );
