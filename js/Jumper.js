@@ -274,8 +274,17 @@ function JumperClass() {
             case TILE_DOOR:
                 doorSound.play();
                 if (roomGridMaster) {
-                    // change room
                     roomGrid[walkIntoTileIndex] = roomBackground; // remove door
+                }
+                if ( roomGridMaster = roomGridList[0]) {
+                    loadLevel(1);
+                    gameState = STATE_PLAY;
+                    worldEditor = false;
+                }
+                if ( roomGridMaster = roomGridList[1]) {
+                    loadLevel(2);
+                    gameState = STATE_PLAY;
+                    worldEditor = false;
                 }
                 break;
             case TILE_WALL:
