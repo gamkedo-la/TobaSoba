@@ -22,6 +22,8 @@ const STATE_PLAY = 1;
 const STATE_CREDITS = 2;
 const STATE_GAME_OVER = 3;
 const STATE_EDIT = 4;
+const STATE_INTRO = 5;
+const STATE_OUTRO = 6;
 const INDENT = 40;
 const SET_FRAMES_PER_SECOND = 30;
 var snackHeld = 4;
@@ -29,6 +31,7 @@ var paused = false;
 var gameState = STATE_PLAY;
 var gameIsover = false;
 var enemyList = [];
+var showIntro = true;
 WATERFALL_FRAMES=5;
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
@@ -54,7 +57,10 @@ function startGame() {
     }, 1000/framesPerSecond);
   backgroundMusic.loopSong("audio/TobaSoba_Music_2");
   //init( playerPic , "toba");
-    loadLevel(1);
+    loadLevel(0);
+    if (showIntro){
+      gameState==STATE_INTRO;
+    } 
 }
 
 function update() {
@@ -85,6 +91,12 @@ function resizeCanvas() {
         gameOverScreen();
         pause = true;
       break;
+      case STATE_INTRO:
+        drawPrologue();
+        break;
+      case STATE_OUTRO:
+        drawEpilogue();
+        break;
   }
 }
 

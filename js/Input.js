@@ -111,6 +111,10 @@ function setKeyHoldState(thisKey, setTo) {
 			if (jumperHeldByClaw != null) {
                 jumperHeldByClaw.playerEscaped();
             }
+			if (showIntro) {
+				showIntro  = false;
+				gameState = STATE_PLAY;
+			} 
 		}
 		holdJump = setTo;
 		break;
