@@ -9,6 +9,7 @@ const BOSS_JUMP_POWER = 15;
     this.speedX = 0;
     this.speedY = 0;
    
+    this.hitsLeft = 8;
     this.fallDelayFrames = 0;
     var natureBossWidth = 30;
     var natureBossHeight = 30;
@@ -147,7 +148,10 @@ const BOSS_JUMP_POWER = 15;
           Jumper.bouncePlayer(this);
           Jumper.playerDeath();
         } else { 
-          this.readyToRemove = true;
+          this.hitsLeft--;
+          if(this.hitsLeft == 0) {
+            this.readyToRemove = true;
+          }
         }
      }
      

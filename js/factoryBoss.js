@@ -45,6 +45,7 @@ function FactoryArmClass(startX, startY, startAng) {
         this.fireArmDelay = 0;
         this.fireLeftNext = true;
         this.fallDelayFrames = 0;
+        this.hitsLeft = 8;
         var factoryBossWidth = 30;
         var factoryBossHeight = 30;
         var framesPerSecond = 30;
@@ -209,7 +210,12 @@ function FactoryArmClass(startX, startY, startAng) {
               console.log("Player Hit");   
           } else {
             this.phase = 1;
-            console.log("FAC BOOSS HURT");
+            this.hitsLeft--;
+            if(this.hitsLeft == 0) {
+              this.readyToRemove = true;
+              gameState = STATE_OUTRO;
+              worldEditor = false;
+            }
           }
          }
          
