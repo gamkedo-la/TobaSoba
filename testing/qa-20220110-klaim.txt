@@ -1,0 +1,100 @@
+
+Level 1
+-------
+
+1. An introduction or at least title screen would have been nice, but I suppose it will come later :)
+
+2. Jumping on the first blocks, the character is super close to the bottom of the camera,
+    which means that I cannot see what's below - I can't see the ground (screenshot 1), which makes the platforming more difficult,
+    (see level design issues with "leap of faith" in old platformers).
+
+3. I died in the spikes, the screen becomes white-ish and asks to press R to retry.
+    I press R but I get the main menu instead of retrying. I expected to immediately retry.
+    I now have to select the level to get back to the beginning of the level.
+
+4. I failed to jump and falled over an enemy (the purple rolling ones) and it killed it.
+    It was not clear to me at all that it was possible to kill them by jumping on them.
+
+5. Is it normal that I am ejected into the air each time I restart level 0? I think not, the velocity varies each time. Is this a velocity not cleared before resetting?
+
+6. Colliding with the green and orange things that looks like locks will not always take them. I often had to pass forth and back to get them.
+
+7. While flying in the air I once did a jump, so it made me feel like there was a double jump, but there is none.
+
+8. The second block of the spike area in the beginning of the level is pretty hard to get right.
+    I think this one is too early in the game and can act as a barrier for the player.
+
+9. The controls feel like I should have a bit more control, in particular because of the initial impulse, even if we only pressed quickly to jump, which is too big.
+    I think it would work better with a less strong initial pulse but more control of that pulse in the jump buttons.
+
+10. I got stuck in the top left angle of the 2nd block over the spikes in the beginning. Had to jump to get free but died. That physics/collision bug felt unfair.
+    Just got stuck again but this time with the corner of the first block column.
+
+11. I only realized after several minutes, when reading the menu, that the game does have music, but does not play it at first (becuase gamedev mode?)
+    Also beware: the music is pretty loud by default.
+
+12. Pressing X in the menu to turn the music on/off will change as long as the key is down instead of once when it's down. So it's being on/off in loop and it's pretty hard to release at the right choice. (actually I'll try to fix that - done)
+
+13. The music is pretty weird and feels like it's voluntarilly "broken". Is that intended or is it just that the music need work? In any way it gives a creepy atmosphere, which is interesting but just pointing it in case it was not intended.
+
+14. I falled into the spikes and it was not a death. Until I started moving. (collision issue)
+
+15. After about 50 attempts I couldnt pass the first spikes, so for the purpose of continuing testing I added some blocks over the spikes to be able to skip them.
+
+16. Note that I have no idea what the thing we collect are and what's their use.
+
+17. The chanmges to the level are not kept between plays so I have to re-edit the level each time for passing the spikes and I hav to do it first because editing will also reset the level.
+
+18. A way to roll faster toward the sides would be nice, it's too slow otherwise. Also if that faster roll (maybe holding a key?) would also allow a more long jump (more horizontal) that would help a lot too.
+
+19. The fantoms are a nice chang, but they also don't look like they do anything dangerous.
+
+20. Scratch that, I got killed by a fantom XD
+
+21. I jumped on the black blocks but got through them twice, so I don't know if they are supposed to help getting on the higher level or not.
+    They are also not coming back so I don't know what to do.
+
+22. I'm starting to wonder if the game isn't running super slow? Because all the movements seems slow to me.
+
+23. I'm stopping here because I retried several times and can't get up.
+
+
+Level 2
+-------
+
+1. FIXEd - I cannot seem myself at first, just the rectamgle of th emap goes down for a long (infinite?) time.
+
+2. I see 2 player characters at the beginning, one I control, 1 fix (screenshot-2).
+
+3. There is a cloud with arrows on it but it does not move (screenshot-2).
+
+4. What's the mustache face doing here? (screenshot-3) I can't interract with it XD
+
+5. Black boxes can't be used as platform again. :/
+
+6. Water does not seem to do anything?
+
+7. I got through the last quarter of teh elvel without much problem because I was just rolling on water all the way and then started to climb the stairs.
+    I didn't meet any ennemies or anything that moves. It feels like smoe things should be moving but arent?
+
+8. The "leap of faith" jump there is a bit problematic (screenshot-4).
+
+9. I don't know what's that orange ball, I though it was the exit but it does nothing when I reach it. (screenshot-5)
+
+10. I can't go up from there (screenshot-5) so I will stop here.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
