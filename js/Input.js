@@ -45,7 +45,7 @@ var mousePos;
 var isMouseWheel = false;
 var bMouseDown = false;
 var prevEditedTileIndex = -1;
-  
+
 function initInput() {
 	document.addEventListener("keydown", keyPressed);
 	document.addEventListener("keyup", keyReleased);
@@ -56,7 +56,7 @@ function initInput() {
 		bMouseDown = false;
 	});
 
-	document.addEventListener("mousemove", 
+	document.addEventListener("mousemove",
 		function(evt) {
 			mousePos = calculateMousePos(evt);
 			editLevel();
@@ -66,18 +66,24 @@ function initInput() {
 			isMouseWheel = true;
 			wheelDir = Math.sign(evt.deltaY);
 		});
-		
+
+}
+
+function setKeyReleasedState(thisKey, setTo){
+	switch (thisKey) {
+
+		case KEY_X:
+			backgroundMusic.startOrStopMusic();
+			break;
+	}
 }
 
 function setKeyHoldState(thisKey, setTo) {
 	switch (thisKey) {
 
-	case KEY_X:
-		backgroundMusic.startOrStopMusic();
-		break; 
 	case KEY_1:
 		if(gameState == STATE_MENU){
-			loadLevel(0);		
+			loadLevel(0);
       		gameState = STATE_PLAY;
       		worldEditor = false;
 		}
@@ -97,11 +103,11 @@ function setKeyHoldState(thisKey, setTo) {
 		}
 		break;
 	case KEY_LEFT_ARROW:
-	case KEY_A: 
+	case KEY_A:
 		holdLeft = setTo;
 		break;
 	case KEY_RIGHT_ARROW:
-	case KEY_D: 
+	case KEY_D:
 		holdRight = setTo;
 		break;
 	case KEY_UP_ARROW:
@@ -114,7 +120,7 @@ function setKeyHoldState(thisKey, setTo) {
 			if (showIntro) {
 				showIntro  = false;
 				gameState = STATE_PLAY;
-			} 
+			}
 		}
 		holdJump = setTo;
 		break;
@@ -135,9 +141,9 @@ function setKeyHoldState(thisKey, setTo) {
 		break;
 	case KEY_M:
         if (setTo == false) {
-            if (gameState == STATE_MENU) { // toggle on/off	
+            if (gameState == STATE_MENU) { // toggle on/off
                 gameState = STATE_PLAY;
-            } else { 
+            } else {
                 gameState = STATE_MENU;
             }
         }
@@ -158,7 +164,7 @@ function setKeyHoldState(thisKey, setTo) {
 		gameState = STATE_CREDITS;
 		break;
 	case KEY_T:
-		jumperX = mousePos.x + cameraPanX;	
+		jumperX = mousePos.x + cameraPanX;
 		jumperY = mousePos.y + cameraPanY;
 		break
 	case KEY_TILDE:
@@ -180,7 +186,7 @@ function mouseClick(evt){
 }
 
 function editLevel() {
-	if (worldEditor) {	
+	if (worldEditor) {
 		if (editorKeyCheck) {
 			if (!(mousePos.x > 0 && mousePos.x < canvas.width) ||
 				!(mousePos.y > 0 && mousePos.y < canvas.height)) {
@@ -189,7 +195,7 @@ function editLevel() {
 			}
 
 			tileIndex = getTileIndexAtPixelCoord(mousePos.x + cameraPanX, mousePos.y + cameraPanY);
-		
+
 			if(bMouseDown && prevEditedTileIndex != tileIndex) {
 				prevEditedTileIndex = tileIndex;
 				if (roomGrid[tileIndex] == TILE_WALL5) {
@@ -200,11 +206,11 @@ function editLevel() {
 			}
 			//console.log(roomGrid[tileIndex]+ " " + tileIndex);
 		}
-		
+
 		else {
 			//console.log("World editor disabled - hit ` to start");
 		}
-			
+
 	}
 }
 
@@ -227,4 +233,5 @@ function keyPressed(evt) {
 
 function keyReleased(evt) {
 	setKeyHoldState(evt.keyCode, false);
+	setKeyReleasedState(evt.keyCode, false);
 }
