@@ -185,8 +185,13 @@ function togglePause()
     if (!paused)
     {
         paused = true;
-        colorRect(  canvas.width/2, canvas.height/2-25 , 100,40, 'black');
-        colorText("PAUSE",canvas.width/2, canvas.height/2 , 30, 'white');
+        var boxWidth = 140;
+        var boxHeight = 60;
+        colorRect( canvas.width/2-(boxWidth/2), canvas.height/2-(boxHeight/2)-10, boxWidth,boxHeight, 'black');
+        var wasAlign = canvas.textAlign;
+        canvas.textAlign = "center";
+        colorText("PAUSED",canvas.width/2, canvas.height/2 , 30, 'white');
+        canvas.textAlign = wasAlign;
     } else if (paused)
     {
        paused= false;
