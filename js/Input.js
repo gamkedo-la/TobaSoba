@@ -156,8 +156,8 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_R:
 		if (setTo == false){
 			//resetGame();
-			paused = false;
-      		gameState = STATE_MENU;
+			//gameState = STATE_MENU;
+      		respawnJumper();
 		}
     break;
 	case KEY_C:

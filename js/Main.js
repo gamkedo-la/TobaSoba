@@ -127,7 +127,6 @@ function drawEverything() {
 		drawEditor(minimapY);
     drawDebug();
     drawMiniMap(minimapX, minimapY);
-    
 }
 
 function moveEverything() {
@@ -216,6 +215,7 @@ function reset () {
   enemyList = [];
   jumperEnemyList = [];
   patrolEnemy1NameList = [];
+  Jumper.restoreSnacks();
 
   cameraInstantJump();
 

@@ -13,6 +13,7 @@ var jumperFallDelayFrames = 0;
 var jumperInPipe = false;
 var lastJumpedPipeIndexChangedBy = -1; // to tell enter/exit
 var jumperX = 75, jumperY = 75;
+var respawnX = 75, respawnY = 75;
 var jumperSpeedX = 0, jumperSpeedY = 0;
 var jumperWidth = 30;
 var jumperHeight = 30;
@@ -44,9 +45,20 @@ var holdRight = false;
 
 var jumpVariables = [];
 var jumpVariableNames = ["jumperRadius", "runSpeed", "jumperSpeedX", "jumpPower", "jumperSpeedY", "groundFriction", "airResistance", "gravity"];
-var snackHeld = 0;
 var snackLossDelay = 0;
 var trophyHeld = 0;
+
+function respawnJumper() {
+    paused = false;
+    gameState = STATE_PLAY;
+    Jumper.restoreSnacks();
+    jumperX = respawnX;
+    jumperY = respawnY;
+    jumperSpeedX = jumperSpeedY = 0;
+    snackLossDelay = 2 * FRAMES_BETWEEN_SNACK_LOSS; // extra safety buffer on respawn
+    cameraInstantJump();
+}
+
 function JumperClass() {
 
     this.CollisionCheck = function(against){
@@ -64,10 +76,42 @@ function JumperClass() {
             }
         
     }
+    this.inSafePositionForCheckpoint = function() {
+        var isSafe = true;
+        if(jumperOnGround == false) { // never save position in air
+            isSafe = false;
+        }
+        if(snackLossDelay > 0) { // never save position where recently hurt
+            isSafe = false;
+        }
+        if(Math.abs((Math.floor(jumperX) % TILE_W)-25) > 15) { // near center of tile, so not leaning over an edge
+            isSafe = false;
+        }
+        if(isSafe) {
+            var unsafeEnemyPixelDistanceForCheckpoint = 300;
+            for (var i=0; i < enemyList.length; i++){
+                var playerDist = dist(enemyList[i].x - jumperX, enemyList[i].y - jumperY);
+                if(playerDist < unsafeEnemyPixelDistanceForCheckpoint) {
+                    isSafe = false;
+                    break;
+                }
+            }
+        }
+        return isSafe;
+    }
     this.powerUpMode = function() {
         return snackHeld >= 5;
     }
+    this.restoreSnacks = function() {
+        if(snackHeld < 4) {
+            snackHeld = 4;
+        }
+    }
     this.move = function() {
+        if(this.inSafePositionForCheckpoint()) {
+            respawnX = jumperX;
+            respawnY = jumperY;
+        }
         if(snackLossDelay>0) {
             snackLossDelay--;
         }
@@ -203,6 +247,7 @@ function JumperClass() {
                 break; // found it, so no need to keep searching 
             } // end of if
         } // end of for
+        this.restoreSnacks();
     }
     
     this.moveInto = function() {

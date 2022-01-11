@@ -102,7 +102,7 @@ function drawMenu() {
         canvasContext.font = "30px Verdana";
         canvasContext.fillStyle = 'orange';
         colorText("LETS TRY AGAIN",canvas.width/2, canvas.height/2 , 18, "green");
-        colorText("PRESS R TO PLAY",canvas.width/2, canvas.height/2 + INDENT, 34, "cyan");
+        colorText("PRESS R TO RESPAWN",canvas.width/2, canvas.height/2 + 40, 34, "cyan");
   }
 
   function drawCredits() {
