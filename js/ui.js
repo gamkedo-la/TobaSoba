@@ -61,7 +61,8 @@ var menuBGimage;
 function drawMenu() {
 
     if (!menuBGimage) menuBGimage = generateGradientSprite('rgba(0,0,0,1)',0,0,'rgba(0,0,0,0.5)',canvas.width,canvas.height,true);
-    canvasContext.drawImage(menuBGimage,0,0);
+    canvasContext.drawImage(menuBGimage,0,0,menuBGimage.width,menuBGimage.height,
+                                        0,0,canvas.width,canvas.height);
     
     canvasContext.drawImage(menuPic,
         Math.round(canvas.width/2-menuPic.width/2), // horizontally centered
