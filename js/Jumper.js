@@ -6,6 +6,8 @@ const GRAVITY = 0.6;
 const MAX_JUMP_DURATION_SECS = 0.5;
 const POWER_UP_FRAME_DURATION = 120;
 const PIPE_SPEED = 8;
+const FRAMES_BETWEEN_SNACK_LOSS = 30;
+
 var framesPerSecond = 30;
 var jumperFallDelayFrames = 0;
 var jumperInPipe = false;
@@ -43,6 +45,7 @@ var holdRight = false;
 var jumpVariables = [];
 var jumpVariableNames = ["jumperRadius", "runSpeed", "jumperSpeedX", "jumpPower", "jumperSpeedY", "groundFriction", "airResistance", "gravity"];
 var snackHeld = 0;
+var snackLossDelay = 0;
 var trophyHeld = 0;
 function JumperClass() {
 
@@ -65,6 +68,10 @@ function JumperClass() {
         return snackHeld >= 5;
     }
     this.move = function() {
+        if(snackLossDelay>0) {
+            snackLossDelay--;
+        }
+
         if (jumperPowerUpTime > 0) {
             jumperPowerUpTime--;
             if (jumperPowerUpTime == 0 && this.powerUpMode()) {
@@ -302,12 +309,18 @@ function JumperClass() {
     }
     this.takeDamage = function() {
         if(!worldEditor){
+            if(snackLossDelay > 0){
+                return;
+            } else {
+                snackLossDelay = FRAMES_BETWEEN_SNACK_LOSS;
+            }
+
             if (this.powerUpMode() == false) {
                 hurtSound.play();
                 snackHeld--;
             }
             if (snackHeld == 0){
-            alarmSound.play();
+                alarmSound.play();
             }
         }
     }
@@ -326,6 +339,9 @@ function JumperClass() {
         jumperSpeedY = Math.sin(angle)* JUMP_POWER * 2;
     }
     this.Draw = function() {
+        if(snackLossDelay > 0 && snackLossDelay%4<2) {
+            return; // flash invulnerable frames
+        }
 
         if (!this.trail) this.trail = new trailsFX(); // first time
         this.trail.draw(jumperX, jumperY); // every frame
