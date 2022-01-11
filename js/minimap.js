@@ -1,7 +1,7 @@
 const MINIMAP_TILE_SIZE = 1;
 function drawMiniMap (x, y) {
-	var tileCol = (jumperX - canvas.width/2) / TILE_W;
-	var tileRow =(jumperY - canvas.height/2) /  TILE_H;
+	var tileCol = (cameraPanX) / TILE_W;
+	var tileRow =(cameraPanY) /  TILE_H;
 	var screenCols = Math.floor(canvas.width/TILE_W) + 2;
 	var screenRows = Math.floor(canvas.height/TILE_H) + 2;
 	var minimapHorizantalPercent = tileCol/ROOM_COLS;
@@ -10,40 +10,15 @@ function drawMiniMap (x, y) {
 		x -= scrollOverlap*minimapHorizantalPercent*1.99;
 	} 
 	canvasContext.drawImage(miniMapCanvas, x,y);
-	mapRectOutline(x+tileCol*MINIMAP_TILE_SIZE, y+tileRow*MINIMAP_TILE_SIZE, screenCols*MINIMAP_TILE_SIZE, screenRows*MINIMAP_TILE_SIZE, "yellow");
+	mapRectOutline(x+tileCol*MINIMAP_TILE_SIZE, y+tileRow*MINIMAP_TILE_SIZE, screenCols*MINIMAP_TILE_SIZE, screenRows*MINIMAP_TILE_SIZE, "red");
 } 
 function updateMiniMap() {
 	var tileIndex = 0;
 	var tileLeftEdgeX = 0;
 	var tileUpEdgeY = 0;
-	var tileCol = (jumperX - canvas.width/2) / TILE_W;
-	var tileRow =(jumperY - canvas.height/2) /  TILE_H;
 	
 	// we'll use Math.floor to round down to the nearest whole number
-    /*
-	tileCol = Math.floor( tileCol );
-	tileRow = Math.floor( tileRow );
-	if (tileCol <0) {
-		tileCol = 0;
-	}
-	if (tileRow <0) {
-		tileRow = 0;
-	}
-	var screenCols = Math.floor(canvas.width/TILE_W) + 2;
-	var screenRows = Math.floor(canvas.height/TILE_H) + 2;
-	
-	var leftCol = tileCol;
-	var rightCol = leftCol+screenCols;
-	var topRow = tileRow;
-	var bottomRow = topRow+screenRows;
-	if (rightCol >= ROOM_COLS) {
-		rightCol = ROOM_COLS;
-		leftCol = rightCol - screenCols;
-	}
-	if (bottomRow >= ROOM_ROWS) {
-		bottomRow = ROOM_ROWS;
-		topRow = bottomRow - screenRows;
-	}*/
+ 
     var leftCol = 0;
     var rightCol = ROOM_COLS;
     var topRow = 0;

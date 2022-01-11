@@ -4,7 +4,7 @@ function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
 }
 function mapRectOutline(topLeftX, topLeftY, boxWidth, boxHeight, strokeColor) {
 	canvasContext.strokeStyle = strokeColor;
-	canvasContext.strokeRect(topLeftX, topLeftY, boxWidth, boxHeight);
+	canvasContext.strokeRect(topLeftX+2, topLeftY+2, boxWidth-4, boxHeight-4);
 }
 function mapRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
 	miniMapCanvasContext.fillStyle = fillColor;
