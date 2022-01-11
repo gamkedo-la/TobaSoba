@@ -58,9 +58,11 @@ function startGame() {
   backgroundMusic.loopSong("audio/TobaSoba_Music_2");
   //init( playerPic , "toba");
     loadLevel(0);
-    if (showIntro){
-      gameState==STATE_INTRO;
-    } 
+    if (showIntro) { // toggle on/off
+      gameState = STATE_INTRO
+          } else {
+              gameState = STATE_PLAY;
+          }	
 }
 
 function update() {

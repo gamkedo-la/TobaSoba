@@ -28,6 +28,7 @@ const KEY_CTRL = 17;
 const KEY_PAGE_UP = 33;
 const KEY_PAGE_DOWN = 34;
 
+const KEY_ENTER = 13;
 const KEY_TILDE = 192;
 const KEY_PLUS = 61;
 const KEY_MINUS = 173;
@@ -109,6 +110,12 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_RIGHT_ARROW:
 	case KEY_D:
 		holdRight = setTo;
+		break;
+	case KEY_ENTER:
+		if (showIntro) {
+			showIntro  = false;
+			gameState = STATE_PLAY;
+		}
 		break;
 	case KEY_UP_ARROW:
 	case KEY_SPACE:

@@ -118,17 +118,19 @@ function drawMenu() {
   }
 
   function drawPrologue() {
-    colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'beige');
+    colorRect(0, 0, canvas.width, canvas.height, 'beige');
     canvasContext.font = "30px Verdana";
     canvasContext.fillStyle = 'purple';
-    canvasContext.fillText("I feel lonely and lost", INDENT, 80);
+    canvasContext.fillText("I feel lonely and lost", INDENT, 60);
     canvasContext.fillText("Soba's not been around for a year already.", INDENT, 100);
     canvasContext.fillText("wait a minure!I hear a murrmuring voice. Maybe I'm going crazy. Whose voice is it?", INDENT, 140);
     canvasContext.fillText("HHHHe? Hlp? Hlp PLsss? ", INDENT, 180);
     canvasContext.fillText("Is that you Soba? Sounds like Soba but where could he be?", INDENT, 220);
     canvasContext.fillText("Oh, I guess it's coming from the Factory!", INDENT, 260);
     canvasContext.fillText("Maybe I should follow the voice but it's dangerous going there.", INDENT, 300);
-    canvasContext.fillText("I should probably go there and see if Soba's in there", INDENT, 300);
+    canvasContext.fillText("I should probably go there and see if Soba's in there", INDENT, 340);
+
+    canvasContext.fillText("Press SPACE or ENTER to Play", INDENT, 760);
   }
   
   function drawEpilogue() {
