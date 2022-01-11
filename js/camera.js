@@ -5,6 +5,7 @@ var zoomLevel = 1.5;
 function cameraInstantJump() {
 	cameraPanX = (jumperX - canvas.width/2);
 	cameraPanY = (jumperY - canvas.height/2);
+	if(Jumper.trail) Jumper.trail.reset(); // don't show player teleport
 	cameraEnforceBounds();
 }
 

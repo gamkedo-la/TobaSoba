@@ -21,19 +21,29 @@ function trailsFX() {
     var xpos = [];
     var ypos = [];
 
-    this.draw = function(x,y) {
+    this.reset = function() {
+        xpos.length = 0;
+        ypos.length = 0;
+        max=0;
+    }
 
+    this.draw = function(x,y) {
         // remember new position
         xpos[max] = x;
         ypos[max] = y;
         max++;
 
         if (max<num) return; // wait for enough data
+        else { // limiting list to finite size by chopping out old data
+            xpos.shift();
+            ypos.shift();
+            max--;
+        }
 
         alpha = 1; // start opaque
         
         // draw each line segment more faded out
-        for (i=max-num+1; i<max; i++) {
+        for (i=0; i<max; i++) {
             alpha -= 1/num;
             if (alpha<0) alpha = 0;
             canvasContext.beginPath();
