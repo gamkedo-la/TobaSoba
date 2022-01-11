@@ -211,6 +211,9 @@ function reset () {
   enemyList = [];
   jumperEnemyList = [];
   patrolEnemy1NameList = [];
+
+  cameraInstantJump();
+
   if (worldEditor) {
     return;
   }
