@@ -146,6 +146,7 @@ function drawMenu() {
     showLineCounter++;
     for(var i=0;i<storySet.length;i++) {
         canvasContext.fillStyle = (i==3 ? speaker2Color : speaker1Color);
+        canvasContext.fillStyle = (i==7 ? speaker2Color : speaker1Color);
         canvasContext.fillText(storySet[i], INDENT * (i==3 ? 2 : 1), lineY+=lineSkip);
         if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
             break;
@@ -158,17 +159,32 @@ function drawMenu() {
   }
   
   function drawEpilogue() {
-    colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'beige');
+    colorRect(0, 0, canvas.width, canvas.height, 'beige');
     canvasContext.font = "30px Verdana";
-    canvasContext.fillStyle = 'purple';
-    canvasContext.fillText("Finally defeated the angry robot! Now where did you hide Soba?", INDENT, 80);
-    canvasContext.fillText("wait, I can see Soba's soul.Why was Soba in there?", INDENT, 100);
-    canvasContext.fillText("Oh no, I destroyed the last remaining of Soba!", INDENT, 140);
-    canvasContext.fillText("Hi Toba ", INDENT, 180);
-    canvasContext.fillText("It's okay. I was imprisoned here", INDENT, 220);
-    canvasContext.fillText("But I could save you", INDENT, 260);
-    canvasContext.fillText("You freed me. That's enough for me.", INDENT, 300);
-    canvasContext.fillText("Thank you Toba.", INDENT, 340);
+    var speaker1Color = "purple";
+    var speaker2Color = "orange";
+    var lineY = 60;
+    var lineSkip = 40;
+    var storySet = [
+    "Finally defeated the angry robot! Now where did you hide Soba?",
+    "Wait, I can hear Soba's voice. Is that Soba's soul?",
+    "Oh no, I destroyed the last remaining of Soba!",
+    "Thank you Soba, you saved me.", // color 2
+    "Is that really you? But I didn't save you, I erased you",
+    "It's okay Toba. You saved me.",
+    ];
+
+    showLineCounter++;
+    for(var i=0;i<storySet.length;i++) {
+        canvasContext.fillStyle = (i==3 ? speaker2Color : speaker1Color);
+        canvasContext.fillText(storySet[i], INDENT * (i==3 ? 2 : 1), lineY+=lineSkip);
+        if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
+            break;
+        }
+    }
+    
+    canvasContext.fillStyle = "black";
+    canvasContext.fillText("Press C for Credits", INDENT, 490);
   }
 
 var creditsList = [

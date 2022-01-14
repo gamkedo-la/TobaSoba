@@ -11,7 +11,7 @@ function cameraInstantJump() {
 
 function cameraEnforceBounds() {
 	var cameraRightBoundary = ROOM_COLS * TILE_W - canvas.width;
-	var cameraBottomBoundary = ROOM_ROWS * TILE_H - canvas.height;
+	var cameraBottomBoundary = ROOM_ROWS * TILE_H - canvas.height + 50;
 	if (cameraPanX < 0) {
 		cameraPanX = 0;
 	}

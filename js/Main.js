@@ -32,6 +32,7 @@ var gameState = STATE_PLAY;
 var gameIsover = false;
 var enemyList = [];
 var showIntro = true;
+var showOutro = false;
 WATERFALL_FRAMES=5;
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
@@ -59,7 +60,7 @@ function startGame() {
   //init( playerPic , "toba");
     loadLevel(0);
     if (showIntro) { // toggle on/off
-      gameState = STATE_INTRO
+      gameState = STATE_INTRO;
           } else {
               gameState = STATE_PLAY;
           }	
