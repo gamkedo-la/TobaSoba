@@ -1,7 +1,7 @@
 const PLATFORM_RADIUS = 25;
   function movingPlatformClass() {
     this.x = 75;
-    this.y = 75;
+    this.y = 65;
     this.xv = 1;
     this.yv = 0;
 
@@ -46,9 +46,10 @@ const PLATFORM_RADIUS = 25;
         jumperX += this.xv;//move with the platform
         jumperY = this.y;
         jumperOnGround = true;
-        if (jumperSpeedY > 0){
-          jumperSpeedY = 0;
-        }
+        doneJumping = false;
+        jumperSpeedY = 0;
+        jumpTimer = 0.0;
+        
       }
       console.log("Player Hit");   
      }

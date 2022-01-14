@@ -135,7 +135,7 @@ function drawMenu() {
     var storySet = [
     "I feel lonely and lost",
     "Soba's not been around for a year already.",
-    "Wait a minure! I hear a murmuring voice. Whose voice is it?",
+    "Wait a minute! I hear a murmuring voice. Whose voice is it?",
     "Help? Help please!?", // color 2
     "Is that you Soba? Sounds like Soba but where could he be?",
     "Oh, I guess it's coming from the Factory!",
@@ -146,7 +146,6 @@ function drawMenu() {
     showLineCounter++;
     for(var i=0;i<storySet.length;i++) {
         canvasContext.fillStyle = (i==3 ? speaker2Color : speaker1Color);
-        canvasContext.fillStyle = (i==7 ? speaker2Color : speaker1Color);
         canvasContext.fillText(storySet[i], INDENT * (i==3 ? 2 : 1), lineY+=lineSkip);
         if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
             break;
@@ -176,7 +175,7 @@ function drawMenu() {
 
     showLineCounter++;
     for(var i=0;i<storySet.length;i++) {
-        canvasContext.fillStyle = (i==3 ? speaker2Color : speaker1Color);
+        canvasContext.fillStyle = (i==3 && i==7 ? speaker2Color : speaker1Color);
         canvasContext.fillText(storySet[i], INDENT * (i==3 ? 2 : 1), lineY+=lineSkip);
         if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
             break;
