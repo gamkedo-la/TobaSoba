@@ -105,32 +105,56 @@ function drawMenu() {
         colorText("PRESS R TO RESPAWN",canvas.width/2, canvas.height/2 + 40, 34, "cyan");
   }
 
+  var creditsSize = 16;
+
   function drawCredits() {
-    colorRect(0, 0, canvas.width/1.5, canvas.height/1.5, 'black');
-    canvasContext.font = "30px Verdana";
+    colorRect(0, 0, canvas.width, canvas.height, 'black');
     canvasContext.fillStyle = 'orange';
-    canvasContext.fillText("TobaSoba made at HomeTeam GameDev", INDENT, 80);
   
-    canvasContext.fillText("Vaan Hope Khani", INDENT, 140);
+    var lineX = 13;
+    var lineY = 1;
+    var lineSkip = creditsSize+5;
+    canvasContext.font = creditsSize+"px Helvetica";
+    for(var i=0;i<creditsList.length;i++) {
+        canvasContext.fillText(creditsList[i], INDENT, lineY+=lineSkip);
+    }
   
-    canvasContext.fillText("Press key P to play", INDENT, 320);
-    canvasContext.fillText("Press key M for menu", INDENT, 360);
+    canvasContext.fillText("Press SPACE or ENTER to play", INDENT, 450);
+    canvasContext.fillText("Press M for menu", INDENT, 470);
   }
 
+  var showLineCounter = 0;
+  const framesBetweenStoryText = 30;
   function drawPrologue() {
     colorRect(0, 0, canvas.width, canvas.height, 'beige');
     canvasContext.font = "30px Verdana";
-    canvasContext.fillStyle = 'purple';
-    canvasContext.fillText("I feel lonely and lost", INDENT, 60);
-    canvasContext.fillText("Soba's not been around for a year already.", INDENT, 100);
-    canvasContext.fillText("wait a minure!I hear a murrmuring voice. Maybe I'm going crazy. Whose voice is it?", INDENT, 140);
-    canvasContext.fillText("HHHHe? Hlp? Hlp PLsss? ", INDENT, 180);
-    canvasContext.fillText("Is that you Soba? Sounds like Soba but where could he be?", INDENT, 220);
-    canvasContext.fillText("Oh, I guess it's coming from the Factory!", INDENT, 260);
-    canvasContext.fillText("Maybe I should follow the voice but it's dangerous going there.", INDENT, 300);
-    canvasContext.fillText("I should probably go there and see if Soba's in there", INDENT, 340);
+    var speaker1Color = "purple";
+    var speaker2Color = "orange";
+    var lineY = 60;
+    var lineSkip = 40;
+    var storySet = [
+    "I feel lonely and lost",
+    "Soba's not been around for a year already.",
+    "Wait a minure! I hear a murmuring voice. Whose voice is it?",
+    "Help? Help please!?", // color 2
+    "Is that you Soba? Sounds like Soba but where could he be?",
+    "Oh, I guess it's coming from the Factory!",
+    "Maybe I should follow the voice but it's dangerous going there.",
+    "I should probably go there and see if Soba's in there"
+    ];
 
-    canvasContext.fillText("Press SPACE or ENTER to Play", INDENT, 760);
+    showLineCounter++;
+    for(var i=0;i<storySet.length;i++) {
+        canvasContext.fillStyle = (i==3 ? speaker2Color : speaker1Color);
+        canvasContext.fillText(storySet[i], INDENT * (i==3 ? 2 : 1), lineY+=lineSkip);
+        if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
+            break;
+        }
+    }
+    
+    canvasContext.fillStyle = "black";
+    canvasContext.fillText("Press SPACE or ENTER to Play", INDENT, 460);
+    canvasContext.fillText("Press C for Credits", INDENT, 490);
   }
   
   function drawEpilogue() {
@@ -146,3 +170,68 @@ function drawMenu() {
     canvasContext.fillText("You freed me. That's enough for me.", INDENT, 300);
     canvasContext.fillText("Thank you Toba.", INDENT, 340);
   }
+
+var creditsList = [
+"Vaan Hope Khani: Project lead, core gameplay, level design, level editor, snack system, player character, traps, assorted sounds, collisions, moving platform, springboard, flying enemy, bosses, boost camera, game over screen, boost pad, map scrolling, minimap, story integration",
+"Vince McKeown: Patrol enemy (functionality and art), jumper enemy, randomized enemy movement, waterfall animation",
+"Patrick McKeown: Music, state machine, credits view, level warp keys, mute toggle, UI adjustments",
+"Philip Greene: Trees art (pine, oak, tall), cloud tiles, pipes and connectors, lifter claw art",
+"Farah R: Teleport function for testing, text shadow effect, debug panel",
+"Abhishek @akhmin_ak: Background story, factory level box art, pick-up sound, pause functionality",
+"Christer \"McFunkypants\" Kaitila: Particlem, landing effects, sound mixing, menu, blink, trail, sky background",
+"Filipe Dottori: Door art, player bounces off enemies, air movement tuning, limits on jump height",
+"Klaim (A. Joël Lamotte): Playtesting, music toggle, minor bug fix",
+"Vivek S: Jump sound fix, scrollbar css",
+"H Trayford: Editor mode interface tweak",
+"Chris DeLeon: Tunnel bug fix, camera improvements",
+" ",
+"Developed by members in HomeTeamGameDev.com - come make games with us!",
+];
+
+function lineWrapCredits() { // note: gets calling immediately after definition!
+  const newCut = [];
+  var maxLineChar = 100;
+  var findEnd;
+
+  for(let i = 0; i < creditsList.length; i++) {
+    const currentLine = creditsList[i];
+    for(let j = 0; j < currentLine.length; j++) {
+      /*const aChar = currentLine[j];
+      if(aChar === ":") {
+        if(i !== 0) {
+          newCut.push("\n");
+        }
+
+        newCut.push(currentLine.substring(0, j + 1));
+        newCut.push(currentLine.substring(j + 2, currentLine.length));
+        break;
+      } else*/ if(j === currentLine.length - 1) {
+        if((i === 0) || (i >= creditsList.length - 2)) {
+          newCut.push(currentLine);
+        } else {
+          newCut.push(currentLine.substring(0, currentLine.length));
+        }
+      }
+    }
+  }
+
+  const newerCut = [];
+  for(var i=0;i<newCut.length;i++) {
+    while(newCut[i].length > 0) {
+      findEnd = maxLineChar;
+      if(newCut[i].length > maxLineChar) {
+        for(var ii=findEnd;ii>0;ii--) {
+          if(newCut[i].charAt(ii) == " ") {
+            findEnd=ii;
+            break;
+          }
+        }
+      }
+      newerCut.push(newCut[i].substring(0, findEnd));
+      newCut[i] = newCut[i].substring(findEnd, newCut[i].length);
+    }
+  }
+
+  creditsList = newerCut;
+}
+lineWrapCredits(); // note: calling immediately as part of init, outside the function

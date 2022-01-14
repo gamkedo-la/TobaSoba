@@ -1,4 +1,4 @@
-var worldEditor = true;
+var worldEditor = false;
 
 function drawEditor(minimapY){
 
