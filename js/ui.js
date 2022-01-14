@@ -74,7 +74,6 @@ function drawMenu() {
     var menuLineHeight = 26;
 
     // centered
-    shadowText("created by Vaan Hope Khani",menuX,menuY+=menuLineHeight);
     shadowText("Left right arrow keys to run",menuX,menuY+=menuLineHeight*2);
     shadowText("Up-arrow key or spacebar to jump",menuX,menuY+=menuLineHeight);
     // not centered
@@ -154,7 +153,8 @@ function drawMenu() {
     
     canvasContext.fillStyle = "black";
     canvasContext.fillText("Press SPACE or ENTER to Play", INDENT, 460);
-    canvasContext.fillText("Press C for Credits", INDENT, 490);
+    canvasContext.fillText("Press M for Menu", INDENT, 490);
+    canvasContext.fillText("Press C for Credits", INDENT, 520);
   }
   
   function drawEpilogue() {
