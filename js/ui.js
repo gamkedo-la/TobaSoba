@@ -77,8 +77,9 @@ function drawMenu() {
     shadowText("Left right arrow keys to run",menuX,menuY+=menuLineHeight*2);
     shadowText("Up-arrow key or spacebar to jump",menuX,menuY+=menuLineHeight);
     // not centered
-    shadowText("[P] Pause",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
-    shadowText("[C] Credits",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
+    shadowText("[C] Credits",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
+    shadowText("[Q] Map",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
+    shadowText("[C] Pause",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[M] Toggle Menu",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[K] Editor",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[X] Music on/off",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
@@ -118,7 +119,7 @@ function drawMenu() {
         canvasContext.fillText(creditsList[i], INDENT, lineY+=lineSkip);
     }
   
-    canvasContext.fillText("Press SPACE or ENTER to play", INDENT, 450);
+    //canvasContext.fillText("Press SPACE or ENTER to play", INDENT, 450);
     canvasContext.fillText("Press M for menu", INDENT, 470);
   }
 

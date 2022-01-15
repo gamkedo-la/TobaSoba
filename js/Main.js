@@ -27,10 +27,14 @@ const STATE_INTRO = 5;
 const STATE_OUTRO = 6;
 const INDENT = 40;
 const SET_FRAMES_PER_SECOND = 30;
+const minimapX = 40;
+const minimapY = 40;
+
 var snackHeld = 4;
 var paused = false;
 var gameState = STATE_PLAY;
 var gameIsover = false;
+var showMinimap = true;
 var enemyList = [];
 var showIntro = true;
 var showOutro = false;
@@ -123,14 +127,14 @@ function drawEverything() {
     Jumper.Draw();
     drawParticles();
 
-    const minimapX = 40;
-    const minimapY = 40;
     endCameraPan();
 		drawEnerrgyUI();
     drawTrophyUI();
 		drawEditor(minimapY);
-    drawDebug();
-    drawMiniMap(minimapX, minimapY);
+    drawDebug(); 
+    if (showMinimap == true) {
+      drawMiniMap(minimapX,minimapY);
+    } else {return}
 }
 
 function moveEverything() {
@@ -201,6 +205,7 @@ function togglePause()
     }
 
 }
+
 function loadLevel (whichLevel) {
   roomGridMaster = roomGridList[whichLevel];
   ROOM_COLS = roomSizes[whichLevel].roomCols;
@@ -213,6 +218,7 @@ function loadLevel (whichLevel) {
   reset();
   updateMiniMap();
 }
+
 function reset () {
   roomGrid = roomGridMaster.slice();
   Jumper.init();

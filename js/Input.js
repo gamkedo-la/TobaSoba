@@ -19,6 +19,7 @@ const KEY_K = 75;
 const KEY_L = 76;
 const KEY_M = 77;
 const KEY_P = 80;
+const KEY_Q = 81;
 const KEY_R = 82;
 const KEY_T = 84;
 const KEY_W = 87;
@@ -160,6 +161,14 @@ function setKeyHoldState(thisKey, setTo) {
 			togglePause();
 		}
 		break;
+	case KEY_Q:
+		if (setTo == false){
+			if (!showMinimap)
+			{showMinimap = true;
+			} else if (showMinimap)
+			{ showMinimap= false;}
+		}
+		break;		
 	case KEY_R:
 		if (setTo == false){
 			//resetGame();
