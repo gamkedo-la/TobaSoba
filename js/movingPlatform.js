@@ -1,7 +1,7 @@
 const PLATFORM_RADIUS = 25;
   function movingPlatformClass() {
     this.x = 75;
-    this.y = 65;
+    this.y = 75;
     this.xv = 1;
     this.yv = 0;
 
@@ -42,7 +42,8 @@ const PLATFORM_RADIUS = 25;
       }
     }
     this.playerCollide = function(){
-      if(jumperY >= this.y) {
+      if(jumperY >= this.y && jumperX >= this.x-PLATFORM_RADIUS &&
+         jumperX <= this.x+PLATFORM_RADIUS && jumperY <= this.y+movingPlatform.height)  {
         jumperX += this.xv;//move with the platform
         jumperY = this.y;
         jumperOnGround = true;
@@ -51,8 +52,7 @@ const PLATFORM_RADIUS = 25;
         jumpTimer = 0.0;
         
       }
-      console.log("Player Hit");   
-     }
+    }
 
     this.draw = function () {
       canvasContext.save();
