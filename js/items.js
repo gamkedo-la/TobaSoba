@@ -76,7 +76,7 @@ const SNACK_RADIUS = 25;
 
     this.playerCollide = function(){
        //trophySound.play("hit");
-       this.trophyHeld++; // get treasure
+       trophyHeld++; // get treasure
        this.readyToRemove = true;
      }
      

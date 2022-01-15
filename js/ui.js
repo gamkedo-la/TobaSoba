@@ -26,9 +26,9 @@ function drawEnerrgyUI() {
 function drawTrophyUI() {
     var showTrophyNum;
     showTrophyNum = trophyHeld;
-    shadowText(showTrophyNum,trophy.width/1.5,120+trophy.height/2,'gold','25px Verdana','left');
+    shadowText(showTrophyNum,50+trophy.width/1.5,0+trophy.height/2,'gold','25px Verdana','left');
     canvasContext.globalAlpha = 0.8;
-    canvasContext.drawImage(trophy,0,120,
+    canvasContext.drawImage(trophy,50,0,
         trophy.width/1.5, 
         trophy.height/1.5);
 }
