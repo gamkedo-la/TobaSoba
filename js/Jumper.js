@@ -328,12 +328,11 @@ function JumperClass() {
                 if (roomGridMaster) {
                     roomGrid[walkIntoTileIndex] = roomBackground; // remove door
                 }
-                if ( roomGridMaster = roomGridList[0]) {
+                if ( roomGridMaster == roomGridList[0]) {
                     loadLevel(1);
                     gameState = STATE_PLAY;
                     worldEditor = false;
-                }
-                if ( roomGridMaster = roomGridList[1]) {
+                } else if ( roomGridMaster == roomGridList[1]) {
                     loadLevel(2);
                     gameState = STATE_PLAY;
                     worldEditor = false;
