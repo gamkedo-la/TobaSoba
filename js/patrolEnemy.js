@@ -109,6 +109,7 @@ this.playerCollide = function(){
     Jumper.playerDeath();
   } else { 
     this.readyToRemove = true;
+    enemyDeadSound.play();
   }
 }
 

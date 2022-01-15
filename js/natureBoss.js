@@ -151,6 +151,7 @@ const BOSS_JUMP_POWER = 15;
           this.hitsLeft--;
           if(this.hitsLeft == 0) {
             this.readyToRemove = true;
+            enemyDeadSound.play();
           }
         }
      }

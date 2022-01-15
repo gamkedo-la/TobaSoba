@@ -207,6 +207,7 @@ function FactoryFireClass(startX, startY, startAng) {
         Jumper.playerDeath();
       } else{ 
         this.readyToRemove = true;
+        enemyDeadSound.play();
       }
     }
      

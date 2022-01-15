@@ -59,6 +59,7 @@ const FLYER_RADIUS = 25;
           Jumper.playerDeath();
         } else { 
           this.readyToRemove = true;
+          enemyDeadSound.play();
         }
      }
      
