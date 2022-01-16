@@ -81,8 +81,10 @@ function update() {
 }
 
 function resizeCanvas() {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+  if(canvas.width != window.innerWidth) {
+  	canvas.width = window.innerWidth;
+  	canvas.height = window.innerHeight;
+  }
 
   switch (gameState) {
     case STATE_MENU:
@@ -196,9 +198,9 @@ function togglePause()
         var boxHeight = 60;
         colorRect( canvas.width/2-(boxWidth/2), canvas.height/2-(boxHeight/2)-10, boxWidth,boxHeight, 'black');
         var wasAlign = canvas.textAlign;
-        canvas.textAlign = "center";
+        canvasContext.textAlign = "center";
         colorText("PAUSED",canvas.width/2, canvas.height/2 , 30, 'white');
-        canvas.textAlign = wasAlign;
+        canvasContext.textAlign = wasAlign;
     } else if (paused)
     {
        paused= false;

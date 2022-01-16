@@ -77,10 +77,10 @@ function drawMenu() {
     shadowText("Left right arrow keys to run",menuX,menuY+=menuLineHeight*2);
     shadowText("Up-arrow key or spacebar to jump",menuX,menuY+=menuLineHeight);
     // not centered
-    shadowText("[C] Credits",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
-    shadowText("[Q] Map",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
-    shadowText("[C] Pause",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
-    shadowText("[M] Menu",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
+    shadowText("[C] Show Credits",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
+    shadowText("[Q] Toggle Map",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
+    shadowText("[P] Toggle Pause",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
+    shadowText("[M] Close Menu",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[R] Restart",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[X] Music on/off",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
     shadowText("[1] House Level",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
@@ -127,13 +127,13 @@ function drawMenu() {
   const framesBetweenStoryText = 30;
   function drawPrologue() {
     colorRect(0, 0, canvas.width, canvas.height, 'beige');
-    canvasContext.font = "30px Verdana";
+    canvasContext.font = "25px Verdana";
     var speaker1Color = "purple";
     var speaker2Color = "orange";
     var lineY = 60;
     var lineSkip = 40;
     var storySet = [
-    "\"feeling lonely and lost\"",
+    "(feeling lonely and lost)",
     "Soba's not been around for a few years! I wonder where he's been.",
     "Wait a minute! I hear a murmuring voice. Whose voice is it?",
     "Help? Help please!?", // color 2
