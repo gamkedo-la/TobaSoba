@@ -31,6 +31,7 @@ function drawTrophyUI() {
     canvasContext.drawImage(trophy,50,0,
         trophy.width/1.5, 
         trophy.height/1.5);
+    canvasContext.globalAlpha = 1.0;
 }
 
 function shadowText(txt,x,y,color='white',font='20px Verdana',align='center') {
@@ -60,32 +61,34 @@ function generateGradientSprite(rgba1,x1,y1,rgba2,x2,y2,isVertical) {
 var menuBGimage;
 function drawMenu() {
 
-    if (!menuBGimage) menuBGimage = generateGradientSprite('rgba(0,0,0,1)',0,0,'rgba(0,0,0,0.5)',canvas.width,canvas.height,true);
+    if (!menuBGimage) menuBGimage = generateGradientSprite('rgba(245,245,220,1)',0,0,'rgba(245,245,220,0.5)',canvas.width,canvas.height,true);
     canvasContext.drawImage(menuBGimage,0,0,menuBGimage.width,menuBGimage.height,
                                         0,0,canvas.width,canvas.height);
     
+    var logoScale = 0.4;
     canvasContext.drawImage(menuPic,
-        Math.round(canvas.width/2-menuPic.width/2), // horizontally centered
-        0, //Math.round(canvas.height/2-menuPic.height/2) // vertically centered?
+        0,0,
+        menuPic.width,menuPic.height,
+        0,0,
+        logoScale*menuPic.width,logoScale*menuPic.height
         );
 
-    var menuX = Math.round(canvas.width/2);
-    var menuY = menuPic.height;
+    var menuX = 40;
+    var menuY = menuPic.height*logoScale+20;
     var menuLineHeight = 26;
-
-    // centered
-    shadowText("Left right arrow keys to run",menuX,menuY+=menuLineHeight*2);
-    shadowText("Up-arrow key or spacebar to jump",menuX,menuY+=menuLineHeight);
-    // not centered
-    shadowText("[C] Show Credits",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
-    shadowText("[Q] Toggle Map",menuX-50,menuY+=menuLineHeight*2,'silver','20px Verdana','left');
-    shadowText("[P] Toggle Pause",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
-    shadowText("[M] Close Menu",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
-    shadowText("[R] Restart",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
-    shadowText("[X] Music on/off",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
-    shadowText("[1] House Level",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
-    shadowText("[2] Nature Level",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
-    shadowText("[3] Factory Level",menuX-50,menuY+=menuLineHeight,'silver','20px Verdana','left');
+    var menuFontColor = '#777';
+    shadowText("[M] Close This Menu",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    shadowText("[1] House Level Warp",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    shadowText("[2] Nature Level Warp",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    shadowText("[3] Factory Level Warp",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    shadowText("[R] Respawn to Safety",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    shadowText("[X] Music on/off",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    shadowText("[Q] Toggle MiniMap",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    shadowText("[P] Toggle Pause",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    shadowText("[C] Show Credits",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    menuY+=menuLineHeight; // skip extra line
+    shadowText("Left/right arrow keys to run",menuX,menuY+=menuLineHeight,'purple','20px Verdana','left');
+    shadowText("Up-arrow key or spacebar to jump",menuX,menuY+=menuLineHeight,'purple','20px Verdana','left');
   }
   
   function gameOverScreen() {
@@ -97,12 +100,12 @@ function drawMenu() {
         gameOverBoxWidth,
         gameOverBoxHeight, 
         'lavender');
-        canvasContext.globalAlpha = 1.0;
-        canvasContext.textAlign = "center";
-        canvasContext.font = "30px Verdana";
-        canvasContext.fillStyle = 'orange';
-        colorText("LETS TRY AGAIN",canvas.width/2, canvas.height/2 , 18, "green");
-        colorText("PRESS R TO RESPAWN",canvas.width/2, canvas.height/2 + 40, 34, "cyan");
+    canvasContext.globalAlpha = 1.0;
+    canvasContext.textAlign = "center";
+    canvasContext.font = "30px Verdana";
+    canvasContext.fillStyle = 'orange';
+    colorText("LETS TRY AGAIN",canvas.width/2, canvas.height/2 , 18, "green");
+    colorText("PRESS R TO RESPAWN",canvas.width/2, canvas.height/2 + 40, 34, "cyan");
   }
 
   var creditsSize = 16;
@@ -126,12 +129,12 @@ function drawMenu() {
   var showLineCounter = 0;
   const framesBetweenStoryText = 30;
   function drawPrologue() {
-    colorRect(0, 0, canvas.width, canvas.height, 'beige');
-    canvasContext.font = "25px Verdana";
+    canvasContext.font = "19px Verdana";
     var speaker1Color = "purple";
     var speaker2Color = "orange";
-    var lineY = 60;
-    var lineSkip = 40;
+    var lineX = 305;
+    var lineY = 25;
+    var lineSkip = 30;
     var storySet = [
     "(feeling lonely and lost)",
     "Soba's not been around for a few years! I wonder where he's been.",
@@ -147,16 +150,16 @@ function drawMenu() {
     showLineCounter++;
     for(var i=0;i<storySet.length;i++) {
         canvasContext.fillStyle = (i==3 || i==5 ? speaker2Color : speaker1Color);
-        canvasContext.fillText(storySet[i], INDENT * (i==3 || i==5 ? 2 : 1), lineY+=lineSkip);
+        canvasContext.fillText(storySet[i], lineX+ INDENT * (i==3 || i==5 ? 1 : 0), lineY+=lineSkip);
         if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
             break;
         }
     }
     
-    canvasContext.fillStyle = "black";
+    /*canvasContext.fillStyle = "black";
     canvasContext.fillText("Press SPACE or ENTER to Play", INDENT, 460);
     canvasContext.fillText("Press M for Menu", INDENT, 490);
-    canvasContext.fillText("Press C for Credits", INDENT, 520);
+    canvasContext.fillText("Press C for Credits", INDENT, 520);*/
   }
   
   function drawEpilogue() {

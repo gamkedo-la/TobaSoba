@@ -113,10 +113,7 @@ function setKeyHoldState(thisKey, setTo) {
 		holdRight = setTo;
 		break;
 	case KEY_ENTER:
-		if (showIntro) {
-			showIntro  = false;
-			gameState = STATE_PLAY;
-		}
+		gameState = STATE_PLAY;
 		break;
 	case KEY_UP_ARROW:
 	case KEY_SPACE:
@@ -125,10 +122,7 @@ function setKeyHoldState(thisKey, setTo) {
 			if (jumperHeldByClaw != null) {
                 jumperHeldByClaw.playerEscaped();
             }
-			if (showIntro) {
-				showIntro  = false;
-				gameState = STATE_PLAY;
-			}
+			gameState = STATE_PLAY;
 		}
 		holdJump = setTo;
 		break;

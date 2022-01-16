@@ -23,8 +23,7 @@ const STATE_PLAY = 1;
 const STATE_CREDITS = 2;
 const STATE_GAME_OVER = 3;
 const STATE_EDIT = 4;
-const STATE_INTRO = 5;
-const STATE_OUTRO = 6;
+const STATE_OUTRO = 5;
 const INDENT = 40;
 const SET_FRAMES_PER_SECOND = 30;
 const minimapX = 40;
@@ -63,12 +62,12 @@ function startGame() {
     }, 1000/framesPerSecond);
   backgroundMusic.loopSong("audio/TobaSoba_Music_2");
   //init( playerPic , "toba");
-    loadLevel(0);
-    if (showIntro) { // toggle on/off
-      gameState = STATE_INTRO;
-          } else {
-              gameState = STATE_PLAY;
-          }	
+  loadLevel(0);
+  if (showIntro) { // used to bypass menu when doing frequent gameplay testing, not used after game start
+    gameState = STATE_MENU;
+  } else {
+      gameState = STATE_PLAY;
+  }	
 }
 
 function update() {
@@ -90,6 +89,7 @@ function resizeCanvas() {
     case STATE_MENU:
       drawEverything();
       drawMenu();
+      drawPrologue();
       break;
     case STATE_PLAY:
       drawEverything();
@@ -101,9 +101,6 @@ function resizeCanvas() {
         gameOverScreen();
         pause = true;
       break;
-      case STATE_INTRO:
-        drawPrologue();
-        break;
       case STATE_OUTRO:
         drawEpilogue();
         break;
