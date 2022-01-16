@@ -133,7 +133,10 @@ function drawEverything() {
     drawDebug(); 
     if (showMinimap == true) {
       drawMiniMap(minimapX,minimapY);
-    } else {return}
+    }
+    if(gameState != STATE_MENU) {
+      shadowText("M for Menu & Controls",5,canvas.height-5,'silver','15px Verdana','left');
+    }
 }
 
 function moveEverything() {
