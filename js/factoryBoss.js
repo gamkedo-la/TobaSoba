@@ -140,7 +140,7 @@ function FactoryArmClass(startX, startY, startAng) {
                 this.justBumpedWall = true;
             }
         } else if (this.speedX > 0 && isBrickAtPixelCoord(this.x + FACTORYBOSS_RADIUS, this.y) == 1) {
-            this.x = (1 + Math.floor(jumperX / TILE_W)) * TILE_W - FACTORYBOSS_RADIUS;
+            this.x = (1 + Math.floor(this.x / TILE_W)) * TILE_W - FACTORYBOSS_RADIUS;
             if (!this.justBumpedWall) {
                 this.justBumpedWall = true;
             }

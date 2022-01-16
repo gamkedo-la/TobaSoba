@@ -126,7 +126,10 @@ function setKeyHoldState(thisKey, setTo) {
 		}
 		holdJump = setTo;
 		break;
-	case KEY_K:
+	case KEY_K: // teleport to far right part of map, closer to boss for testing
+		jumperX = (ROOM_COLS-20)*TILE_W;
+		jumperY = (15)*TILE_H;
+		cameraInstantJump()
     break;
 	case KEY_L:
     break;
