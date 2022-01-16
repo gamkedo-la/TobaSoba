@@ -41,7 +41,7 @@ function editorKeyCheck(keyCode) {
     if(mousePos == null)
         return;
 
-    if (gameState == STATE_MENU) return;
+    if (gameState != STATE_PLAY) return;
 
     /*if (worldEditor == false) {
         if(keyCode == KEY_TAB) {
@@ -49,7 +49,12 @@ function editorKeyCheck(keyCode) {
             reset();
             return;
         }
-    }/*
+    }*/
+
+    if(worldEditor == false) {
+        return;
+    }
+    /*
     let  mouseX = mousePos.x;
     let  mouseY = mousePos.y;
     tileIndex = getTileIndexAtPixelCoord(mouseX + cameraPanX, mouseY + cameraPanY);
