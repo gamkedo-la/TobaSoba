@@ -133,20 +133,21 @@ function drawMenu() {
     var lineY = 60;
     var lineSkip = 40;
     var storySet = [
-    "I feel lonely and lost",
-    "Soba's not been around for a year already.",
+    "\"feeling lonely and lost\"",
+    "Soba's not been around for a few years! I wonder where he's been.",
     "Wait a minute! I hear a murmuring voice. Whose voice is it?",
     "Help? Help please!?", // color 2
     "Is that you Soba? Sounds like Soba but where could he be?",
+    "Help please!?", // color 2
     "Oh, I guess it's coming from the Factory!",
-    "Maybe I should follow the voice but it's dangerous going there.",
-    "I should probably go there and see if Soba's in there"
+    "I think I should follow the voice but it's dangerous going there.",
+    "I must go and see if Soba's in there"
     ];
 
     showLineCounter++;
     for(var i=0;i<storySet.length;i++) {
-        canvasContext.fillStyle = (i==3 ? speaker2Color : speaker1Color);
-        canvasContext.fillText(storySet[i], INDENT * (i==3 ? 2 : 1), lineY+=lineSkip);
+        canvasContext.fillStyle = (i==3 || i==5 ? speaker2Color : speaker1Color);
+        canvasContext.fillText(storySet[i], INDENT * (i==3 || i==5 ? 2 : 1), lineY+=lineSkip);
         if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
             break;
         }
@@ -171,13 +172,14 @@ function drawMenu() {
     "Oh no, I destroyed the last remaining of Soba!",
     "Thank you Soba, you saved me.", // color 2
     "Is that really you? But I didn't save you, I erased you",
-    "It's okay Toba. You saved me.",
+    "No, You saved me Toba. I was imprisoned here for a long time.",
+    "Take care. Be safe my friend.",
     ];
 
     showLineCounter++;
     for(var i=0;i<storySet.length;i++) {
-        canvasContext.fillStyle = (i==3 && i==7 ? speaker2Color : speaker1Color);
-        canvasContext.fillText(storySet[i], INDENT * (i==3 ? 2 : 1), lineY+=lineSkip);
+        canvasContext.fillStyle = (i==3 || i==5 ? speaker2Color : speaker1Color);
+        canvasContext.fillText(storySet[i], INDENT * (i==3 || i==5 ? 2 : 1), lineY+=lineSkip);
         if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
             break;
         }
