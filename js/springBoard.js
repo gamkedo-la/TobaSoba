@@ -29,7 +29,7 @@ const SPRINGBOARD_RADIUS = 25;
       jumperSpeedY = -2*JUMP_POWER;
       jumpTimer += 1 / framesPerSecond;
       springSound.play();
-      console.log("Player Hit");   
+      //console.log("Player Hit");   
      }
      
     this.draw = function () {

@@ -52,7 +52,7 @@ const MAGNETLIFTER_RADIUS = 25;
         jumperX += jumperSpeedY;//move with the magnetLifter
         jumperY += jumperSpeedY;
         }
-      console.log("Player Hit");   
+      //console.log("Player Hit");   
      }
 
     this.draw = function () {

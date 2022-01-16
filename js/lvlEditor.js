@@ -100,14 +100,14 @@ function editorKeyCheck(keyCode) {
             if (editorItem  > ALLTILES.length - 1) {
                 editorItem =0;
             }
-            console.log(editorItem);
+            //console.log(editorItem);
             break
         case KEY_PAGE_DOWN:
             editorItem--;
             if (editorItem < 0) {
                 editorItem = ALLTILES.length -1 ;
             }
-            console.log(editorItem);
+            //console.log(editorItem);
             break
     }
 }

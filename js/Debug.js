@@ -1,6 +1,6 @@
 console.log('Debug is connected')
 
-var showDebug = true;
+var showDebug = false;
 
 function drawDebug(){
   if (showDebug == false){

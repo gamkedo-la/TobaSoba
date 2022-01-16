@@ -133,12 +133,8 @@ function setKeyHoldState(thisKey, setTo) {
 		holdJump = setTo;
 		break;
 	case KEY_K:
-    worldEditor = true;
-    console.log("World editor enabled");
     break;
 	case KEY_L:
-    worldEditor = false;
-    console.log("World editor switched off");
     break;
 	case KEY_PLUS:
 		radiusIncrease = setTo;

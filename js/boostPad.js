@@ -38,7 +38,7 @@ const boostPad_RADIUS = 25;
       jumperFallDelayFrames = 20; 
       boostpadSound.play();
       cheerSound.play();
-      console.log("Player Hit");   
+      //console.log("Player Hit");   
      }
      
     this.draw = function () {

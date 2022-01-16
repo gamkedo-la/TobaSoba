@@ -207,7 +207,7 @@ function FactoryArmClass(startX, startY, startAng) {
               Jumper.takeDamage();
               Jumper.bouncePlayer(this);
               Jumper.playerDeath();
-              console.log("Player Hit");   
+              //console.log("Player Hit");   
           } else {
             this.phase = 1;
             this.hitsLeft--;

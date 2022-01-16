@@ -60,7 +60,7 @@ const LIFTERCLAW_RADIUS = 25;
       this.clawClosed = false;
       jumperHeldByClaw = null;
       this.ignoreGrabFrame = 20;
-      console.log("playerEscaped");
+      //console.log("playerEscaped");
     }
     this.playerCollide = function(){
       if (jumperHeldByClaw == null && this.ignoreGrabFrame<=0) { 
