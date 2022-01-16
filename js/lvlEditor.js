@@ -43,13 +43,13 @@ function editorKeyCheck(keyCode) {
 
     if (gameState == STATE_MENU) return;
 
-    if (worldEditor == false) {
+    /*if (worldEditor == false) {
         if(keyCode == KEY_TAB) {
             worldEditor = true;
             reset();
             return;
         }
-    }
+    }/*
     let  mouseX = mousePos.x;
     let  mouseY = mousePos.y;
     tileIndex = getTileIndexAtPixelCoord(mouseX + cameraPanX, mouseY + cameraPanY);
@@ -58,10 +58,10 @@ function editorKeyCheck(keyCode) {
         items = (`${key}: ${ALLTILES[key]}`);
     });*/
     switch (keyCode) {
-        case KEY_TAB:
+        case KEY_TAB:/*
             worldEditor = false;
             roomGridMaster =roomGrid.slice();
-            reset();
+            reset();*/
             break;
         case KEY_0:
             roomGrid[tileIndex] = TILE_DOOR;
