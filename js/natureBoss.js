@@ -97,7 +97,7 @@ const BOSS_JUMP_POWER = 15;
             this.justBumpedWall = true;
         }
     } else if (this.speedX > 0 && isBrickAtPixelCoord(this.x + NATUREBOSS_RADIUS, this.y) == 1) {
-        this.x = (1 + Math.floor(jumperX / TILE_W)) * TILE_W - NATUREBOSS_RADIUS;
+        this.x = (1 + Math.floor(this.x / TILE_W)) * TILE_W - NATUREBOSS_RADIUS;
         if (!this.justBumpedWall) {
             this.justBumpedWall = true;
         }

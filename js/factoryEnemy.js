@@ -134,7 +134,7 @@ function FactoryFireClass(startX, startY, startAng) {
             this.justBumpedWall = true;
         }
     } else if (this.speedX > 0 && isBrickAtPixelCoord(this.x + FACTORYENEMY_RADIUS, this.y) == 1) {
-        this.x = (1 + Math.floor(jumperX / TILE_W)) * TILE_W - FACTORYENEMY_RADIUS;
+        this.x = (1 + Math.floor(this.x / TILE_W)) * TILE_W - FACTORYENEMY_RADIUS;
         if (!this.justBumpedWall) {
             this.justBumpedWall = true;
         }
