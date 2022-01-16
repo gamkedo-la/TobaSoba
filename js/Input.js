@@ -128,7 +128,7 @@ function setKeyHoldState(thisKey, setTo) {
 		break;
 	case KEY_K: // teleport to far right part of map, closer to boss for testing
 		jumperX = (ROOM_COLS-20)*TILE_W;
-		jumperY = (15)*TILE_H;
+		jumperY = (14)*TILE_H;
 		cameraInstantJump()
     break;
 	case KEY_L:
@@ -175,6 +175,7 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_T:
 		jumperX = mousePos.x + cameraPanX;
 		jumperY = mousePos.y + cameraPanY;
+		Jumper.stuckTime = 0; // reset wall reset freeze time
 		break
 	case KEY_TILDE:
 		if (setTo == false){

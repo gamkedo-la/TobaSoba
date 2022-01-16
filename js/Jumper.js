@@ -87,6 +87,9 @@ function JumperClass() {
         if(Math.abs((Math.floor(jumperX) % TILE_W)-25) > 15) { // near center of tile, so not leaning over an edge
             isSafe = false;
         }
+        if(isBrickAtPixelCoord(jumperX,jumperY)) { // currently inside of a tile, not safe to respawn here
+            isSafe = false;
+        }
         if(isSafe) {
             var unsafeEnemyPixelDistanceForCheckpoint = 300;
             for (var i=0; i < enemyList.length; i++){
@@ -206,9 +209,16 @@ function JumperClass() {
             justBumpedWall = false; 
         }
 
-        //jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed 
-        //jumperY += jumperSpeedY; // same as above, but for vertical
+        if(isBrickAtPixelCoord(jumperX,jumperY)) { // currently inside of a wall somehow?
+            this.stuckTime++;
+            if(this.stuckTime>25) {
+                respawnJumper();
+            }
+        } else {
+            this.stuckTime=0;
+        }
     }
+    this.stuckTime=0;
 
 
     this.jumperReset = function() {
@@ -242,8 +252,8 @@ function JumperClass() {
                 if (worldEditor == false) {
                     roomGrid[i] = roomBackground;
                 }
-                jumperX = this.homeX;
-                jumperY = this.homeY;
+                respawnX = jumperX = this.homeX;
+                respawnY = jumperY = this.homeY;
                 break; // found it, so no need to keep searching 
             } // end of if
         } // end of for

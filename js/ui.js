@@ -204,7 +204,7 @@ var creditsList = [
 "Klaim (A. Joël Lamotte): Playtesting, music toggle, minor bug fix",
 "Vivek S: Jump sound fix, scrollbar css",
 "H Trayford: Editor mode interface tweak",
-"Chris DeLeon: Tunnel bug fix, camera improvements",
+"Chris DeLeon: Tunnel bug fix, camera improvements, nature boss face",
 " ",
 "Developed by members in HomeTeamGameDev.com - come make games with us!",
 ];
