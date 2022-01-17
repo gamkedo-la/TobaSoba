@@ -199,7 +199,7 @@ var creditsList = [
 "Philip Greene: Trees art (pine, oak, tall), cloud tiles, pipes and connectors, lifter claw art",
 "Farah R: Teleport function for testing, text shadow effect, debug panel",
 "Abhishek @akhmin_ak: Background story, factory level box art, pick-up sound, pause functionality",
-"Christer \"McFunkypants\" Kaitila: Particlem, landing effects, sound mixing, menu, blink, trail, sky background",
+"Christer \"McFunkypants\" Kaitila: Particles, landing effects, sound mixing, menu, blink, trail, sky background",
 "Filipe Dottori: Door art, player bounces off enemies, air movement tuning, limits on jump height",
 "Klaim (A. Joël Lamotte): Playtesting, music toggle, minor bug fix",
 "Vivek S: Jump sound fix, scrollbar css",
