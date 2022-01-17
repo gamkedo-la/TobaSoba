@@ -77,7 +77,7 @@ function drawMenu() {
     var menuY = menuPic.height*logoScale+20;
     var menuLineHeight = 26;
     var menuFontColor = '#777';
-    shadowText("[M] Close This Menu",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
+    shadowText("[M] Toggle Menu",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
     shadowText("[1] House Level Warp",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
     shadowText("[2] Nature Level Warp",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
     shadowText("[3] Factory Level Warp",menuX,menuY+=menuLineHeight,menuFontColor,'20px Verdana','left');
@@ -148,13 +148,21 @@ function drawMenu() {
     ];
 
     showLineCounter++;
+    var nextLine = Math.floor(showLineCounter/framesBetweenStoryText);
     for(var i=0;i<storySet.length;i++) {
         canvasContext.fillStyle = (i==3 || i==5 ? speaker2Color : speaker1Color);
+        if(i==nextLine) {
+            canvasContext.globalAlpha = (showLineCounter%framesBetweenStoryText)/framesBetweenStoryText;
+        } else {
+            canvasContext.globalAlpha = 1.0;
+        }
+
         canvasContext.fillText(storySet[i], lineX+ INDENT * (i==3 || i==5 ? 1 : 0), lineY+=lineSkip);
-        if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
+        if(i+1>nextLine) {
             break;
         }
     }
+    canvasContext.globalAlpha = 1.0;
     
     /*canvasContext.fillStyle = "black";
     canvasContext.fillText("Press SPACE or ENTER to Play", INDENT, 460);
@@ -164,7 +172,7 @@ function drawMenu() {
   
   function drawEpilogue() {
     colorRect(0, 0, canvas.width, canvas.height, 'beige');
-    canvasContext.font = "30px Verdana";
+    canvasContext.font = "25px Verdana";
     var speaker1Color = "purple";
     var speaker2Color = "orange";
     var lineY = 60;
@@ -174,19 +182,27 @@ function drawMenu() {
     "Wait, I can hear Soba's voice. Is that Soba's soul?",
     "Oh no, I destroyed the last remaining of Soba!",
     "Thank you Soba, you saved me.", // color 2
-    "Is that really you? But I didn't save you, I erased you",
+    "Is that really you? But I didn't save you, I erased you.",
     "No, You saved me Toba. I was imprisoned here for a long time.",
     "Take care. Be safe my friend.",
     ];
 
     showLineCounter++;
+    var nextLine = Math.floor(showLineCounter/framesBetweenStoryText);
     for(var i=0;i<storySet.length;i++) {
         canvasContext.fillStyle = (i==3 || i==5 ? speaker2Color : speaker1Color);
+        if(i==nextLine) {
+            canvasContext.globalAlpha = (showLineCounter%framesBetweenStoryText)/framesBetweenStoryText;
+        } else {
+            canvasContext.globalAlpha = 1.0;
+        }
+    
         canvasContext.fillText(storySet[i], INDENT * (i==3 || i==5 ? 2 : 1), lineY+=lineSkip);
-        if(i+1>Math.floor(showLineCounter/framesBetweenStoryText)) {
+        if(i+1>nextLine) {
             break;
         }
     }
+    canvasContext.globalAlpha = 1.0;
     
     canvasContext.fillStyle = "black";
     canvasContext.fillText("Press C for Credits", INDENT, 490);

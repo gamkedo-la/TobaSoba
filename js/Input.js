@@ -126,11 +126,16 @@ function setKeyHoldState(thisKey, setTo) {
 		}
 		holdJump = setTo;
 		break;
-	case KEY_K: // teleport to far right part of map, closer to boss for testing
-		jumperX = (ROOM_COLS-20)*TILE_W;
+	case KEY_K:
+		// test cheat to ending
+		/*gameState = STATE_OUTRO;
+		showLineCounter = 0;*/
+
+		// teleport to far right part of map, closer to boss for testing
+		/*jumperX = (ROOM_COLS-20)*TILE_W;
 		jumperY = (14)*TILE_H;
-		cameraInstantJump()
-    break;
+		cameraInstantJump();*/
+    	break;
 	case KEY_L:
     break;
 	case KEY_PLUS:

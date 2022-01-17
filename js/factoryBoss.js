@@ -213,11 +213,8 @@ function FactoryArmClass(startX, startY, startAng) {
             this.hitsLeft--;
             if(this.hitsLeft == 0) {
               this.readyToRemove = true;
-              if (!showOutro) { // toggle on/off
-                gameState = STATE_OUTRO;
-                    } else {
-                        gameState = STATE_PLAY;
-                    }	
+              showLineCounter = 0;
+              gameState = STATE_OUTRO;
             }
           }
          }
