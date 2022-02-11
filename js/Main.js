@@ -60,7 +60,10 @@ function startGame() {
     update(); 
     }
     }, 1000/framesPerSecond);
-  backgroundMusic.loopSong("audio/TobaSoba_Music_2");
+  if ( roomGridMaster == roomGridList[0] ||  roomGridMaster == roomGridList[1]){
+      backgroundMusic.loopSong("audio/toba_soba-letsgo");
+    }
+   
   //init( playerPic , "toba");
   loadLevel(0);
   if (showIntro) { // used to bypass menu when doing frequent gameplay testing, not used after game start

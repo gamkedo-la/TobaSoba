@@ -344,6 +344,7 @@ function JumperClass() {
                     worldEditor = false;
                 } else if ( roomGridMaster == roomGridList[1]) {
                     loadLevel(2);
+                    backgroundMusic.loopSong("audio/toba_soba-ohno");
                     gameState = STATE_PLAY;
                     worldEditor = false;
                 }

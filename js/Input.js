@@ -100,6 +100,7 @@ function setKeyHoldState(thisKey, setTo) {
 	case KEY_3:
 		if(gameState == STATE_MENU){
 			loadLevel(2);
+			backgroundMusic.loopSong("audio/toba_soba-ohno");
       		gameState = STATE_PLAY;
       		worldEditor = false;
 		}
