@@ -60,7 +60,7 @@ function startGame() {
     update(); 
     }
     }, 1000/framesPerSecond);
-  if ( roomGridMaster == roomGridList[0] ||  roomGridMaster == roomGridList[1]){
+  if ( roomGridMaster == roomGridList[0] ||  roomGridList[1]){
       backgroundMusic.loopSong("audio/toba_soba-letsgo");
     }
    
